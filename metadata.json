@@ -1,0 +1,19 @@
+{
+  "name": "profitbricks-puppet",
+  "version": "1.0.0",
+  "author": "Ethan Devenport",
+  "license": "Apache 2.0",
+  "source": "git://github.com/profitbricks/profitbricks-puppet",
+  "summary": "Manage ProfitBricks cloud environment with Puppet",
+  "description": "Manage ProfitBricks cloud environment with Puppet",
+  "project_page": "https://github.com/profitbricks/profitbricks-puppet",
+  "issues_url": "https://github.com/profitbricks/profitbricks-puppet/issues",
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.3.0"
+    }
+  ],
+  "dependencies": [
+  ]
+}
