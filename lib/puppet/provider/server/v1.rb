@@ -73,6 +73,7 @@ Puppet::Type.type(:server).provide(:v1) do
         type: volume['type'] || 'HDD',
         imagePassword: volume['image_password']
       }
+      assign_ssh_keys(config, volume)
       assign_image_or_licence(config, volume)
     end
     mappings unless mappings.empty?
@@ -152,8 +153,6 @@ Puppet::Type.type(:server).provide(:v1) do
         cores: resource[:cores],
         ram: resource[:ram],
         availabilityZone: resource[:availability_zone],
-        bootVolume: resource[:boot_volume],
-        bootCdrom: resource[:boot_cdrom],
         volumes: volumes,
         nics: nics
       )
@@ -217,6 +216,14 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def lan_from_name(name, datacenter_id)
     LAN.list(datacenter_id).find { |lan| lan.properties['name'] == name }
+  end
+
+  def assign_ssh_keys(config, volume)
+    if volume.key?('ssh_keys')
+      ssh_keys = volume['ssh_keys']
+      ssh_keys = ssh_keys.is_a?(Array) ? ssh_keys : [ssh_keys]
+      config.merge!(sshKeys: ssh_keys)
+    end
   end
 
   def assign_image_or_licence(config, volume)

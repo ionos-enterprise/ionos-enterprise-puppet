@@ -22,8 +22,11 @@ Puppet::Type.type(:lan).provide(:v1) do
     Datacenter.list.map do |datacenter|
       lans = []
       LAN.list(datacenter.id).each do |lan|
-        hash = instance_to_hash(lan)
-        lans << new(hash)
+        # Ignore LAN if name is not defined.
+        if lan.properties['name'] != nil
+          hash = instance_to_hash(lan)
+          lans << new(hash)
+        end
       end
       lans
     end.flatten
