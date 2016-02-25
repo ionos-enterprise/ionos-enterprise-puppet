@@ -1,6 +1,6 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-gem 'profitbricks-sdk-ruby', '1.0.5'
+gem 'profitbricks-sdk-ruby', '1.1.0'
 
 group :test do
   gem 'rake'

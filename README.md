@@ -30,9 +30,9 @@ The ProfitBricks Puppet module utilizes the ProfitBricks REST API to manage reso
 
 ## Installation
 
-1. Install the Ruby gem.
+1. Install the ProfitBricks Ruby SDK gem.
 
-    `gem install profitbricks-puppet`
+    `gem install profitbricks-sdk-ruby`
 
 2. Install the module.
 

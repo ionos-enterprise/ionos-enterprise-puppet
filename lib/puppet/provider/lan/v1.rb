@@ -22,8 +22,11 @@ Puppet::Type.type(:lan).provide(:v1) do
     Datacenter.list.map do |datacenter|
       lans = []
       LAN.list(datacenter.id).each do |lan|
-        hash = instance_to_hash(lan)
-        lans << new(hash)
+        # Ignore LAN if name is not defined.
+        if lan.properties['name'] != nil
+          hash = instance_to_hash(lan)
+          lans << new(hash)
+        end
       end
       lans
     end.flatten
@@ -31,7 +34,7 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   def self.prefetch(resources)
     instances.each do |prov|
-      if resource = resources[prov.name]
+      if (resource = resources[prov.name])
         resource.provider = prov if resource[:datacenter_id] == prov.datacenter_id
       end
     end

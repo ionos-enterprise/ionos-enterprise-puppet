@@ -74,20 +74,6 @@ Puppet::Type.newtype(:server) do
     desc 'The OS type of the server.' 
   end
 
-  newproperty(:boot_volume) do
-    desc 'The volume from which the server will boot.' 
-    validate do |value|
-      fail('Boot volume must be a String') unless value.is_a?(Integer)
-    end
-  end
-
-  newproperty(:boot_cdrom) do
-    desc 'The CD-ROM from which the server will boot.' 
-    validate do |value|
-      fail('Boot CD-ROM must be a String') unless value.is_a?(Integer)
-    end
-  end
-
   newproperty(:volumes, :array_matching => :all) do
     desc 'A list of volumes to associate with the server.'
     validate do |value|
