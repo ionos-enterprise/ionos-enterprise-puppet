@@ -31,7 +31,7 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def self.prefetch(resources)
     instances.each do |prov|
-      if resource = resources[prov.name]
+      if (resource = resources[prov.name])
         resource.provider = prov if resource[:datacenter_id] == prov.datacenter_id
       end
     end
@@ -228,15 +228,15 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def assign_image_or_licence(config, volume)
     if volume.key?('image_id')
-      config.merge!(image: volume['image_id'])
+      config[:image] = volume['image_id']
     elsif volume.key?('licence_type')
-      config.merge!(licenceType: volume['licence_type'])
+      config[:licenceType] = volume['licence_type']
     else
       fail('Volume must have either image_id or licence_type defined.')
     end
 
     if volume.key?('image_password')
-      config.merge!(imagePassword: volume['image_password'])
+      config[:imagePassword] = volume['image_password']
     end
     config
   end

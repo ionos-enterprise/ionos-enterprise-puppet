@@ -65,7 +65,8 @@ server { 'backend' :
       size => 10,
       bus => 'VIRTIO',
       image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
-      image_password => 'secretpassword2015'
+      # image_password => 'secretpassword2015'
+      ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
     }
   ],
   nics => [

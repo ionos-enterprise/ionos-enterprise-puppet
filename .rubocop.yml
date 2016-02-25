@@ -151,9 +151,6 @@ Style/AsciiComments:
 Style/Attr:
   Enabled: false
 
-Style/Blocks:
-  Enabled: false
-
 Style/BracesAroundHashParameters:
   Enabled: false
 
@@ -218,16 +215,10 @@ Style/SpaceInsideParens:
 Style/LeadingCommentSpace:
   Enabled: false
 
-Style/SingleSpaceBeforeFirstArg:
-  Enabled: false
-
 Style/SpaceAfterColon:
   Enabled: false
 
 Style/SpaceAfterComma:
-  Enabled: false
-
-Style/SpaceAfterControlKeyword:
   Enabled: false
 
 Style/SpaceAfterMethodName:
@@ -309,9 +300,6 @@ Style/EmptyLines:
 Style/EmptyLinesAroundAccessModifier:
   Enabled: false
 
-Style/EmptyLinesAroundBody:
-  Enabled: false
-
 Style/EmptyLiteral:
   Enabled: false
 
@@ -331,9 +319,6 @@ Style/TrailingWhitespace:
   Enabled: false
 
 Style/StringLiterals:
-  Enabled: false
-
-Style/TrailingComma:
   Enabled: false
 
 Style/GlobalVars:
@@ -370,9 +355,6 @@ Style/TrivialAccessors:
   Enabled: false
 
 Style/UnlessElse:
-  Enabled: false
-
-Style/UnneededPercentX:
   Enabled: false
 
 Style/VariableInterpolation:
@@ -474,10 +456,10 @@ Lint/UnderscorePrefixedVariableName:
 Metrics/ParameterLists:
   Enabled: false
 
-Lint/RequireParentheses:
+Metrics/AbcSize:
   Enabled: false
 
-Lint/SpaceBeforeFirstArg:
+Lint/RequireParentheses:
   Enabled: false
 
 Style/ModuleFunction:

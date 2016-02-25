@@ -34,7 +34,7 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   def self.prefetch(resources)
     instances.each do |prov|
-      if resource = resources[prov.name]
+      if (resource = resources[prov.name])
         resource.provider = prov if resource[:datacenter_id] == prov.datacenter_id
       end
     end
