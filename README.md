@@ -10,6 +10,9 @@
 * [Reference](#reference)
     * [LAN Resource](#lan-resource)
     * [Server Resource](#server-resource)
+    * [Volume Resource](#volume-resource)
+    * [NIC Resource](#nic-resource)
+    * [Firewall Rule Resource](firewall-rule-resouce)
 * [Contributing](#contributing)
 * [Documentation and Support](#documentation-and-support)
 
@@ -136,7 +139,7 @@ Required
 
 Optional
 
-* **public**`: Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`.
+* **public**: Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`.
 
 ### Server Resource
 
@@ -146,8 +149,8 @@ Server resources provide the following properties.
 
 * **ensure**: The desired server state which can be `present`, `absent`, `running`, or `stopped`.
 * **datacenter_id**: The UUID of an existing data center where the server will reside.
-* **cores** The number of CPU cores assigned to the server.
-* **ram**  The amount of RAM assigned to the server MB (must be a multiple of 256).
+* **cores**: The number of CPU cores assigned to the server.
+* **ram**:  The amount of RAM assigned to the server MB (must be a multiple of 256).
 
 **Optional**
 
@@ -159,7 +162,7 @@ Server resources provide the following properties.
 * **volumes**: An array of volumes that will be built and attached to the server.
 * **nics**: An array of NICs that will be connected to the server.
 
-#### Volumes
+### Volume Resource
 
 Volumes are a nested array defined within the server resource.
 
@@ -175,10 +178,11 @@ Volumes are a nested array defined within the server resource.
 * **image_password**: One-time password is set on the Image for the appropriate account.
 * **type**: The disk type. Currently only HDD.
 * **bus**: The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`.
+* **ssh_keys**: A list of public SSH keys to add to supported image.
 
 **Note**: Either `image_id` or `licence_type` must be defined.
 
-#### NICs
+### NIC Resource
 
 NICs nested under the server resource.
 
@@ -188,7 +192,7 @@ NICs nested under the server resource.
 * **lan**: Name of the LAN to connect the NIC.
 * **firewallrules**: An array of firewall rules to assign the NIC.
 
-#### Firewall Rules
+### Firewall Rule Resource
 
 Firewall rules are nested within `nics` under the server resource.
 
@@ -204,15 +208,14 @@ Firewall rules are nested within `nics` under the server resource.
 
 ## Contributing
 
-1. Fork it (`https://github.com/[my-github-username]/profitbricks-puppet/fork`)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+1. Fork it (`https://github.com/[my-github-username]/profitbricks-puppet/fork`).
+2. Create your feature branch (`git checkout -b my-new-feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin my-new-feature`).
+5. Create a new Pull Request.
 
 ## Documentation and Support
 
-* [ProfitBricks Puppet module](https://devops.profitbricks.com/libraries/profitbricks-puppet/) guide.
 * [ProfitBricks REST API](https://devops.profitbricks.com/api/rest/) documentation.
 * Ask a question or discuss at [ProfitBricks DevOps Central](https://devops.profitbricks.com/community).
 * Report an [issue here](https://github.com/profitbricks/profitbricks-puppet/issues).
