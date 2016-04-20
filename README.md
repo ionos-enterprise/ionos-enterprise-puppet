@@ -12,7 +12,7 @@
     * [Server Resource](#server-resource)
     * [Volume Resource](#volume-resource)
     * [NIC Resource](#nic-resource)
-    * [Firewall Rule Resource](firewall-rule-resource)
+    * [Firewall Rule Resource](#firewall-rule-resource)
 * [Contributing](#contributing)
 * [Documentation and Support](#documentation-and-support)
 
