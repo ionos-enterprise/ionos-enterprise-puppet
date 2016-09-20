@@ -57,6 +57,17 @@ Puppet::Type.newtype(:server) do
     end
   end
 
+  newproperty(:cpu_family) do
+    desc 'The CPU family of the server.' 
+    defaultto 'AMD_OPTERON'
+    validate do |value|
+      unless ['AMD_OPTERON', 'INTEL_XEON'].include?(value)
+        fail('CPU family must be either "AMD_OPTERON" or "INTEL_XEON"')
+      end
+      fail('CPU family must be a string') unless value.is_a?(String)
+    end
+  end
+
   newproperty(:ram) do
     desc 'The amount of RAM in MB assigned to the server.' 
     validate do |value|
@@ -80,7 +91,7 @@ Puppet::Type.newtype(:server) do
       volumes = value.is_a?(Array) ? value : [value]
       fail('A single volume is supported at this time') unless volumes.count <= 1
       volumes.each do |volume|
-        ['name', 'size'].each do |key|
+        ['name', 'size', 'volume_type'].each do |key|
           fail("Volume must include #{key}") unless value.keys.include?(key)
         end
       end

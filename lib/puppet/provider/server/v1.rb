@@ -70,7 +70,7 @@ Puppet::Type.type(:server).provide(:v1) do
         name: volume['name'],
         size: volume['size'],
         bus: volume['bus'],
-        type: volume['type'] || 'HDD',
+        type: volume['volume_type'] || 'HDD',
         imagePassword: volume['image_password']
       }
       assign_ssh_keys(config, volume)
@@ -151,6 +151,7 @@ Puppet::Type.type(:server).provide(:v1) do
         resource[:datacenter_id],
         name: name,
         cores: resource[:cores],
+        cpuFamily: resource[:cpu_family],
         ram: resource[:ram],
         availabilityZone: resource[:availability_zone],
         volumes: volumes,

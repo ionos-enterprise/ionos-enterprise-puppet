@@ -1,4 +1,4 @@
-$datacenter_id = '2dbf0e6b-3430-46fd-befd-6d08acd96557'
+$datacenter_id = 'd581d2cd-455f-4ac9-a745-13b30b563ae3'
 
 lan { 'private' :
   ensure => present,
@@ -15,15 +15,17 @@ lan { 'public' :
 server { 'frontend' :
   ensure => present,
   datacenter_id => $datacenter_id,
-  cores  => 1,
-  ram    => 1024,
+  cores => 1,
+  ram => 1024,
   volumes => [
     {
       name => 'system',
-      size => 20,
+      size => 10,
       bus => 'VIRTIO',
-      image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
-      image_password => 'secretpassword2015'
+      volume_type => 'SSD',
+      image_id => '837eb1f6-7003-11e6-bfbf-52540005ab80',
+      image_password => 'secretpassword2015',
+      ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
     }
   ],
   nics => [
@@ -57,16 +59,25 @@ server { 'frontend' :
 server { 'backend' :
   ensure => present,
   datacenter_id => $datacenter_id,
-  cores  => 1,
-  ram    => 1024,
+  cores => 1,
+  cpu_family => 'INTEL_XEON',
+  ram => 1024,
   volumes => [
     {
       name => 'system',
+      size => 5,
+      bus => 'VIRTIO',
+      volume_type => 'HDD',
+      image_id => '837eb1f6-7003-11e6-bfbf-52540005ab80',
+      image_password => 'secretpassword2015',
+      ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
+    },
+    {
+      name => 'data',
       size => 10,
       bus => 'VIRTIO',
-      image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
-      # image_password => 'secretpassword2015'
-      ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
+      volume_type => 'SSD',
+      licence_type => 'OTHER'
     }
   ],
   nics => [
