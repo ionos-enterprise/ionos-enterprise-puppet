@@ -71,7 +71,8 @@ Puppet::Type.type(:server).provide(:v1) do
         size: volume['size'],
         bus: volume['bus'],
         type: volume['volume_type'] || 'HDD',
-        imagePassword: volume['image_password']
+        imagePassword: volume['image_password'],
+        availabilityZone: volume['availability_zone']
       }
       assign_ssh_keys(config, volume)
       assign_image_or_licence(config, volume)
@@ -109,7 +110,8 @@ Puppet::Type.type(:server).provide(:v1) do
         ips: nic['ips'],
         dhcp: nic['dhcp'],
         lan: lan.id,
-        firewallrules: fwrules
+        firewallrules: fwrules,
+        nat: nic['nat']
       }
     end
     mappings unless mappings.empty?

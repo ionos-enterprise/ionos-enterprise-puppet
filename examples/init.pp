@@ -25,7 +25,8 @@ server { 'frontend' :
       volume_type => 'SSD',
       image_id => '837eb1f6-7003-11e6-bfbf-52540005ab80',
       image_password => 'secretpassword2015',
-      ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
+      ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ],
+      availability_zone => 'AUTO'
     }
   ],
   nics => [
@@ -33,6 +34,7 @@ server { 'frontend' :
       name => 'public',
       dhcp => true,
       lan => 'public',
+      nat => false,
       firewall_rules => [
         { 
           name => 'SSH',
@@ -68,6 +70,7 @@ server { 'backend' :
       size => 5,
       bus => 'VIRTIO',
       volume_type => 'HDD',
+      availability_zone => 'AUTO',
       image_id => '837eb1f6-7003-11e6-bfbf-52540005ab80',
       image_password => 'secretpassword2015',
       ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
@@ -77,7 +80,8 @@ server { 'backend' :
       size => 10,
       bus => 'VIRTIO',
       volume_type => 'SSD',
-      licence_type => 'OTHER'
+      licence_type => 'OTHER',
+      availability_zone => 'AUTO',
     }
   ],
   nics => [
@@ -85,6 +89,7 @@ server { 'backend' :
       name => 'primary',
       dhcp => true,
       lan => 'private',
+      nat => false,
       firewall_rules => [
         {
           name => 'SSH',

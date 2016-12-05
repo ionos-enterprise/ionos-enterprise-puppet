@@ -83,7 +83,8 @@ The following example will describe a full server with public Internet access an
           size => 5,
           bus => 'VIRTIO',
           image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
-          image_password => 'mysecretpassword'
+          image_password => 'mysecretpassword',
+          availability_zone => 'AUTO'
         }
       ],
       nics => [
@@ -91,6 +92,7 @@ The following example will describe a full server with public Internet access an
           name => 'nic0',
           dhcp => true,
           lan => 'public',
+          nat => false,
           firewall_rules => [
             {
               name => 'SSH',
@@ -179,6 +181,7 @@ Volumes are a nested array defined within the server resource.
 * **type**: The disk type. Currently only HDD.
 * **bus**: The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`.
 * **ssh_keys**: A list of public SSH keys to add to supported image.
+* **availability_zone**: Direct a storage volume to be created in one of three zones per data center. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`.
 
 **Note**: Either `image_id` or `licence_type` must be defined.
 
@@ -191,6 +194,11 @@ NICs nested under the server resource.
 * **dhcp**: Set DHCP on the NIC with `true` or `false`, defaults to `true`.
 * **lan**: Name of the LAN to connect the NIC.
 * **firewallrules**: An array of firewall rules to assign the NIC.
+* **nat**: A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements:
+ - The NIC this is being activated on must belong to a private LAN.
+ - The NIC must not belong to a load balancer.
+ - NAT cannot be activated in a private LAN that contains an IPv4 address ending with ".1".
+ - NAT should not be enabled in a Virtual Data Center with an active ProfitBricks firewall.
 
 ### Firewall Rule Resource
 
