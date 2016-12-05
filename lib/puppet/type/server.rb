@@ -85,6 +85,11 @@ Puppet::Type.newtype(:server) do
     desc 'The OS type of the server.' 
   end
 
+  newproperty(:nat) do
+    desc 'A boolean which indicates if the NIC will perform Network Address Translation.'
+    defaultto :false
+  end
+
   newproperty(:volumes, :array_matching => :all) do
     desc 'A list of volumes to associate with the server.'
     validate do |value|
