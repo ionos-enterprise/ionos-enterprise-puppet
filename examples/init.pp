@@ -1,21 +1,22 @@
-$datacenter_id = 'd581d2cd-455f-4ac9-a745-13b30b563ae3'
+# Replace the datacenter_id below with an existing datacenter id
+$datacenter_id = '47886b1a-3b4e-4bcf-9357-8177f963b6e9'
 
 lan { 'private' :
   ensure => present,
   public => false,
   datacenter_id => $datacenter_id
-}
+} ->
 
 lan { 'public' :
   ensure => present,
   public => true,
   datacenter_id => $datacenter_id
-}
+} ->
 
 server { 'frontend' :
   ensure => present,
-  datacenter_id => $datacenter_id,
   cores => 1,
+  datacenter_id => $datacenter_id,
   ram => 1024,
   volumes => [
     {
@@ -23,7 +24,7 @@ server { 'frontend' :
       size => 10,
       bus => 'VIRTIO',
       volume_type => 'SSD',
-      image_id => '837eb1f6-7003-11e6-bfbf-52540005ab80',
+      image_id => '82fcd652-b785-11e6-9724-525400f64d8d',
       image_password => 'secretpassword2015',
       ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ],
       availability_zone => 'AUTO'
@@ -54,9 +55,10 @@ server { 'frontend' :
       name => 'private',
       dhcp => true,
       lan => 'private',
+      nat => false,
     }
   ]
-}
+} ->
 
 server { 'backend' :
   ensure => present,
@@ -71,7 +73,7 @@ server { 'backend' :
       bus => 'VIRTIO',
       volume_type => 'HDD',
       availability_zone => 'AUTO',
-      image_id => '837eb1f6-7003-11e6-bfbf-52540005ab80',
+      image_id => '82fcd652-b785-11e6-9724-525400f64d8d',
       image_password => 'secretpassword2015',
       ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ]
     },
