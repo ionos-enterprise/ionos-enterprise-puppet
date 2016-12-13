@@ -76,12 +76,14 @@ The following example will describe a full server with public Internet access an
       ensure => running,
       datacenter_id => $datacenter_id,
       cores => 2,
+      cpu_family => 'INTEL_XEON',
       ram => 4096,
       volumes => [
         {
           name => 'system',
           size => 5,
           bus => 'VIRTIO',
+          volume_type => 'SSD'
           image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
           image_password => 'mysecretpassword',
           availability_zone => 'AUTO'
@@ -156,6 +158,7 @@ Server resources provide the following properties.
 
 **Optional**
 
+* **cpu_family**: The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`.
 * **availability_zone**: Availability zone of the server, defaults to `AUTO`.
 * **licence_type**: If undefined the OS type will be inherited from the boot image or boot volume.
 * **boot_volume**: The UUID of an existing volume from which to boot.
@@ -172,13 +175,13 @@ Volumes are a nested array defined within the server resource.
 
 * **name**: Name of the volume.
 * **size**: Size of the volume in GB.
+* **volume_type**: The volume type can be `HDD` or `SSD`.
 
 **Optional**
 
 * **image_id**: UUID of the image to assign to the volume.
 * **licence_type**: The licence type of the volume including `LINUX`, `WINDOWS`, `UNKNOWN`, and `OTHER`.
 * **image_password**: One-time password is set on the Image for the appropriate account.
-* **type**: The disk type. Currently only HDD.
 * **bus**: The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`.
 * **ssh_keys**: A list of public SSH keys to add to supported image.
 * **availability_zone**: Direct a storage volume to be created in one of three zones per data center. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`.
@@ -221,6 +224,16 @@ Firewall rules are nested within `nics` under the server resource.
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin my-new-feature`).
 5. Create a new Pull Request.
+
+## Build and Install Module
+
+Run the following from the repository directory.
+
+    cd profitbricks-puppet
+    puppet module build
+    puppet module install -f pkg/profitbricks-puppet-[version].tar.gz
+
+Notes: [version] should be replaced with the module version built. For example, 1.2.0.
 
 ## Documentation and Support
 
