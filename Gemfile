@@ -1,6 +1,20 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-gem 'profitbricks-sdk-ruby', '1.1.0'
+gem 'profitbricks-sdk-ruby', '3.0.0'
+
+# Find a location or specific version for a gem. place_or_version can be a
+# version, which is most often used. It can also be git, which is specified as
+# `git://somewhere.git#branch`. You can also use a file source location, which
+# is specified as `file://some/location/on/disk`.
+def location_for(place_or_version, fake_version = nil)
+  if place_or_version =~ /^(git[:@][^#]*)#(.*)/
+    [fake_version, { :git => $1, :branch => $2, :require => false }].compact
+  elsif place_or_version =~ /^file:\/\/(.*)/
+    ['>= 0', { :path => File.expand_path($1), :require => false }]
+  else
+    [place_or_version, { :require => false }]
+  end
+end
 
 group :test do
   gem 'rake'

@@ -39,11 +39,11 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def self.instance_to_hash(instance)
     volumes = instance.list_volumes.map do |mapping|
-      { name: mapping.properties['name'] }
+      { :name => mapping.properties['name'] }
     end
 
     nics = instance.list_nics.map do |mapping|
-      { name: mapping.properties['name'] }
+      { :name => mapping.properties['name'] }
     end
 
     instance_state = instance.properties['vmState']
@@ -54,10 +54,10 @@ Puppet::Type.type(:server).provide(:v1) do
     end
 
     config = {
-      id: instance.id,
-      datacenter_id: instance.datacenterId,
-      name: instance.properties['name'],
-      ensure: state
+      :id => instance.id,
+      :datacenter_id => instance.datacenterId,
+      :name => instance.properties['name'],
+      :ensure => state
     }
     config[:volumes] = volumes unless volumes.empty?
     config[:nics] = nics unless nics.empty?
@@ -67,11 +67,12 @@ Puppet::Type.type(:server).provide(:v1) do
   def config_with_volumes(volumes)
     mappings = volumes.map do |volume|
       config = {
-        name: volume['name'],
-        size: volume['size'],
-        bus: volume['bus'],
-        type: volume['volume_type'] || 'HDD',
-        imagePassword: volume['image_password']
+        :name => volume['name'],
+        :size => volume['size'],
+        :bus => volume['bus'],
+        :type => volume['volume_type'] || 'HDD',
+        :imagePassword => volume['image_password'],
+        :availabilityZone => volume['availability_zone']
       }
       assign_ssh_keys(config, volume)
       assign_image_or_licence(config, volume)
@@ -82,15 +83,15 @@ Puppet::Type.type(:server).provide(:v1) do
   def config_with_fwrules(fwrules)
     mappings = fwrules.map do |fwrule|
       {
-        name: fwrule['name'],
-        protocol: fwrule['protocol'],
-        sourceMac: fwrule['source_mac'],
-        sourceIp: fwrule['source_ip'],
-        targetIp: fwrule['target_ip'],
-        portRangeStart: fwrule['port_range_start'],
-        portRangeEnd: fwrule['port_range_end'],
-        icmpType: fwrule['icmp_type'],
-        icmpCode: fwrule['icmp_code']
+        :name => fwrule['name'],
+        :protocol => fwrule['protocol'],
+        :sourceMac => fwrule['source_mac'],
+        :sourceIp => fwrule['source_ip'],
+        :targetIp => fwrule['target_ip'],
+        :portRangeStart => fwrule['port_range_start'],
+        :portRangeEnd => fwrule['port_range_end'],
+        :icmpType => fwrule['icmp_type'],
+        :icmpCode => fwrule['icmp_code']
       }
     end
     mappings unless mappings.empty?
@@ -105,11 +106,12 @@ Puppet::Type.type(:server).provide(:v1) do
         lan = lan_from_name(nic['lan'], resource[:datacenter_id])
       end
       {
-        name: nic['name'],
-        ips: nic['ips'],
-        dhcp: nic['dhcp'],
-        lan: lan.id,
-        firewallrules: fwrules
+        :name => nic['name'],
+        :ips => nic['ips'],
+        :dhcp => nic['dhcp'],
+        :lan => lan.id,
+        :firewallrules => fwrules,
+        :nat => nic['nat']
       }
     end
     mappings unless mappings.empty?
@@ -149,13 +151,13 @@ Puppet::Type.type(:server).provide(:v1) do
 
       server = Server.create(
         resource[:datacenter_id],
-        name: name,
-        cores: resource[:cores],
-        cpuFamily: resource[:cpu_family],
-        ram: resource[:ram],
-        availabilityZone: resource[:availability_zone],
-        volumes: volumes,
-        nics: nics
+        {:name => name,
+        :cores => resource[:cores],
+        :cpuFamily => resource[:cpu_family],
+        :ram => resource[:ram],
+        :availabilityZone => resource[:availability_zone],
+        :volumes => volumes,
+        :nics => nics}
       )
 
       begin

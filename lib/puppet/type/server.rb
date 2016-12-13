@@ -52,8 +52,9 @@ Puppet::Type.newtype(:server) do
   newproperty(:cores) do
     desc 'The number of CPU cores assigned to the server.' 
     validate do |value|
+      numCores = Integer(value) rescue nil
       fail('Server must have cores assigned') if value == ''
-      fail('Cores must be a integer') unless value.is_a?(Integer)
+      fail('Cores must be a integer') unless numCores
     end
   end
 
@@ -71,8 +72,9 @@ Puppet::Type.newtype(:server) do
   newproperty(:ram) do
     desc 'The amount of RAM in MB assigned to the server.' 
     validate do |value|
+      ram = Integer(value) rescue nil
       fail('Server must have ram assigned') if value == ''
-      fail('RAM must be a multiple of 256 MB') unless (value % 256) == 0
+      fail('RAM must be a multiple of 256 MB') unless (ram % 256) == 0
     end
   end
 
@@ -83,6 +85,11 @@ Puppet::Type.newtype(:server) do
 
   newproperty(:licence_type) do
     desc 'The OS type of the server.' 
+  end
+
+  newproperty(:nat) do
+    desc 'A boolean which indicates if the NIC will perform Network Address Translation.'
+    defaultto :false
   end
 
   newproperty(:volumes, :array_matching => :all) do
