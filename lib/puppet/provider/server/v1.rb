@@ -15,6 +15,10 @@ Puppet::Type.type(:server).provide(:v1) do
       config.username = ENV['PROFITBRICKS_USERNAME']
       config.password = ENV['PROFITBRICKS_PASSWORD']
       config.timeout = 300
+
+      config.headers = Hash.new
+      config.headers['User-Agent'] = 'profitbricks-puppet-1.3.1'
+
     end
   end
 
