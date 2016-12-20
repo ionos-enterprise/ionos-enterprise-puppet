@@ -17,8 +17,7 @@ Puppet::Type.type(:server).provide(:v1) do
       config.timeout = 300
 
       config.headers = Hash.new
-      config.headers['User-Agent'] = 'profitbricks-puppet-1.3.1'
-
+      config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
     end
   end
 
