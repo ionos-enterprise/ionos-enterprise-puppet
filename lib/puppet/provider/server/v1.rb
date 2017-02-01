@@ -11,14 +11,11 @@ Puppet::Type.type(:server).provide(:v1) do
   end
 
   def self.client
-    ProfitBricks.configure do |config|
-      config.username = ENV['PROFITBRICKS_USERNAME']
-      config.password = ENV['PROFITBRICKS_PASSWORD']
-      config.timeout = 300
-    end
+    profitbricks_config
   end
 
   def self.instances
+    profitbricks_config
     Datacenter.list.map do |datacenter|
       servers = []
       Server.list(datacenter.id).each do |server|
@@ -206,6 +203,14 @@ Puppet::Type.type(:server).provide(:v1) do
   end
 
   private
+
+  def self.profitbricks_config
+    ProfitBricks.configure do |config|
+      config.username = ENV['PROFITBRICKS_USERNAME']
+      config.password = ENV['PROFITBRICKS_PASSWORD']
+      config.timeout = 300
+    end
+  end
 
   def request_error(server)
     Request.get(server.requestId).status.metadata if server.requestId
