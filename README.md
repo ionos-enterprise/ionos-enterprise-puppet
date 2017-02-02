@@ -8,6 +8,7 @@
 * [Full Server Example](#full-server-example)
 * [Remove Resources](#remove-resources)
 * [Reference](#reference)
+    * [Data Center Resource](#datacenter-resource)
     * [LAN Resource](#lan-resource)
     * [Server Resource](#server-resource)
     * [Volume Resource](#volume-resource)
@@ -59,6 +60,18 @@ The Puppet manifest files use a domain specific language, or DSL. This language 
 A LAN named `public` will have public Internet access enabled and will reside in the defined data center.
 
 **Note**: It is important that resource names be unique within the manifest file. This includes both similar and different resource types. For example, a LAN resource named `public` will conflict with a server resource named `public`.
+
+To provide a data center ID, you can create a data center within the module as follows:
+
+    datacenter { 'myDataCenter' :
+      ensure      => present,
+      location    => 'de/fra',
+      description => 'test data center'
+    }
+
+Afterwards, get the data center ID using the puppet resource command:
+
+    puppet resource datacenter [myDataCenter]
 
 ## Full Server Example
 
@@ -134,10 +147,23 @@ By default, the volumes attached to the server resources will remain available w
 
 ## Reference
 
+### Data Center Resource
+
+Required
+
+* **name**: The name of the data center.
+* **ensure**: The desired state of the data center must be `present` or `absent`.
+* **location**: The location of the data center.
+
+Optional
+
+* **description**: The data center description.
+
 ### LAN Resource
 
 Required
 
+* **name**: The name of the LAN.
 * **ensure**: The desired state of the LAN must be `present` or `absent`.
 * **datacenter_id**: The data center where the server will reside. This must be provisioned beforehand.
 
@@ -151,6 +177,7 @@ Server resources provide the following properties.
 
 **Required**
 
+* **name**: The name of the server.
 * **ensure**: The desired server state which can be `present`, `absent`, `running`, or `stopped`.
 * **datacenter_id**: The UUID of an existing data center where the server will reside.
 * **cores**: The number of CPU cores assigned to the server.
@@ -161,8 +188,6 @@ Server resources provide the following properties.
 * **cpu_family**: The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`.
 * **availability_zone**: Availability zone of the server, defaults to `AUTO`.
 * **licence_type**: If undefined the OS type will be inherited from the boot image or boot volume.
-* **boot_volume**: The UUID of an existing volume from which to boot.
-* **boot_cdrom**: The UUID of an existing CDROM/ISO image from which to boot.
 * **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`
 * **volumes**: An array of volumes that will be built and attached to the server.
 * **nics**: An array of NICs that will be connected to the server.
