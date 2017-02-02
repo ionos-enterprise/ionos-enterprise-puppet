@@ -13,15 +13,15 @@ describe type_class do
     [
       :ensure,
       :datacenter_id,
+      :cpu_family,
       :cores,
       :ram,
       :availability_zone,
       :licence_type,
-      :boot_volume,
-      :boot_cdrom,
       :volumes,
       :purge_volumes,
-      :nics
+      :nics,
+      :nat
     ]
   end
 

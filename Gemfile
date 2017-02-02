@@ -1,6 +1,6 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-gem 'profitbricks-sdk-ruby', '3.0.0'
+gem 'profitbricks-sdk-ruby', '3.0.1'
 
 # Find a location or specific version for a gem. place_or_version can be a
 # version, which is most often used. It can also be git, which is specified as
