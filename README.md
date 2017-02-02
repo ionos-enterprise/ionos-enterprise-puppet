@@ -8,7 +8,7 @@
 * [Full Server Example](#full-server-example)
 * [Remove Resources](#remove-resources)
 * [Reference](#reference)
-    * [Data Center Resource](#datacenter-resource)
+    * [Data Center Resource](#data-center-resource)
     * [LAN Resource](#lan-resource)
     * [Server Resource](#server-resource)
     * [Volume Resource](#volume-resource)
