@@ -1,5 +1,5 @@
 # Replace the datacenter_id below with an existing datacenter id
-$datacenter_id = '47886b1a-3b4e-4bcf-9357-8177f963b6e9'
+$datacenter_id = '67eb66ac-712f-40be-bb1e-b03dcc0a27c8'
 
 lan { 'private' :
   ensure => present,
