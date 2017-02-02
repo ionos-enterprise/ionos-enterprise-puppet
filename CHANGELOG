@@ -1,2 +1,3 @@
 2017-02-02 Release 1.4.0
-- Added support for ProfitBricks data center resources
+- Add support for ProfitBricks data center resources
+- Fix issue the module name conflicting with other puppetforge modules. Renamed to `profitbricks-profitbricks`.

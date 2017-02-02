@@ -40,7 +40,7 @@ The ProfitBricks Puppet module utilizes the ProfitBricks REST API to manage reso
 
 2. Install the module.
 
-    `puppet module install profitbricks-puppet`
+    `puppet module install profitbricks-profitbricks`
 
 3. Set the environment variables for authentication.
 
@@ -256,7 +256,7 @@ Run the following from the repository directory.
 
     cd profitbricks-puppet
     puppet module build
-    puppet module install -f pkg/profitbricks-puppet-[version].tar.gz
+    puppet module install -f pkg/profitbricks-profitbricks-[version].tar.gz
 
 Notes: [version] should be replaced with the module version built. For example, 1.2.0.
 
