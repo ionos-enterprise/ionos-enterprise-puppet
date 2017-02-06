@@ -18,9 +18,12 @@ Puppet::Type.type(:server).provide(:v1) do
     profitbricks_config
     Datacenter.list.map do |datacenter|
       servers = []
-      Server.list(datacenter.id).each do |server|
-        hash = instance_to_hash(server)
-        servers << new(hash)
+      # Ignore data center if name is not defined.
+      unless datacenter.properties['name'].nil? || datacenter.properties['name'].empty?
+        Server.list(datacenter.id).each do |server|
+          hash = instance_to_hash(server, datacenter)
+          servers << new(hash)
+        end
       end
       servers
     end.flatten
@@ -29,12 +32,14 @@ Puppet::Type.type(:server).provide(:v1) do
   def self.prefetch(resources)
     instances.each do |prov|
       if (resource = resources[prov.name])
-        resource.provider = prov if resource[:datacenter_id] == prov.datacenter_id
+        if resource[:datacenter_id] == prov.datacenter_id || resource[:datacenter_name] == prov.datacenter_name
+          resource.provider = prov
+        end
       end
     end
   end
 
-  def self.instance_to_hash(instance)
+  def self.instance_to_hash(instance, datacenter)
     volumes = instance.list_volumes.map do |mapping|
       { :name => mapping.properties['name'] }
     end
@@ -53,6 +58,7 @@ Puppet::Type.type(:server).provide(:v1) do
     config = {
       :id => instance.id,
       :datacenter_id => instance.datacenterId,
+      :datacenter_name => datacenter.properties['name'],
       :name => instance.properties['name'],
       :ensure => state
     }
@@ -100,7 +106,8 @@ Puppet::Type.type(:server).provide(:v1) do
         fwrules = config_with_fwrules(nic['firewall_rules'])
       end
       if nic.key?('lan')
-        lan = lan_from_name(nic['lan'], resource[:datacenter_id])
+        lan = lan_from_name(nic['lan'],
+          resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
       end
       {
         :name => nic['name'],
@@ -147,7 +154,7 @@ Puppet::Type.type(:server).provide(:v1) do
       end
 
       server = Server.create(
-        resource[:datacenter_id],
+        resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]),
         {:name => name,
         :cores => resource[:cores],
         :cpuFamily => resource[:cpu_family],
@@ -166,7 +173,7 @@ Puppet::Type.type(:server).provide(:v1) do
         end
       end
 
-      Puppet.info("Creating a new server called #{name}.")
+      Puppet.info("Server '#{name}' has been created.")
       @property_hash[:id] = server.id
       @property_hash[:ensure] = :present
     end
@@ -174,19 +181,22 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def restart
     Puppet.info("Restarting server #{name}")
-    server_from_name(name, resource[:datacenter_id]).reboot
+    server_from_name(name,
+      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).reboot
     @property_hash[:ensure] = :present
   end
 
   def stop
     create unless exists?
     Puppet.info("Stopping server #{name}")
-    server_from_name(name, resource[:datacenter_id]).stop
+    server_from_name(name,
+      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).stop
     @property_hash[:ensure] = :stopped
   end
 
   def destroy
-    server = server_from_name(resource[:name], resource[:datacenter_id])
+    server = server_from_name(resource[:name],
+      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
     destroy_volumes(server.list_volumes) if resource[:purge_volumes]
     Puppet.info("Deleting server #{name}.")
     server.delete
@@ -209,6 +219,9 @@ Puppet::Type.type(:server).provide(:v1) do
       config.username = ENV['PROFITBRICKS_USERNAME']
       config.password = ENV['PROFITBRICKS_PASSWORD']
       config.timeout = 300
+
+      url = ENV['PROFITBRICKS_API_URL']
+      config.url = url unless url.nil? || url.empty?
 
       config.headers = Hash.new
       config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
@@ -250,5 +263,16 @@ Puppet::Type.type(:server).provide(:v1) do
       config[:imagePassword] = volume['image_password']
     end
     config
+  end
+
+  def resolve_datacenter_id(dc_id, dc_name)
+    return dc_id unless dc_id.nil? || dc_id.empty?
+    unless dc_name.nil? || dc_name.empty?
+      Datacenter.list.each do |dc|
+        return dc.id if dc_name.casecmp(dc.properties['name']) == 0
+      end
+      raise Puppet::Error, "Data center named '#{dc_name}' cannot be found."
+    end
+    raise Puppet::Error, "Data center ID or name must be provided."
   end
 end

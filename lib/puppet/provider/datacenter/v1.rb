@@ -20,7 +20,7 @@ Puppet::Type.type(:datacenter).provide(:v1) do
     datacenters = []
     Datacenter.list.each do |dc|
       # Ignore data centers if name is not defined.
-      if dc.properties['name'] != nil
+      unless dc.properties['name'].nil? || dc.properties['name'].empty?
         hash = instance_to_hash(dc)
         datacenters << new(hash)
       end
@@ -87,6 +87,9 @@ Puppet::Type.type(:datacenter).provide(:v1) do
       config.username = ENV['PROFITBRICKS_USERNAME']
       config.password = ENV['PROFITBRICKS_PASSWORD']
       config.timeout = 300
+
+      url = ENV['PROFITBRICKS_API_URL']
+      config.url = url unless url.nil? || url.empty?
 
       config.headers = Hash.new
       config.headers['User-Agent'] = "Puppet/#{Puppet.version}"

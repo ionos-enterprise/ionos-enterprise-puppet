@@ -18,11 +18,14 @@ Puppet::Type.type(:lan).provide(:v1) do
     profitbricks_config
     Datacenter.list.map do |datacenter|
       lans = []
-      LAN.list(datacenter.id).each do |lan|
-        # Ignore LAN if name is not defined.
-        if lan.properties['name'] != nil
-          hash = instance_to_hash(lan)
-          lans << new(hash)
+      # Ignore data center if name is not defined.
+      unless datacenter.properties['name'].nil? || datacenter.properties['name'].empty?
+        LAN.list(datacenter.id).each do |lan|
+          # Ignore LAN if name is not defined.
+          unless lan.properties['name'].nil? || lan.properties['name'].empty?
+            hash = instance_to_hash(lan, datacenter)
+            lans << new(hash)
+          end
         end
       end
       lans
@@ -32,15 +35,18 @@ Puppet::Type.type(:lan).provide(:v1) do
   def self.prefetch(resources)
     instances.each do |prov|
       if (resource = resources[prov.name])
-        resource.provider = prov if resource[:datacenter_id] == prov.datacenter_id
+        if resource[:datacenter_id] == prov.datacenter_id || resource[:datacenter_name] == prov.datacenter_name
+          resource.provider = prov
+        end
       end
     end
   end
 
-  def self.instance_to_hash(instance)
+  def self.instance_to_hash(instance, datacenter)
     config = {
       id: instance.id,
       datacenter_id: instance.datacenterId,
+      datacenter_name: datacenter.properties['name'],
       name: instance.properties['name'],
       ensure: :present
     }
@@ -54,7 +60,7 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   def create
     lan = LAN.create(
-      resource[:datacenter_id],
+      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]),
       name: name,
       public: resource[:public] || false
     )
@@ -74,7 +80,8 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   def destroy
     Puppet.info("Deleting LAN #{name}.")
-    lan = lan_from_name(resource[:name], resource[:datacenter_id])
+    lan = lan_from_name(resource[:name],
+      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
     lan.delete
     lan.wait_for { ready? }
     @property_hash[:ensure] = :absent
@@ -88,6 +95,9 @@ Puppet::Type.type(:lan).provide(:v1) do
       config.password = ENV['PROFITBRICKS_PASSWORD']
       config.timeout = 300
 
+      url = ENV['PROFITBRICKS_API_URL']
+      config.url = url unless url.nil? || url.empty?
+
       config.headers = Hash.new
       config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
     end
@@ -99,5 +109,16 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   def lan_from_name(name, datacenter_id)
     LAN.list(datacenter_id).find { |lan| lan.properties['name'] == name }
+  end
+
+  def resolve_datacenter_id(dc_id, dc_name)
+    return dc_id unless dc_id.nil? || dc_id.empty?
+    unless dc_name.nil? || dc_name.empty?
+      Datacenter.list.each do |dc|
+        return dc.id if dc_name.casecmp(dc.properties['name']) == 0
+      end
+      raise "Data center named '#{dc_name}' cannot be found."
+    end
+    raise "Data center ID or name must be provided."
   end
 end
