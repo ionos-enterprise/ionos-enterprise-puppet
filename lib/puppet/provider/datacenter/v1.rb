@@ -88,6 +88,9 @@ Puppet::Type.type(:datacenter).provide(:v1) do
       config.password = ENV['PROFITBRICKS_PASSWORD']
       config.timeout = 300
 
+      url = ENV['PROFITBRICKS_API_URL']
+      config.url = url unless url.nil? || url.empty?
+
       config.headers = Hash.new
       config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
     end

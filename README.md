@@ -47,6 +47,10 @@ The ProfitBricks Puppet module utilizes the ProfitBricks REST API to manage reso
     `export PROFITBRICKS_USERNAME="user@example.com"`<br>
     `export PROFITBRICKS_PASSWORD="secretpassword"`
 
+  Setting the ProfitBricks API URL is optional.
+
+    `export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"`
+
 ## Usage
 
 The Puppet manifest files use a domain specific language, or DSL. This language allows resources and their states to be declared. Puppet will then build the resources and set the states as described in the manifest file. The following snippet describes a simple LAN resource.
