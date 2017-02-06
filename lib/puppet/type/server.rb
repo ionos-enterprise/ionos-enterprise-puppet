@@ -43,10 +43,10 @@ Puppet::Type.newtype(:server) do
 
   newproperty(:datacenter_id) do
     desc 'The virtual data center where the server will reside.'
-    validate do |value|
-      fail('Data center UUID must be set') if value == ''
-      fail('Data center UUID must be a String') unless value.is_a?(String)
-    end
+  end
+
+  newproperty(:datacenter_name) do
+    desc 'The name of the virtual data center where the server will reside.'
   end
 
   newproperty(:cores) do
@@ -114,14 +114,14 @@ Puppet::Type.newtype(:server) do
   newproperty(:purge_volumes) do
     desc 'Sets whether attached volumes are removed when server is removed.'
     defaultto :false
-    newvalues(:true, :'false')
+    newvalues(:true, :false)
     def insync?(is)
       is.to_s == should.to_s
     end
   end
 
   newproperty(:nics, :array_matching => :all) do
-    desc 'A list of network interfaces asociated with the server.' 
+    desc 'A list of network interfaces associated with the server.' 
     validate do |value|
       nics = value.is_a?(Array) ? value : [value]
       nics.each do |nic|
@@ -142,6 +142,10 @@ Puppet::Type.newtype(:server) do
   end
 
   autorequire(:lan) do
-    self[:datacenter_id]
+    if self[:datacenter_id]
+      self[:datacenter_id]
+    else
+      self[:datacenter_name]
+    end
   end
 end

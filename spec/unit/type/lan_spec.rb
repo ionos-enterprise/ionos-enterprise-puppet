@@ -13,6 +13,7 @@ describe type_class do
     [
       :ensure,
       :datacenter_id,
+      :datacenter_name,
       :public,
     ]
   end

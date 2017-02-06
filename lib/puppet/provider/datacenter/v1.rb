@@ -20,7 +20,7 @@ Puppet::Type.type(:datacenter).provide(:v1) do
     datacenters = []
     Datacenter.list.each do |dc|
       # Ignore data centers if name is not defined.
-      if dc.properties['name'] != nil
+      unless dc.properties['name'].nil? || dc.properties['name'].empty?
         hash = instance_to_hash(dc)
         datacenters << new(hash)
       end

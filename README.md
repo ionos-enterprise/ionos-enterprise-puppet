@@ -73,6 +73,12 @@ Afterwards, get the data center ID using the puppet resource command:
 
     puppet resource datacenter [myDataCenter]
 
+**Note on the resource uniqueness:**
+
+Using the ProfitBricks Puppet module to manage your ProfitBricks resources ensures uniqueness of the managed instances.
+However, it is generally allowed, for example, to create multiple data centers having the same name.
+In that case, the module will always refer and manage the first obtained resource in the list.
+
 ## Full Server Example
 
 The following example will describe a full server with public Internet access and allow inbound SSH connections.
@@ -120,6 +126,56 @@ The following example will describe a full server with public Internet access an
       ]
     }
 
+Alternatively, instead of providing a data center ID, you can create a data center along with LAN and server resources in a single manifest by using the data center name as input parameter.
+
+    $datacenter_name = 'MyDataCenter'
+
+    datacenter { $datacenter_name :
+      ensure      => present,
+      location    => 'de/fkb',
+      description => 'my data center desc.'
+    } ->
+
+    lan { 'public' :
+      ensure => present,
+      public => true,
+      datacenter_name => $datacenter_name
+    } ->
+
+    server { 'worker1' :
+      ensure => present,
+      cores => 2,
+      datacenter_name => $datacenter_name,
+      ram => 1024,
+      volumes => [
+        {
+          name => 'system',
+          size => 50,
+          bus => 'VIRTIO',
+          volume_type => 'SSD',
+          image_id => '7412cec6-e83c-11e6-a994-525400f64d8d',
+          ssh_keys => [ 'ssh-rsa AAAAB3NzaC1yc2EAA...' ],
+          availability_zone => 'AUTO'
+        }
+      ],
+      nics => [
+        {
+          name => 'public',
+          dhcp => true,
+          lan => 'public',
+          nat => false,
+          firewall_rules => [
+            { 
+              name => 'SSH',
+              protocol => 'TCP',
+              port_range_start => 22,
+              port_range_end => 22
+            }
+          ]
+        }
+      ]
+    }
+
 ## Remove Resources
 
 The following example sets the above resource states to `absent`. This will cause the server named `frontend` along with the associated `public` LAN to be removed.
@@ -145,6 +201,8 @@ By default, the volumes attached to the server resources will remain available w
 
 **Note:** Volume removal is permanent. Be sure to perform a snapshot if you wish to retain the volume data.
 
+**Note:** You may use `datacenter_name` instead of `datacenter_id` when removing LANs and servers.
+
 ## Reference
 
 ### Data Center Resource
@@ -165,7 +223,8 @@ Required
 
 * **name**: The name of the LAN.
 * **ensure**: The desired state of the LAN must be `present` or `absent`.
-* **datacenter_id**: The data center where the server will reside. This must be provisioned beforehand.
+* **datacenter_id**: The UUID of an existing data center where the LAN will reside. Optional, if `datacenter_name` is specified.
+* **datacenter_name**: The name of the data center where the LAN will reside. Optional, if `datacenter_id` is specified.
 
 Optional
 
@@ -179,7 +238,8 @@ Server resources provide the following properties.
 
 * **name**: The name of the server.
 * **ensure**: The desired server state which can be `present`, `absent`, `running`, or `stopped`.
-* **datacenter_id**: The UUID of an existing data center where the server will reside.
+* **datacenter_id**: The UUID of an existing data center where the server will reside. Optional, if `datacenter_name` is specified.
+* **datacenter_name**: The name of the data center where the server will reside. Optional, if `datacenter_id` is specified.
 * **cores**: The number of CPU cores assigned to the server.
 * **ram**:  The amount of RAM assigned to the server MB (must be a multiple of 256).
 
