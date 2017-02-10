@@ -1,4 +1,4 @@
-require 'profitbricks'
+require 'puppet_x/profitbricks/helper'
 
 Puppet::Type.type(:datacenter).provide(:v1) do
   confine feature: :profitbricks
@@ -11,11 +11,11 @@ Puppet::Type.type(:datacenter).provide(:v1) do
   end
 
   def self.client
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
   end
 
   def self.instances
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
 
     datacenters = []
     Datacenter.list.each do |dc|
@@ -81,20 +81,6 @@ Puppet::Type.type(:datacenter).provide(:v1) do
   end
 
   private
-
-  def self.profitbricks_config
-    ProfitBricks.configure do |config|
-      config.username = ENV['PROFITBRICKS_USERNAME']
-      config.password = ENV['PROFITBRICKS_PASSWORD']
-      config.timeout = 300
-
-      url = ENV['PROFITBRICKS_API_URL']
-      config.url = url unless url.nil? || url.empty?
-
-      config.headers = Hash.new
-      config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
-    end
-  end
 
   def request_error(datacenter)
     Request.get(datacenter.requestId).status.metadata if datacenter.requestId
