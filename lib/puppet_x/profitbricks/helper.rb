@@ -38,15 +38,15 @@ module PuppetX
 
           Puppet.info("Validating if data center name is unique.")
           if count_by_name(dc_name, datacenters) > 1
-            fail "Data center named '#{dc_name}' already exists."
+            fail "Found more than one data center named '#{dc_name}'."
           end
 
           datacenters.each do |dc|
             return dc.id if dc_name.casecmp(dc.properties['name']) == 0
           end
-          raise "Data center named '#{dc_name}' cannot be found."
+          fail "Data center named '#{dc_name}' cannot be found."
         end
-        raise "Data center ID or name must be provided."
+        fail "Data center ID or name must be provided."
       end
     end
   end
