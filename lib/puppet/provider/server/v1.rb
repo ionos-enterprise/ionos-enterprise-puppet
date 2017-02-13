@@ -1,4 +1,4 @@
-require 'profitbricks'
+require 'puppet_x/profitbricks/helper'
 
 Puppet::Type.type(:server).provide(:v1) do
   confine feature: :profitbricks
@@ -11,11 +11,12 @@ Puppet::Type.type(:server).provide(:v1) do
   end
 
   def self.client
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
   end
 
   def self.instances
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
+
     Datacenter.list.map do |datacenter|
       servers = []
       # Ignore data center if name is not defined.
@@ -107,7 +108,7 @@ Puppet::Type.type(:server).provide(:v1) do
       end
       if nic.key?('lan')
         lan = lan_from_name(nic['lan'],
-          resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+          PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
       end
       {
         :name => nic['name'],
@@ -154,7 +155,7 @@ Puppet::Type.type(:server).provide(:v1) do
       end
 
       server = Server.create(
-        resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]),
+        PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]),
         {:name => name,
         :cores => resource[:cores],
         :cpuFamily => resource[:cpu_family],
@@ -182,7 +183,7 @@ Puppet::Type.type(:server).provide(:v1) do
   def restart
     Puppet.info("Restarting server #{name}")
     server_from_name(name,
-      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).reboot
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).reboot
     @property_hash[:ensure] = :present
   end
 
@@ -190,13 +191,13 @@ Puppet::Type.type(:server).provide(:v1) do
     create unless exists?
     Puppet.info("Stopping server #{name}")
     server_from_name(name,
-      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).stop
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).stop
     @property_hash[:ensure] = :stopped
   end
 
   def destroy
     server = server_from_name(resource[:name],
-      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
     destroy_volumes(server.list_volumes) if resource[:purge_volumes]
     Puppet.info("Deleting server #{name}.")
     server.delete
@@ -213,20 +214,6 @@ Puppet::Type.type(:server).provide(:v1) do
   end
 
   private
-
-  def self.profitbricks_config
-    ProfitBricks.configure do |config|
-      config.username = ENV['PROFITBRICKS_USERNAME']
-      config.password = ENV['PROFITBRICKS_PASSWORD']
-      config.timeout = 300
-
-      url = ENV['PROFITBRICKS_API_URL']
-      config.url = url unless url.nil? || url.empty?
-
-      config.headers = Hash.new
-      config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
-    end
-  end
 
   def request_error(server)
     Request.get(server.requestId).status.metadata if server.requestId
@@ -263,16 +250,5 @@ Puppet::Type.type(:server).provide(:v1) do
       config[:imagePassword] = volume['image_password']
     end
     config
-  end
-
-  def resolve_datacenter_id(dc_id, dc_name)
-    return dc_id unless dc_id.nil? || dc_id.empty?
-    unless dc_name.nil? || dc_name.empty?
-      Datacenter.list.each do |dc|
-        return dc.id if dc_name.casecmp(dc.properties['name']) == 0
-      end
-      raise Puppet::Error, "Data center named '#{dc_name}' cannot be found."
-    end
-    raise Puppet::Error, "Data center ID or name must be provided."
   end
 end
