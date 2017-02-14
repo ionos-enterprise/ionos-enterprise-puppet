@@ -63,8 +63,6 @@ The Puppet manifest files use a domain specific language, or DSL. This language 
 
 A LAN named `public` will have public Internet access enabled and will reside in the defined data center.
 
-**Note**: It is important that resource names be unique within the manifest file. This includes both similar and different resource types. For example, a LAN resource named `public` will conflict with a server resource named `public`.
-
 To provide a data center ID, you can create a data center within the module as follows:
 
     datacenter { 'myDataCenter' :
@@ -77,11 +75,14 @@ Afterwards, get the data center ID using the puppet resource command:
 
     puppet resource datacenter [myDataCenter]
 
-**Note on the resource uniqueness:**
+More convenient than using an ID, a data center name can be used instead. Refer to the next section for an example.
+
+**Note**:
 
 Using the ProfitBricks Puppet module to manage your ProfitBricks resources ensures uniqueness of the managed instances.
-However, it is generally allowed, for example, to create multiple data centers having the same name.
-In that case, the module will always refer and manage the first obtained resource in the list.
+However, the ProfitBricks API generally allows, for example, to create multiple data centers having the same name.
+If you manage LAN and server resources using data center names, the module will throw an error when more than one data center
+with the same name is detected. Similarly, removing data centers by non-unique names is not allowed.
 
 ## Full Server Example
 

@@ -1,4 +1,4 @@
-require 'profitbricks'
+require 'puppet_x/profitbricks/helper'
 
 Puppet::Type.type(:lan).provide(:v1) do
   confine feature: :profitbricks
@@ -11,11 +11,12 @@ Puppet::Type.type(:lan).provide(:v1) do
   end
 
   def self.client
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
   end
 
   def self.instances
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
+
     Datacenter.list.map do |datacenter|
       lans = []
       # Ignore data center if name is not defined.
@@ -60,7 +61,7 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   def create
     lan = LAN.create(
-      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]),
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]),
       name: name,
       public: resource[:public] || false
     )
@@ -79,9 +80,9 @@ Puppet::Type.type(:lan).provide(:v1) do
   end
 
   def destroy
-    Puppet.info("Deleting LAN #{name}.")
     lan = lan_from_name(resource[:name],
-      resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+    Puppet.info("Deleting LAN #{name}.")
     lan.delete
     lan.wait_for { ready? }
     @property_hash[:ensure] = :absent
@@ -89,36 +90,11 @@ Puppet::Type.type(:lan).provide(:v1) do
 
   private
 
-  def self.profitbricks_config
-    ProfitBricks.configure do |config|
-      config.username = ENV['PROFITBRICKS_USERNAME']
-      config.password = ENV['PROFITBRICKS_PASSWORD']
-      config.timeout = 300
-
-      url = ENV['PROFITBRICKS_API_URL']
-      config.url = url unless url.nil? || url.empty?
-
-      config.headers = Hash.new
-      config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
-    end
-  end
-
   def request_error(lan)
     Request.get(lan.requestId).status.metadata if lan.requestId
   end
 
   def lan_from_name(name, datacenter_id)
     LAN.list(datacenter_id).find { |lan| lan.properties['name'] == name }
-  end
-
-  def resolve_datacenter_id(dc_id, dc_name)
-    return dc_id unless dc_id.nil? || dc_id.empty?
-    unless dc_name.nil? || dc_name.empty?
-      Datacenter.list.each do |dc|
-        return dc.id if dc_name.casecmp(dc.properties['name']) == 0
-      end
-      raise "Data center named '#{dc_name}' cannot be found."
-    end
-    raise "Data center ID or name must be provided."
   end
 end

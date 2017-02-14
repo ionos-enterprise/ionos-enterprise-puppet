@@ -1,4 +1,4 @@
-require 'profitbricks'
+require 'puppet_x/profitbricks/helper'
 
 Puppet::Type.type(:datacenter).provide(:v1) do
   confine feature: :profitbricks
@@ -11,11 +11,11 @@ Puppet::Type.type(:datacenter).provide(:v1) do
   end
 
   def self.client
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
   end
 
   def self.instances
-    profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config
 
     datacenters = []
     Datacenter.list.each do |dc|
@@ -82,25 +82,17 @@ Puppet::Type.type(:datacenter).provide(:v1) do
 
   private
 
-  def self.profitbricks_config
-    ProfitBricks.configure do |config|
-      config.username = ENV['PROFITBRICKS_USERNAME']
-      config.password = ENV['PROFITBRICKS_PASSWORD']
-      config.timeout = 300
-
-      url = ENV['PROFITBRICKS_API_URL']
-      config.url = url unless url.nil? || url.empty?
-
-      config.headers = Hash.new
-      config.headers['User-Agent'] = "Puppet/#{Puppet.version}"
-    end
-  end
-
   def request_error(datacenter)
     Request.get(datacenter.requestId).status.metadata if datacenter.requestId
   end
 
-  def datacenter_from_name(name)
-    Datacenter.list.find { |dc| dc.properties['name'] == name }
+  def datacenter_from_name(dc_name)
+    datacenters = Datacenter.list
+    dc_count = PuppetX::Profitbricks::Helper.count_by_name(dc_name, datacenters)
+
+    fail "Found more than one data center named '#{dc_name}'." if dc_count > 1
+    fail "Data center named '#{dc_name}' cannot be found." if dc_count == 0
+
+    datacenters.find { |dc| dc.properties['name'] == dc_name }
   end
 end
