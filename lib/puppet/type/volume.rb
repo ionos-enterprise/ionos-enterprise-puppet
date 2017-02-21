@@ -77,8 +77,8 @@ Puppet::Type.newtype(:volume) do
     end
   end
 
-  newproperty(:type) do
-    desc 'The volume type, HDD or SSD.'
+  newproperty(:volume_type) do
+    desc 'The volume type.'
     defaultto 'HDD'
     newvalues('HDD', 'SSD')
 
