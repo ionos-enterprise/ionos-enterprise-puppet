@@ -5,11 +5,10 @@ datacenter { $datacenter_name :
   location    => 'us/las'
 } ->
 
-
 volume { 'testvolume' :
   datacenter_name   => $datacenter_name,
   image_id          => 'adf0c2e4-e83b-11e6-a994-525400f64d8d',
   size              => 50,
-  type              => 'SSD',
+  volume_type       => 'SSD',
   ssh_keys          => ['ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDaH...']
 }

@@ -259,13 +259,18 @@ Server resources provide the following properties.
 
 ### Volume Resource
 
-Volumes are a nested array defined within the server resource.
+Volume resources can be managed independently within a data center or as a nested array defined within the server resource.
 
 **Required**
 
 * **name**: Name of the volume.
 * **size**: Size of the volume in GB.
 * **volume_type**: The volume type can be `HDD` or `SSD`.
+
+When managed independently, the data center ID or name is required too.
+
+* **datacenter_id**: The UUID of an existing data center where the volume is or will be created.
+* **datacenter_name**: The name of the data center where the volume is or will be created.
 
 **Optional**
 

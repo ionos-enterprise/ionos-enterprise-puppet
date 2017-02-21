@@ -20,7 +20,7 @@ describe type_class do
       :image_id,
       :availability_zone,
       :bus,
-      :type,
+      :volume_type,
       :licence_type
     ]
   end
@@ -61,9 +61,9 @@ describe type_class do
     expect(volume[:bus]).to eq(:VIRTIO)
   end
 
-  it 'should default volume type to HDD' do
+  it 'should default volume_type to HDD' do
     volume = type_class.new(:name => 'test')
-    expect(volume[:type]).to eq(:HDD)
+    expect(volume[:volume_type]).to eq(:HDD)
   end
 
   it 'should validate length of image_password' do
