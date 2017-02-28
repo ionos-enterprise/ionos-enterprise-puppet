@@ -77,6 +77,29 @@ Afterwards, get the data center ID using the puppet resource command:
 
 More convenient than using an ID, a data center name can be used instead. Refer to the next section for an example.
 
+If you have already created your data center, LAN and server resources, you may connect them with a new NIC resource using their names or IDs.
+
+    $datacenter_name = 'testdc1'
+    $server_name = 'worker1'
+    $lan_name = 'public1'
+
+    nic { 'testnic':
+      datacenter_name   => $datacenter_name,
+      server_name => $server_name,
+      nat => false,
+      dhcp => true,
+      lan => $lan_name,
+      ips => ['78.137.103.102', '78.137.103.103', '78.137.103.104'],
+      firewall_rules => [
+        { 
+          name => 'SSH',
+          protocol => 'TCP',
+          port_range_start => 22,
+          port_range_end => 22
+        }
+      ]
+    }
+
 **Note**:
 
 Using the ProfitBricks Puppet module to manage your ProfitBricks resources ensures uniqueness of the managed instances.
@@ -285,18 +308,27 @@ When managed independently, the data center ID or name is required too.
 
 ### NIC Resource
 
-NICs nested under the server resource.
+NICs can be created and managed as other resources such as LANs or nested under the server resource.
 
 * **name**: Name of the NIC.
 * **ips**: An array of IP addresses to assign the NIC.
 * **dhcp**: Set DHCP on the NIC with `true` or `false`, defaults to `true`.
 * **lan**: Name of the LAN to connect the NIC.
-* **firewallrules**: An array of firewall rules to assign the NIC.
+* **firewall_rules**: An array of firewall rules to assign the NIC.
 * **nat**: A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements:
  - The NIC this is being activated on must belong to a private LAN.
  - The NIC must not belong to a load balancer.
  - NAT cannot be activated in a private LAN that contains an IPv4 address ending with ".1".
  - NAT should not be enabled in a Virtual Data Center with an active ProfitBricks firewall.
+
+ If NICs are not nested, some of the following parameters are required as well.
+
+* **datacenter_id**: The UUID of an existing data center where the NIC will reside. Optional, if `datacenter_name` is specified.
+* **datacenter_name**: The name of the data center where the NIC will reside. Optional, if `datacenter_id` is specified.
+* **server_id**: The UUID of an existing server where the NIC will reside. Optional, if `datacenter_name` is specified.
+* **server_name**: The name of the server where the NIC will reside. Optional, if `datacenter_id` is specified.
+
+`ips`, `dhcp`, `lan` and `nat` properties are modifiable.
 
 ### Firewall Rule Resource
 
