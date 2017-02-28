@@ -107,7 +107,7 @@ Puppet::Type.type(:server).provide(:v1) do
         fwrules = config_with_fwrules(nic['firewall_rules'])
       end
       if nic.key?('lan')
-        lan = lan_from_name(nic['lan'],
+        lan = PuppetX::Profitbricks::Helper::lan_from_name(nic['lan'],
           PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
       end
       {
@@ -182,7 +182,7 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def restart
     Puppet.info("Restarting server #{name}")
-    server_from_name(name,
+    PuppetX::Profitbricks::Helper::server_from_name(name,
       PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).reboot
     @property_hash[:ensure] = :present
   end
@@ -190,13 +190,13 @@ Puppet::Type.type(:server).provide(:v1) do
   def stop
     create unless exists?
     Puppet.info("Stopping server #{name}")
-    server_from_name(name,
+    PuppetX::Profitbricks::Helper::server_from_name(name,
       PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).stop
     @property_hash[:ensure] = :stopped
   end
 
   def destroy
-    server = server_from_name(resource[:name],
+    server = PuppetX::Profitbricks::Helper::server_from_name(resource[:name],
       PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
     destroy_volumes(server.list_volumes) if resource[:purge_volumes]
     Puppet.info("Deleting server #{name}.")
@@ -217,16 +217,6 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def request_error(server)
     Request.get(server.requestId).status.metadata if server.requestId
-  end
-
-  def server_from_name(name, datacenter_id)
-    Server.list(datacenter_id).find do |server|
-      server.properties['name'] == name
-    end
-  end
-
-  def lan_from_name(name, datacenter_id)
-    LAN.list(datacenter_id).find { |lan| lan.properties['name'] == name }
   end
 
   def assign_ssh_keys(config, volume)

@@ -49,6 +49,7 @@ Puppet::Type.type(:lan).provide(:v1) do
       datacenter_id: instance.datacenterId,
       datacenter_name: datacenter.properties['name'],
       name: instance.properties['name'],
+      public: instance.properties['public'],
       ensure: :present
     }
     config
