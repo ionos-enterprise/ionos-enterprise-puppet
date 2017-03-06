@@ -246,6 +246,8 @@ Optional
 
 * **description**: The data center description.
 
+You can update `description` property after the data center is created.
+
 ### LAN Resource
 
 Required
