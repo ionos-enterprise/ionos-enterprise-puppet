@@ -90,6 +90,7 @@ If you have already created your data center, LAN and server resources, you may 
       dhcp => true,
       lan => $lan_name,
       ips => ['78.137.103.102', '78.137.103.103', '78.137.103.104'],
+      firewall_active => true,
       firewall_rules => [
         { 
           name => 'SSH',
@@ -327,6 +328,7 @@ NICs can be created and managed separately as other resources such as LANs, or n
 * **datacenter_name**: The name of the data center where the NIC will reside. Optional, if `datacenter_id` is specified.
 * **server_id**: The UUID of an existing server where the NIC will reside. Optional, if `server_name` is specified.
 * **server_name**: The name of the server where the NIC will reside. Optional, if `server_id` is specified.
+* **firewall_active**: Indicates the firewall is active. Default value is false.
 
 `ips`, `dhcp`, `lan` and `nat` properties are modifiable.
 

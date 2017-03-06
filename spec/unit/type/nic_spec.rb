@@ -15,6 +15,7 @@ describe type_class do
       :dhcp,
       :lan,
       :nat,
+      :firewall_active,
       :firewall_rules,
       :server_id,
       :server_name,

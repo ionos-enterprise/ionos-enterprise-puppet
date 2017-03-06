@@ -53,6 +53,16 @@ Puppet::Type.newtype(:nic) do
 
   # read-only properties
 
+  newproperty(:firewall_active) do
+    desc 'Indicates the firewall is active.'
+    defaultto :false
+    newvalues(:true, :false)
+
+    def insync?(is)
+      true
+    end
+  end
+
   newproperty(:firewall_rules, array_matching: :all) do
     desc 'A list of firewall rules associated to the NIC.'
 

@@ -63,6 +63,7 @@ Puppet::Type.type(:nic).provide(:v1) do
       dhcp: instance['properties']['dhcp'],
       nat: instance['properties']['nat'],
       ips: instance['properties']['ips'],
+      firewall_active: instance['properties']['firewallActive'],
       name: instance['properties']['name'],
       ensure: :present
     }
@@ -129,7 +130,8 @@ Puppet::Type.type(:nic).provide(:v1) do
       nat: is_nat,
       dhcp: resource[:dhcp],
       lan: lan_id,
-      ips: resource[:ips]
+      ips: resource[:ips],
+      firewallActive: resource[:firewall_active]
     )
 
     Puppet.info("Creating a new NIC named #{name}.")
