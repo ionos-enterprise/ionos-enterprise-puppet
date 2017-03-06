@@ -29,12 +29,22 @@ Puppet::Type.newtype(:lan) do
     end
   end
 
+  # read-only properties
+
   newproperty(:datacenter_id) do
     desc 'The ID of the virtual data center where the LAN will reside.'
+
+    def insync?(is)
+      true
+    end
   end
 
   newproperty(:datacenter_name) do
     desc 'The name of the virtual data center where the LAN will reside.'
+
+    def insync?(is)
+      true
+    end
   end
 
   autorequire(:datacenter) do

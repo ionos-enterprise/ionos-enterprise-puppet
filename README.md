@@ -261,6 +261,8 @@ Optional
 
 * **public**: Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`.
 
+The LAN resource allows `public` property to be updated if necessary.
+
 ### Server Resource
 
 Server resources provide the following properties.
