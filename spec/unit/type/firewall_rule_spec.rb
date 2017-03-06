@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-type_class = Puppet::Type.type(:nic)
+type_class = Puppet::Type.type(:firewall_rule)
 
 describe type_class do
   let :params do
@@ -11,12 +11,15 @@ describe type_class do
 
   let :properties do
     [
-      :ips,
-      :dhcp,
-      :lan,
-      :nat,
-      :firewall_active,
-      :firewall_rules,
+      :nic,
+      :icmp_type,
+      :icmp_code,
+      :port_range_start,
+      :port_range_end,
+      :protocol,
+      :source_mac,
+      :source_ip,
+      :target_ip,
       :server_id,
       :server_name,
       :datacenter_id,
@@ -48,15 +51,5 @@ describe type_class do
 
   it 'should support :absent as a value to :ensure' do
     type_class.new(:name => 'sample', :ensure => :absent)
-  end
-
-  it 'should default volume DHCP to false' do
-    volume = type_class.new(:name => 'test')
-    expect(volume[:dhcp]).to eq(:false)
-  end
-
-  it 'should default volume NAT to false' do
-    volume = type_class.new(:name => 'test')
-    expect(volume[:nat]).to eq(:false)
   end
 end

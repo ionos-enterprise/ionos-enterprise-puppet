@@ -39,6 +39,7 @@ nic { 'testnic':
   dhcp => true,
   lan => $lan_name,
   ips => ['78.137.103.102', '78.137.103.103', '78.137.103.104'],
+  firewall_active => true,
   firewall_rules => [
     { 
       name => 'SSH',
