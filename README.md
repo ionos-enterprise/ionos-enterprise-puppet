@@ -322,7 +322,7 @@ NICs can be created and managed separately as other resources such as LANs, or n
  - NAT cannot be activated in a private LAN that contains an IPv4 address ending with ".1".
  - NAT should not be enabled in a Virtual Data Center with an active ProfitBricks firewall.
 
- If NICs are not nested, some of the following parameters are required as well.
+If NICs are not nested, some of the following parameters are required as well.
 
 * **datacenter_id**: The UUID of an existing data center where the NIC will reside. Optional, if `datacenter_name` is specified.
 * **datacenter_name**: The name of the data center where the NIC will reside. Optional, if `datacenter_id` is specified.
