@@ -22,17 +22,15 @@ Puppet::Type.type(:nic).provide(:v1) do
       unless datacenter.properties['name'].nil? || datacenter.properties['name'].empty?
         lans = Hash.new
 
-        LAN.list(datacenter.id).each { |lan| lans[lan.id] = lan.properties['name'] }
+        LAN.list(datacenter.id).map { |lan| lans[lan.id] = lan.properties['name'] }
 
         unless lans.empty?
-          Server.list(datacenter.id).each do |server|
+          Server.list(datacenter.id).map do |server|
             unless server.properties['name'].nil? || server.properties['name'].empty?
-              unless server.nics.nil?
-                server.nics.each do |nic|
-                  unless nic.properties['name'].nil? || nic.properties['name'].empty?
-                    hash = instance_to_hash(nic, lans, server, datacenter)
-                    nics << new(hash)
-                  end
+              server.entities['nics']['items'].map do |nic|
+                unless nic['properties']['name'].nil? || nic['properties']['name'].empty?
+                  hash = instance_to_hash(nic, lans, server, datacenter)
+                  nics << new(hash)
                 end
               end
             end
@@ -56,16 +54,16 @@ Puppet::Type.type(:nic).provide(:v1) do
 
   def self.instance_to_hash(instance, lans, server, datacenter)
     config = {
-      id: instance.id,
-      datacenter_id: instance.datacenterId,
+      id: instance['id'],
+      datacenter_id: datacenter.id,
       datacenter_name: datacenter.properties['name'],
-      server_id: instance.serverId,
+      server_id: server.id,
       server_name: server.properties['name'],
-      lan: lans[instance.properties['lan'].to_s],
-      dhcp: instance.properties['dhcp'],
-      nat: instance.properties['nat'],
-      ips: instance.properties['ips'],
-      name: instance.properties['name'],
+      lan: lans[instance['properties']['lan'].to_s],
+      dhcp: instance['properties']['dhcp'],
+      nat: instance['properties']['nat'],
+      ips: instance['properties']['ips'],
+      name: instance['properties']['name'],
       ensure: :present
     }
     config
