@@ -308,7 +308,7 @@ When managed independently, the data center ID or name is required too.
 
 ### NIC Resource
 
-NICs can be created and managed as other resources such as LANs or nested under the server resource.
+NICs can be created and managed separately as other resources such as LANs, or nested under the server resource.
 
 * **name**: Name of the NIC.
 * **ips**: An array of IP addresses to assign the NIC.
@@ -325,14 +325,14 @@ NICs can be created and managed as other resources such as LANs or nested under 
 
 * **datacenter_id**: The UUID of an existing data center where the NIC will reside. Optional, if `datacenter_name` is specified.
 * **datacenter_name**: The name of the data center where the NIC will reside. Optional, if `datacenter_id` is specified.
-* **server_id**: The UUID of an existing server where the NIC will reside. Optional, if `datacenter_name` is specified.
-* **server_name**: The name of the server where the NIC will reside. Optional, if `datacenter_id` is specified.
+* **server_id**: The UUID of an existing server where the NIC will reside. Optional, if `server_name` is specified.
+* **server_name**: The name of the server where the NIC will reside. Optional, if `server_id` is specified.
 
 `ips`, `dhcp`, `lan` and `nat` properties are modifiable.
 
 ### Firewall Rule Resource
 
-Firewall rules are nested within `nics` under the server resource.
+Firewall rules are usually nested within `nics` under the server resource.
 
 * **name**: Name of the firewall rule.
 * **protocol**: Allow traffic protocols including `TCP`, `UDP`, `ICMP`, and `ANY`.
@@ -343,6 +343,14 @@ Firewall rules are nested within `nics` under the server resource.
 * **port_range_end**: Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
 * **icmp_type**: Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.
 * **icmp_code**: Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+
+If firewall rules are managed as independent resources, the data center, server and NIC informations are required.
+
+* **datacenter_id**: The UUID of an existing data center where the server and NIC will reside. Optional, if `datacenter_name` is specified.
+* **datacenter_name**: The name of the data center where the server and NIC will reside. Optional, if `datacenter_id` is specified.
+* **server_id**: The UUID of an existing server where the server and NIC will reside. Optional, if `server_name` is specified.
+* **server_name**: The name of the server where the server and NIC will reside. Optional, if `server_id` is specified.
+* **nic**: The name of the NIC the firewall rule will be added to.
 
 ## Contributing
 
