@@ -281,9 +281,13 @@ Server resources provide the following properties.
 * **cpu_family**: The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`.
 * **availability_zone**: Availability zone of the server, defaults to `AUTO`.
 * **licence_type**: If undefined the OS type will be inherited from the boot image or boot volume.
-* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`
+* **boot_volume**: The boot volume name, if more than one volume it attached to the server.
+* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`.
 * **volumes**: An array of volumes that will be built and attached to the server.
 * **nics**: An array of NICs that will be connected to the server.
+
+`availability_zone`, `boot_volume`, `cores`, `cpu_family` and `ram` are mutable properties.
+The values of these properties can be updated after the server has been created.
 
 ### Volume Resource
 

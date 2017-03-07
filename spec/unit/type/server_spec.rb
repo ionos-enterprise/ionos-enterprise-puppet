@@ -12,6 +12,7 @@ describe type_class do
   let :properties do
     [
       :ensure,
+      :boot_volume,
       :datacenter_id,
       :datacenter_name,
       :cpu_family,
@@ -62,7 +63,7 @@ describe type_class do
 
   it 'should default availability_zone to AUTO' do
     server = type_class.new(:name => 'sample')
-    expect(server[:availability_zone]).to eq('AUTO')
+    expect(server[:availability_zone]).to eq(:AUTO)
   end
 
   it 'should default purge_volumes to false' do

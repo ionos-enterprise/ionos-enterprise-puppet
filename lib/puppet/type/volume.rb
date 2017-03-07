@@ -93,7 +93,7 @@ Puppet::Type.newtype(:volume) do
 
   newproperty(:licence_type) do
     desc 'The license type of the volume.'
-    newvalues('LINUX', 'WINDOWS', 'UNKNOWN', 'OTHER')
+    newvalues('LINUX', 'WINDOWS', 'WINDOWS2016', 'UNKNOWN', 'OTHER')
 
     validate do |value|
       raise ArgumentError, 'The license type should be a String.' unless value.is_a?(String)
