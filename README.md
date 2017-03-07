@@ -313,6 +313,8 @@ When managed independently, the data center ID or name is required too.
 * **ssh_keys**: A list of public SSH keys to add to supported image.
 * **availability_zone**: Direct a storage volume to be created in one of three zones per data center. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`.
 
+The volume `size` can be increased after the volume is created.
+
 **Note**: Either `image_id` or `licence_type` must be defined.
 
 ### NIC Resource
@@ -338,7 +340,7 @@ If NICs are not nested, some of the following parameters are required as well.
 * **server_name**: The name of the server where the NIC will reside. Optional, if `server_id` is specified.
 * **firewall_active**: Indicates the firewall is active. Default value is false.
 
-`ips`, `dhcp`, `lan` and `nat` properties are modifiable.
+`ips`, `dhcp`, `lan` and `nat` are mutable properties.
 
 ### Firewall Rule Resource
 
@@ -361,6 +363,8 @@ If firewall rules are managed as independent resources, the data center, server 
 * **server_id**: The UUID of an existing server where the server and NIC will reside. Optional, if `server_name` is specified.
 * **server_name**: The name of the server where the server and NIC will reside. Optional, if `server_id` is specified.
 * **nic**: The name of the NIC the firewall rule will be added to.
+
+`source_mac`, `source_ip`, `target_ip`, `port_range_start`, `port_range_end`, `icmp_type` and `icmp_code` are mutable properties.
 
 ## Contributing
 
