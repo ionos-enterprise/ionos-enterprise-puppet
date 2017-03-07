@@ -43,14 +43,22 @@ Puppet::Type.newtype(:server) do
 
   newproperty(:datacenter_id) do
     desc 'The virtual data center where the server will reside.'
+
+    def insync?(is)
+      true
+    end
   end
 
   newproperty(:datacenter_name) do
     desc 'The name of the virtual data center where the server will reside.'
+
+    def insync?(is)
+      true
+    end
   end
 
   newproperty(:cores) do
-    desc 'The number of CPU cores assigned to the server.' 
+    desc 'The number of CPU cores assigned to the server.'
     validate do |value|
       numCores = Integer(value) rescue nil
       fail('Server must have cores assigned') if value == ''
@@ -59,8 +67,10 @@ Puppet::Type.newtype(:server) do
   end
 
   newproperty(:cpu_family) do
-    desc 'The CPU family of the server.' 
+    desc 'The CPU family of the server.'
     defaultto 'AMD_OPTERON'
+    newvalues('AMD_OPTERON', 'INTEL_XEON')
+
     validate do |value|
       unless ['AMD_OPTERON', 'INTEL_XEON'].include?(value)
         fail('CPU family must be either "AMD_OPTERON" or "INTEL_XEON"')
@@ -70,7 +80,7 @@ Puppet::Type.newtype(:server) do
   end
 
   newproperty(:ram) do
-    desc 'The amount of RAM in MB assigned to the server.' 
+    desc 'The amount of RAM in MB assigned to the server.'
     validate do |value|
       ram = Integer(value) rescue nil
       fail('Server must have ram assigned') if value == ''
@@ -79,17 +89,31 @@ Puppet::Type.newtype(:server) do
   end
 
   newproperty(:availability_zone) do
-    desc 'The availability zone of where the server will reside.' 
+    desc 'The availability zone of where the server will reside.'
     defaultto 'AUTO'
+    newvalues('AUTO', 'ZONE_1', 'ZONE_2')
+  end
+
+  newproperty(:boot_volume) do
+    desc 'The boot volume name, if more than one volume it attached to the server.'
+
+    validate do |value|
+      raise ArgumentError, 'The volume type must be a String.' unless value.is_a?(String)
+    end
   end
 
   newproperty(:licence_type) do
-    desc 'The OS type of the server.' 
+    desc 'The OS type of the server.'
+    newvalues('LINUX', 'WINDOWS', 'WINDOWS2016', 'UNKNOWN', 'OTHER')
   end
 
   newproperty(:nat) do
     desc 'A boolean which indicates if the NIC will perform Network Address Translation.'
     defaultto :false
+
+    def insync?(is)
+      true
+    end
   end
 
   newproperty(:volumes, :array_matching => :all) do
@@ -115,13 +139,14 @@ Puppet::Type.newtype(:server) do
     desc 'Sets whether attached volumes are removed when server is removed.'
     defaultto :false
     newvalues(:true, :false)
+
     def insync?(is)
-      is.to_s == should.to_s
+      true
     end
   end
 
   newproperty(:nics, :array_matching => :all) do
-    desc 'A list of network interfaces associated with the server.' 
+    desc 'A list of network interfaces associated with the server.'
     validate do |value|
       nics = value.is_a?(Array) ? value : [value]
       nics.each do |nic|

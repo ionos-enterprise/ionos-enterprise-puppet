@@ -246,6 +246,8 @@ Optional
 
 * **description**: The data center description.
 
+You can update `description` property after the data center is created.
+
 ### LAN Resource
 
 Required
@@ -258,6 +260,8 @@ Required
 Optional
 
 * **public**: Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`.
+
+The LAN resource allows `public` property to be updated if necessary.
 
 ### Server Resource
 
@@ -277,9 +281,13 @@ Server resources provide the following properties.
 * **cpu_family**: The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`.
 * **availability_zone**: Availability zone of the server, defaults to `AUTO`.
 * **licence_type**: If undefined the OS type will be inherited from the boot image or boot volume.
-* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`
+* **boot_volume**: The boot volume name, if more than one volume it attached to the server.
+* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`.
 * **volumes**: An array of volumes that will be built and attached to the server.
 * **nics**: An array of NICs that will be connected to the server.
+
+`availability_zone`, `boot_volume`, `cores`, `cpu_family` and `ram` are mutable properties.
+The values of these properties can be updated after the server has been created.
 
 ### Volume Resource
 
@@ -304,6 +312,8 @@ When managed independently, the data center ID or name is required too.
 * **bus**: The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`.
 * **ssh_keys**: A list of public SSH keys to add to supported image.
 * **availability_zone**: Direct a storage volume to be created in one of three zones per data center. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`.
+
+The volume `size` can be increased after the volume is created.
 
 **Note**: Either `image_id` or `licence_type` must be defined.
 
@@ -330,7 +340,7 @@ If NICs are not nested, some of the following parameters are required as well.
 * **server_name**: The name of the server where the NIC will reside. Optional, if `server_id` is specified.
 * **firewall_active**: Indicates the firewall is active. Default value is false.
 
-`ips`, `dhcp`, `lan` and `nat` properties are modifiable.
+`ips`, `dhcp`, `lan` and `nat` are mutable properties.
 
 ### Firewall Rule Resource
 
@@ -353,6 +363,8 @@ If firewall rules are managed as independent resources, the data center, server 
 * **server_id**: The UUID of an existing server where the server and NIC will reside. Optional, if `server_name` is specified.
 * **server_name**: The name of the server where the server and NIC will reside. Optional, if `server_id` is specified.
 * **nic**: The name of the NIC the firewall rule will be added to.
+
+`source_mac`, `source_ip`, `target_ip`, `port_range_start`, `port_range_end`, `icmp_type` and `icmp_code` are mutable properties.
 
 ## Contributing
 

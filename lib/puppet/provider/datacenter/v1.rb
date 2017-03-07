@@ -47,6 +47,12 @@ Puppet::Type.type(:datacenter).provide(:v1) do
     config
   end
 
+  def description=(value)
+    datacenter = datacenter_from_name(name)
+    Puppet.info("Updating data center '#{name}' description.")
+    datacenter.update(description: value)
+  end
+
   def exists?
     Puppet.info("Checking if data center #{resource[:name]} exists.")
     @property_hash[:ensure] == :present
