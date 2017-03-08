@@ -11,12 +11,18 @@ Puppet::Type.newtype(:datacenter) do
     end
   end
 
-  newproperty(:id) do
-    desc 'The data center ID.'
-  end
-
   newproperty(:description) do
     desc 'The data center description.'
+  end
+
+  # read-only properties
+
+  newproperty(:id) do
+    desc 'The data center ID.'
+
+    def insync?(is)
+      true
+    end
   end
 
   newproperty(:location) do
@@ -24,6 +30,10 @@ Puppet::Type.newtype(:datacenter) do
     validate do |value|
       fail('Data center location must be set') if value == ''
       fail('Data center location must be a String') unless value.is_a?(String)
+    end
+
+    def insync?(is)
+      true
     end
   end
 end

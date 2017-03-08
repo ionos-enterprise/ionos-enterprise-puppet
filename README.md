@@ -77,6 +77,30 @@ Afterwards, get the data center ID using the puppet resource command:
 
 More convenient than using an ID, a data center name can be used instead. Refer to the next section for an example.
 
+If you have already created your data center, LAN and server resources, you may connect them with a new NIC resource using their names or IDs.
+
+    $datacenter_name = 'testdc1'
+    $server_name = 'worker1'
+    $lan_name = 'public1'
+
+    nic { 'testnic':
+      datacenter_name   => $datacenter_name,
+      server_name => $server_name,
+      nat => false,
+      dhcp => true,
+      lan => $lan_name,
+      ips => ['78.137.103.102', '78.137.103.103', '78.137.103.104'],
+      firewall_active => true,
+      firewall_rules => [
+        { 
+          name => 'SSH',
+          protocol => 'TCP',
+          port_range_start => 22,
+          port_range_end => 22
+        }
+      ]
+    }
+
 **Note**:
 
 Using the ProfitBricks Puppet module to manage your ProfitBricks resources ensures uniqueness of the managed instances.
@@ -222,6 +246,8 @@ Optional
 
 * **description**: The data center description.
 
+You can update `description` property after the data center is created.
+
 ### LAN Resource
 
 Required
@@ -234,6 +260,8 @@ Required
 Optional
 
 * **public**: Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`.
+
+The LAN resource allows `public` property to be updated if necessary.
 
 ### Server Resource
 
@@ -253,19 +281,28 @@ Server resources provide the following properties.
 * **cpu_family**: The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`.
 * **availability_zone**: Availability zone of the server, defaults to `AUTO`.
 * **licence_type**: If undefined the OS type will be inherited from the boot image or boot volume.
-* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`
+* **boot_volume**: The boot volume name, if more than one volume it attached to the server.
+* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`.
 * **volumes**: An array of volumes that will be built and attached to the server.
 * **nics**: An array of NICs that will be connected to the server.
 
+`availability_zone`, `boot_volume`, `cores`, `cpu_family` and `ram` are mutable properties.
+The values of these properties can be updated after the server has been created.
+
 ### Volume Resource
 
-Volumes are a nested array defined within the server resource.
+Volume resources can be managed independently within a data center or as a nested array defined within the server resource.
 
 **Required**
 
 * **name**: Name of the volume.
 * **size**: Size of the volume in GB.
 * **volume_type**: The volume type can be `HDD` or `SSD`.
+
+When managed independently, the data center ID or name is required too.
+
+* **datacenter_id**: The UUID of an existing data center where the volume is or will be created.
+* **datacenter_name**: The name of the data center where the volume is or will be created.
 
 **Optional**
 
@@ -276,26 +313,38 @@ Volumes are a nested array defined within the server resource.
 * **ssh_keys**: A list of public SSH keys to add to supported image.
 * **availability_zone**: Direct a storage volume to be created in one of three zones per data center. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`.
 
+The volume `size` can be increased after the volume is created.
+
 **Note**: Either `image_id` or `licence_type` must be defined.
 
 ### NIC Resource
 
-NICs nested under the server resource.
+NICs can be created and managed separately as other resources such as LANs, or nested under the server resource.
 
 * **name**: Name of the NIC.
 * **ips**: An array of IP addresses to assign the NIC.
 * **dhcp**: Set DHCP on the NIC with `true` or `false`, defaults to `true`.
 * **lan**: Name of the LAN to connect the NIC.
-* **firewallrules**: An array of firewall rules to assign the NIC.
+* **firewall_rules**: An array of firewall rules to assign the NIC.
 * **nat**: A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements:
  - The NIC this is being activated on must belong to a private LAN.
  - The NIC must not belong to a load balancer.
  - NAT cannot be activated in a private LAN that contains an IPv4 address ending with ".1".
  - NAT should not be enabled in a Virtual Data Center with an active ProfitBricks firewall.
 
+If NICs are not nested, some of the following parameters are required as well.
+
+* **datacenter_id**: The UUID of an existing data center where the NIC will reside. Optional, if `datacenter_name` is specified.
+* **datacenter_name**: The name of the data center where the NIC will reside. Optional, if `datacenter_id` is specified.
+* **server_id**: The UUID of an existing server where the NIC will reside. Optional, if `server_name` is specified.
+* **server_name**: The name of the server where the NIC will reside. Optional, if `server_id` is specified.
+* **firewall_active**: Indicates the firewall is active. Default value is false.
+
+`ips`, `dhcp`, `lan` and `nat` are mutable properties.
+
 ### Firewall Rule Resource
 
-Firewall rules are nested within `nics` under the server resource.
+Firewall rules are usually nested within `nics` under the server resource.
 
 * **name**: Name of the firewall rule.
 * **protocol**: Allow traffic protocols including `TCP`, `UDP`, `ICMP`, and `ANY`.
@@ -306,6 +355,16 @@ Firewall rules are nested within `nics` under the server resource.
 * **port_range_end**: Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
 * **icmp_type**: Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.
 * **icmp_code**: Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+
+If firewall rules are managed as independent resources, the data center, server and NIC informations are required.
+
+* **datacenter_id**: The UUID of an existing data center where the server and NIC will reside. Optional, if `datacenter_name` is specified.
+* **datacenter_name**: The name of the data center where the server and NIC will reside. Optional, if `datacenter_id` is specified.
+* **server_id**: The UUID of an existing server where the server and NIC will reside. Optional, if `server_name` is specified.
+* **server_name**: The name of the server where the server and NIC will reside. Optional, if `server_id` is specified.
+* **nic**: The name of the NIC the firewall rule will be added to.
+
+`source_mac`, `source_ip`, `target_ip`, `port_range_start`, `port_range_end`, `icmp_type` and `icmp_code` are mutable properties.
 
 ## Contributing
 

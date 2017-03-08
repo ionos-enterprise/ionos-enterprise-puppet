@@ -15,7 +15,7 @@ Puppet::Type.type(:server).provide(:v1) do
   end
 
   def self.instances
-    PuppetX::Profitbricks::Helper::profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config(3)
 
     Datacenter.list.map do |datacenter|
       servers = []
@@ -56,16 +56,76 @@ Puppet::Type.type(:server).provide(:v1) do
       state = :present
     end
 
+    boot_volume_name = ''
+    unless instance.properties['bootVolume'].nil?
+      boot_volume_id = instance.properties['bootVolume']['id']
+      instance.entities['volumes']['items'].map do |volume|
+        boot_volume_name = volume['properties']['name'] if volume['id'] == boot_volume_id
+      end
+    end
+
     config = {
       :id => instance.id,
       :datacenter_id => instance.datacenterId,
       :datacenter_name => datacenter.properties['name'],
       :name => instance.properties['name'],
+      :cores => instance.properties['cores'],
+      :cpu_family => instance.properties['cpuFamily'],
+      :ram => instance.properties['ram'],
+      :availability_zone => instance.properties['availabilityZone'],
+      :boot_volume => boot_volume_name,
       :ensure => state
     }
     config[:volumes] = volumes unless volumes.empty?
     config[:nics] = nics unless nics.empty?
     config
+  end
+
+  def cores=(value)
+    server = PuppetX::Profitbricks::Helper::server_from_name(name,
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+
+    Puppet.info("Updating server '#{name}', cores.")
+    server.update(cores: value)
+    server.wait_for { ready? }
+  end
+
+  def cpu_family=(value)
+    server = PuppetX::Profitbricks::Helper::server_from_name(name,
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+
+    Puppet.info("Updating server '#{name}', CPU family.")
+    server.update(cpuFamily: value, allowReboot: true)
+    server.wait_for { ready? }
+  end
+
+  def ram=(value)
+    server = PuppetX::Profitbricks::Helper::server_from_name(name,
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+
+    Puppet.info("Updating server '#{name}', RAM.")
+    server.update(ram: value)
+    server.wait_for { ready? }
+  end
+
+  def availability_zone=(value)
+    server = PuppetX::Profitbricks::Helper::server_from_name(name,
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+
+    Puppet.info("Updating server '#{name}', availability zone.")
+    server.update(availabilityZone: value)
+    server.wait_for { ready? }
+  end
+
+  def boot_volume=(value)
+    server = PuppetX::Profitbricks::Helper::server_from_name(name,
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
+
+    volume = server.list_volumes.find { |volume| volume.properties['name'] == value }
+
+    Puppet.info("Updating server '#{name}', boot volume.")
+    server.update(bootVolume: { id: volume.id })
+    server.wait_for { ready? }
   end
 
   def config_with_volumes(volumes)
@@ -107,7 +167,7 @@ Puppet::Type.type(:server).provide(:v1) do
         fwrules = config_with_fwrules(nic['firewall_rules'])
       end
       if nic.key?('lan')
-        lan = lan_from_name(nic['lan'],
+        lan = PuppetX::Profitbricks::Helper::lan_from_name(nic['lan'],
           PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
       end
       {
@@ -177,12 +237,22 @@ Puppet::Type.type(:server).provide(:v1) do
       Puppet.info("Server '#{name}' has been created.")
       @property_hash[:id] = server.id
       @property_hash[:ensure] = :present
+
+      unless resource[:boot_volume].nil? 
+        volumes = server.list_volumes
+        if volumes.length > 1
+          boot_volume = volumes.find { |volume| volume.properties['name'] == resource[:boot_volume] }
+          Puppet.info("Setting boot volume for the server.")
+          server.update(bootVolume: { id: boot_volume.id })
+          server.wait_for { ready? }
+        end
+      end
     end
   end
 
   def restart
     Puppet.info("Restarting server #{name}")
-    server_from_name(name,
+    PuppetX::Profitbricks::Helper::server_from_name(name,
       PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).reboot
     @property_hash[:ensure] = :present
   end
@@ -190,15 +260,15 @@ Puppet::Type.type(:server).provide(:v1) do
   def stop
     create unless exists?
     Puppet.info("Stopping server #{name}")
-    server_from_name(name,
+    PuppetX::Profitbricks::Helper::server_from_name(name,
       PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])).stop
     @property_hash[:ensure] = :stopped
   end
 
   def destroy
-    server = server_from_name(resource[:name],
+    server = PuppetX::Profitbricks::Helper::server_from_name(resource[:name],
       PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name]))
-    destroy_volumes(server.list_volumes) if resource[:purge_volumes]
+    destroy_volumes(server.list_volumes) if !resource[:purge_volumes].nil? && resource[:purge_volumes].to_s == 'true'
     Puppet.info("Deleting server #{name}.")
     server.delete
     server.wait_for { ready? }
@@ -217,16 +287,6 @@ Puppet::Type.type(:server).provide(:v1) do
 
   def request_error(server)
     Request.get(server.requestId).status.metadata if server.requestId
-  end
-
-  def server_from_name(name, datacenter_id)
-    Server.list(datacenter_id).find do |server|
-      server.properties['name'] == name
-    end
-  end
-
-  def lan_from_name(name, datacenter_id)
-    LAN.list(datacenter_id).find { |lan| lan.properties['name'] == name }
   end
 
   def assign_ssh_keys(config, volume)

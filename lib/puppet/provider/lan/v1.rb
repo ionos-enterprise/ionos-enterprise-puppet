@@ -49,9 +49,21 @@ Puppet::Type.type(:lan).provide(:v1) do
       datacenter_id: instance.datacenterId,
       datacenter_name: datacenter.properties['name'],
       name: instance.properties['name'],
+      public: instance.properties['public'],
       ensure: :present
     }
     config
+  end
+
+  def public=(value)
+    lan = lan_from_name(
+      name,
+      PuppetX::Profitbricks::Helper::resolve_datacenter_id(resource[:datacenter_id], resource[:datacenter_name])
+    )
+
+    Puppet.info("Updating LAN '#{name}' public property.")
+    lan.update(public: value.to_s == 'true' ? true : false)
+    lan.wait_for { ready? }
   end
 
   def exists?

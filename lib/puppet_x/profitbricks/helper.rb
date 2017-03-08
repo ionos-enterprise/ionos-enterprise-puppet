@@ -3,11 +3,13 @@ require 'profitbricks'
 module PuppetX
   module Profitbricks
     class Helper
-      def self.profitbricks_config
+      def self.profitbricks_config(depth = nil)
         ProfitBricks.configure do |config|
           config.username = ENV['PROFITBRICKS_USERNAME']
           config.password = ENV['PROFITBRICKS_PASSWORD']
           config.timeout = 300
+
+          config.depth = depth unless depth.nil?
 
           url = ENV['PROFITBRICKS_API_URL']
           config.url = url unless url.nil? || url.empty?
@@ -47,6 +49,18 @@ module PuppetX
           fail "Data center named '#{dc_name}' cannot be found."
         end
         fail "Data center ID or name must be provided."
+      end
+
+      def self.lan_from_name(lan_name, datacenter_id)
+        lan = LAN.list(datacenter_id).find { |lan| lan.properties['name'] == lan_name }
+        fail "LAN named '#{lan_name}' cannot be found." unless lan
+        lan
+      end
+
+      def self.server_from_name(server_name, datacenter_id)
+        server = Server.list(datacenter_id).find { |server| server.properties['name'] == server_name }
+        fail "Server named '#{server_name}' cannot be found." unless server
+        server
       end
     end
   end
