@@ -1,6 +1,6 @@
-Puppet Module
+## Puppet Module
 
-Version: profitbricks-puppet v1.5.0 ??
+Version: profitbricks-puppet v1.5.0 **VERIFY THIS NAME AND VERSION**
 
 ## Table of Contents
 
@@ -438,9 +438,9 @@ If firewall rules are managed as an independent resource, the associated virtual
 
 ## Support
 
-* [ProfitBricks Cloud API v3](https://devops.profitbricks.com/api/cloud/v3) documentation.
-* Ask a question or discuss at [ProfitBricks DevOps Central](https://devops.profitbricks.com/community).
-* Report an [issue here](https://github.com/profitbricks/profitbricks-puppet/issues).
+* Consult the [ProfitBricks Cloud API v3](https://devops.profitbricks.com/api/cloud/v3) documentation.
+* Ask a question or discuss this module by visiting the [ProfitBricks DevOps Central](https://devops.profitbricks.com/community) community.
+* Report an [issue in the GitHub project repository](https://github.com/profitbricks/profitbricks-puppet/issues).
 
 ## Testing
 
