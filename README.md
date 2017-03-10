@@ -22,7 +22,7 @@ Version: profitbricks-puppet v1.5.0
     * [Firewall Rule Resource](#firewall-rule-resource)
 * [Support](#support)
 * [Testing](#testing)
-    * [Build and Install the Module](#build-and-install-the-module)
+* [Build and Install the Module](#build-and-install-the-module)
 * [Contributing](#contributing)
 
 ## Description
@@ -115,6 +115,17 @@ To provide a data center ID, you can create a data center within the module as f
 Afterwards, get the data center ID using the puppet resource command:
 
     puppet resource datacenter [myDataCenter]
+
+which should return output similar to this:
+
+    datacenter { 'myDataCenter':
+      ensure      => 'present',
+      description => 'test data center',
+      id          => '4af72f13-221d-499d-88ea-48713173e12f',
+      location    => 'de/fra',
+    }
+
+The returned *id* value of *4af72f13-221d-499d-88ea-48713173e12f* may be used elsewhere in our manifest to identify this virtual data center.
 
 A data center name can be used instead. You may find this more convenient than using a data center ID. Please refer to the next section for an example.
 
@@ -414,13 +425,13 @@ Firewall rules are usually nested within `nics` under the server resource. This 
 | --- | :-: | --- | --- |
 | name | **yes** | string | The name of the firewall rule. |
 | protocol | **yes** | string | Allow traffic protocols including `TCP`, `UDP`, `ICMP`, and `ANY`. |
-| source_mac | **yes** | string | Allow traffic from the source MAC address. |
-| source_ip | **yes** | string | Allow traffic originating from the source IP address. |
-| target_ip | **yes** | string | Allow traffic destined to the target IP address. |
-| port_range_start | **yes** | string | Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. |
-| port_range_end | **yes** | string | Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. |
-| icmp_type | **yes** | string | Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen. |
-| icmp_code | **yes** | string | Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. |
+| source_mac | no | string | Allow traffic from the source MAC address. |
+| source_ip | no | string | Allow traffic originating from the source IP address. |
+| target_ip | no | string | Allow traffic destined to the target IP address. |
+| port_range_start | no | string | Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. |
+| port_range_end | no | string | Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. |
+| icmp_type | no | string | Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen. |
+| icmp_code | no | string | Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. |
 
 **Note**: `source_mac`, `source_ip`, `target_ip`, `port_range_start`, `port_range_end`, `icmp_type` and `icmp_code` are mutable properties.
 
@@ -442,9 +453,9 @@ If firewall rules are managed as an independent resource, the associated virtual
 
 ## Testing
 
-This module does not currently have any tests available.
+You can run all the available tests with the command `rake spec` from inside the repository root.
 
-### Build and Install Module
+## Build and Install Module
 
 These instructions would only be necessary if you want to build the module yourself rather than use a pre-built one. You **DO NOT** need to do this if you followed the [installation instructions](#installation) above.
 
