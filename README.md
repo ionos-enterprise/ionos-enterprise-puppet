@@ -369,8 +369,6 @@ Volume resources can be managed independently within a data center or as a neste
 | name | **yes** | string | The name of the volume. |
 | size | **yes** | integer | Size of the volume in GB. |
 | volume_type | **yes** | string | The volume type can be `HDD` or `SSD`. |
-| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the volume is or will be created. Optional, if `datacenter_name` is specified. |
-| datacenter_name | **yes** | string | The name of the virtual data center where the volume is or will be created. Optional, if `datacenter_id` is specified. |
 | image_id | no | string | UUID of the image to assign to the volume. |
 | licence_type | no | string | The licence type of the volume. May be set to: `LINUX`, `WINDOWS`, `WINDOWS2016`, `UNKNOWN`, or `OTHER`. |
 | image_password | no | string | One-time password is set on the Image for the appropriate account. |
@@ -384,6 +382,13 @@ Volume resources can be managed independently within a data center or as a neste
 * When managing a volume independently, either the `datacenter_id` or `datacenter_name` is required.
 * Either `image_id` or `licence_type` **must** be defined.
 * When using a ProfitBricks provided public `image_id` either `image_password` or `ssh_keys` **must** be set. You **may** set both if you wish.
+
+If the volume is **NOT** nested under a server resource, then one of the following parameters is required.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the volume is or will be created. Optional, if `datacenter_name` is specified. |
+| datacenter_name | **yes** | string | The name of the virtual data center where the volume is or will be created. Optional, if `datacenter_id` is specified. |
 
 ### NIC Resource
 
