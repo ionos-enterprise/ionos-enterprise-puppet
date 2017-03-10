@@ -61,7 +61,7 @@ For users who already have a system with Puppet and Ruby installed, the followin
         export PROFITBRICKS_USERNAME="user@example.com"
         export PROFITBRICKS_PASSWORD="secretpassword"
 
-  Setting the ProfitBricks API URL is optional.
+    Setting the ProfitBricks API URL is optional.
 
         export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"
 
