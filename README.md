@@ -1,6 +1,6 @@
 ## Puppet Module
 
-Version: profitbricks-puppet v1.5.0 **VERIFY THIS NAME AND VERSION**
+Version: profitbricks-puppet v1.5.0
 
 ## Table of Contents
 
@@ -50,21 +50,20 @@ For users who already have a system with Puppet and Ruby installed, the followin
 
 1. Install the ProfitBricks Ruby SDK using `gem`.
 
-    `gem install profitbricks-sdk-ruby`
+        gem install profitbricks-sdk-ruby
 
 2. Install the module.
 
-    `puppet module install profitbricks-profitbricks`
+        puppet module install profitbricks-profitbricks
 
 3. Set the environment variables for authentication.
 
-    `export PROFITBRICKS_USERNAME="user@example.com"`
-
-    `export PROFITBRICKS_PASSWORD="secretpassword"`
+        export PROFITBRICKS_USERNAME="user@example.com"
+        export PROFITBRICKS_PASSWORD="secretpassword"
 
   Setting the ProfitBricks API URL is optional.
 
-    `export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"`
+        export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"
 
 A situation could arise in which you have installed a Puppet release that contains a bundled copy of Ruby, but you already had Ruby installed. In that case, you will want to be sure to specify the `gem` binary that comes with the bundled version of Ruby. This avoids a situation in which you inadvertently install the *profitbricks-ruby-sdk* library but it is not available to the Ruby install that Puppet is actually using.
 
@@ -74,23 +73,22 @@ To demonstrate this on a CentOS 7 server, these steps could be followed.
 
 1. Install Puppet using the official Puppet Collection.
 
-    `rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm`
+        rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 
-    `yum install puppet-agent`
+        yum install puppet-agent
 
 2. Install the ProfitBricks Ruby SDK using `gem`. **Note:** We are supplying the full path to the `gem` binary.
 
-    `/opt/puppetlabs/puppet/bin/gem install profitbricks-sdk-ruby`
+        /opt/puppetlabs/puppet/bin/gem install profitbricks-sdk-ruby
 
 3. Install the Puppet module. **Note:** We are supplying the full path to the `puppet` binary.
 
-    `/opt/puppetlabs/puppet/bin/puppet module install profitbricks-puppet`
+        /opt/puppetlabs/puppet/bin/puppet module install profitbricks-profitbricks
 
 4. Set the environment variables for authentication.
 
-    `export PROFITBRICKS_USERNAME="user@example.com"`
-
-    `export PROFITBRICKS_PASSWORD="secretpassword"`
+        export PROFITBRICKS_USERNAME="user@example.com"
+        export PROFITBRICKS_PASSWORD="secretpassword"
 
 ## Usage
 
