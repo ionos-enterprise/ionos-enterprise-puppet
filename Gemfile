@@ -21,6 +21,7 @@ group :test do
   gem 'puppet', *location_for(ENV['PUPPET_LOCATION'] || '~> 3.7.0')
   gem 'puppetlabs_spec_helper'
   gem 'webmock'
+  gem 'vcr'
   gem 'rspec-puppet', :git => 'https://github.com/rodjek/rspec-puppet.git'
 end
 
