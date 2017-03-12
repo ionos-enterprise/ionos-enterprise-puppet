@@ -5,7 +5,7 @@ type_class = Puppet::Type.type(:lan)
 describe type_class do
   let :params do
     [
-      :name,
+      :name
     ]
   end
 
@@ -14,7 +14,7 @@ describe type_class do
       :ensure,
       :datacenter_id,
       :datacenter_name,
-      :public,
+      :public
     ]
   end
 

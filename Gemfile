@@ -1,6 +1,6 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-gem 'profitbricks-sdk-ruby', '3.0.1'
+gem 'profitbricks-sdk-ruby', '3.0.2'
 
 # Find a location or specific version for a gem. place_or_version can be a
 # version, which is most often used. It can also be git, which is specified as
@@ -21,6 +21,7 @@ group :test do
   gem 'puppet', *location_for(ENV['PUPPET_LOCATION'] || '~> 3.7.0')
   gem 'puppetlabs_spec_helper'
   gem 'webmock'
+  gem 'vcr'
   gem 'rspec-puppet', :git => 'https://github.com/rodjek/rspec-puppet.git'
 end
 
