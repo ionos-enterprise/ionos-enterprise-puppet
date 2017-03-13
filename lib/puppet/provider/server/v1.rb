@@ -226,7 +226,7 @@ Puppet::Type.type(:server).provide(:v1) do
       )
 
       begin
-        server.wait_for(3).wait_for { ready? }
+        server.wait_for { ready? }
       rescue StandardError
         request = request_error(server)
         if request['status'] == 'FAILED'
@@ -235,7 +235,6 @@ Puppet::Type.type(:server).provide(:v1) do
       end
 
       Puppet.info("Server '#{name}' has been created.")
-      @property_hash[:id] = server.id
       @property_hash[:ensure] = :present
 
       unless resource[:boot_volume].nil? 
@@ -247,6 +246,8 @@ Puppet::Type.type(:server).provide(:v1) do
           server.wait_for { ready? }
         end
       end
+
+      @property_hash[:id] = server.id
     end
   end
 

@@ -138,8 +138,6 @@ Puppet::Type.type(:nic).provide(:v1) do
 
     nic.wait_for { ready? }
 
-    @property_hash[:ensure] = :present
-
     unless resource[:firewall_rules].nil? || resource[:firewall_rules].empty?
       Puppet.info("Adding firewall rules to NIC #{name}.")
       resource[:firewall_rules].each do |rule|
@@ -158,6 +156,8 @@ Puppet::Type.type(:nic).provide(:v1) do
         fwrule.wait_for { ready? }
       end
     end
+
+    @property_hash[:ensure] = :present
   end
 
   def destroy

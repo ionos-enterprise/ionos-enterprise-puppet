@@ -94,7 +94,7 @@ Puppet::Type.type(:volume).provide(:v1) do
     )
 
     begin
-      volume.wait_for(3).wait_for { ready? }
+      volume.wait_for { ready? }
     rescue StandardError
       request = request_error(volume)
       if request['status'] == 'FAILED'
