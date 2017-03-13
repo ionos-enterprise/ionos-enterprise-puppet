@@ -497,7 +497,7 @@ Notes: [version] should be replaced with the module version built. For example, 
 
 ## Contributing
 
-1. Fork it (`https://github.com/[my-github-username]/profitbricks-puppet/fork`).
+1. Fork it (`https://github.com/profitbricks/profitbricks-puppet/fork`).
 2. Create your feature branch (`git checkout -b my-new-feature`).
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin my-new-feature`).
