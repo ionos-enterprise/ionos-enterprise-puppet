@@ -189,7 +189,7 @@ Once we have a valid virtual data center UUID, lets proceed with the full server
 
     $datacenter_id = '2dbf0e6b-3430-46fd-befd-6d08acd96557'
 
-    lan { 'public':
+    lan { 'publicLAN':
       ensure => present,
       public => true,
       datacenter_id => $datacenter_id
@@ -216,7 +216,7 @@ Once we have a valid virtual data center UUID, lets proceed with the full server
         {
           name => 'nic0',
           dhcp => true,
-          lan => 'public',
+          lan => 'publicLAN',
           nat => false,
           firewall_rules => [
             {
@@ -240,7 +240,7 @@ Instead of providing a data center ID, you can create a data center along with L
       description => 'my data center desc.'
     } ->
 
-    lan { 'public' :
+    lan { 'publicLAN' :
       ensure => present,
       public => true,
       datacenter_name => $datacenter_name
@@ -264,9 +264,9 @@ Instead of providing a data center ID, you can create a data center along with L
       ],
       nics => [
         {
-          name => 'public',
+          name => 'publicNIC',
           dhcp => true,
-          lan => 'public',
+          lan => 'publicLAN',
           nat => false,
           firewall_rules => [
             {
