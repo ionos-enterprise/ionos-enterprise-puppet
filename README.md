@@ -1,12 +1,18 @@
+## Puppet Module
+
+Version: profitbricks-puppet v1.5.0
+
 ## Table of Contents
 
-* [Overview](#overview)
 * [Description](#description)
-* [Requirements](#requirements)
+* [Getting Started](#getting-started)
+    * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Full Server Example](#full-server-example)
-* [Remove Resources](#remove-resources)
+    * [Verification](#verification)
+* [Examples](#examples)
+    * [Full Server Example](#full-server-example)
+    * [Remove Resources](#remove-resources)
 * [Reference](#reference)
     * [Data Center Resource](#data-center-resource)
     * [LAN Resource](#lan-resource)
@@ -14,18 +20,22 @@
     * [Volume Resource](#volume-resource)
     * [NIC Resource](#nic-resource)
     * [Firewall Rule Resource](#firewall-rule-resource)
+* [Support](#support)
+* [Testing](#testing)
+* [Build and Install the Module](#build-and-install-the-module)
 * [Contributing](#contributing)
-* [Documentation and Support](#documentation-and-support)
-
-## Overview
-
-The ProfitBricks Puppet module allows a ProfitBricks multi-server cloud environment to be deployed automatically from a Puppet manifest file.
 
 ## Description
 
-The ProfitBricks Puppet module utilizes the ProfitBricks REST API to manage resources within a ProfitBricks virtual data center. A Puppet manifest file can then be used to describe a desired infrastructure including networks, servers, CPU cores, memory, and their relationships as well as states. That infrastructure can then be easily and automatically deployed using Puppet.
+The ProfitBricks Puppet module allows a multi-server cloud environment using ProfitBricks resources to be deployed automatically from a Puppet manifest file.
 
-## Requirements
+This module utilizes the ProfitBricks [Cloud API](https://devops.profitbricks.com/api/cloud/) via the [ProfitBricks Ruby SDK](https://devops.profitbricks.com/libraries/ruby/) to manage resources within a virtual data center. A Puppet manifest file can be used to describe the desired infrastructure configuration including networks, servers, CPU cores, memory, and their relationships as well as states. That infrastructure can then be easily and automatically deployed using Puppet.
+
+## Getting Started
+
+Before you begin you will need to have [signed-up for a ProfitBricks account](https://devops.profitbricks.com/signup). The credentials you establish during sign-up will be used to authenticate against the ProfitBricks Cloud API.
+
+### Requirements
 
 * Puppet 4.2.x or greater
 * Ruby 2.0 or greater
@@ -34,26 +44,55 @@ The ProfitBricks Puppet module utilizes the ProfitBricks REST API to manage reso
 
 ## Installation
 
-1. Install the ProfitBricks Ruby SDK gem.
+There are multiple ways that Puppet and Ruby can be installed on an operating system (OS).
 
-    `gem install profitbricks-sdk-ruby`
+For users who already have a system with Puppet and Ruby installed, the following three easy steps should get the ProfitBricks Puppet module working. **Note:** You may need to prefix `sudo` to the commands in steps one and two.
+
+1. Install the ProfitBricks Ruby SDK using `gem`.
+
+        gem install profitbricks-sdk-ruby
 
 2. Install the module.
 
-    `puppet module install profitbricks-profitbricks`
+        puppet module install profitbricks-profitbricks
 
 3. Set the environment variables for authentication.
 
-    `export PROFITBRICKS_USERNAME="user@example.com"`<br>
-    `export PROFITBRICKS_PASSWORD="secretpassword"`
+        export PROFITBRICKS_USERNAME="user@example.com"
+        export PROFITBRICKS_PASSWORD="secretpassword"
 
-  Setting the ProfitBricks API URL is optional.
+    Setting the ProfitBricks API URL is optional.
 
-    `export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"`
+        export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"
+
+A situation could arise in which you have installed a Puppet release that contains a bundled copy of Ruby, but you already had Ruby installed. In that case, you will want to be sure to specify the `gem` binary that comes with the bundled version of Ruby. This avoids a situation in which you inadvertently install the *profitbricks-ruby-sdk* library but it is not available to the Ruby install that Puppet is actually using.
+
+To demonstrate this on a CentOS 7 server, these steps could be followed.
+
+**Note:** You may need to prefix `sudo` to the commands in steps one through three.
+
+1. Install Puppet using the official Puppet Collection.
+
+        rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+
+        yum install puppet-agent
+
+2. Install the ProfitBricks Ruby SDK using `gem`. **Note:** We are supplying the full path to the `gem` binary.
+
+        /opt/puppetlabs/puppet/bin/gem install profitbricks-sdk-ruby
+
+3. Install the Puppet module. **Note:** We are supplying the full path to the `puppet` binary.
+
+        /opt/puppetlabs/puppet/bin/puppet module install profitbricks-profitbricks
+
+4. Set the environment variables for authentication.
+
+        export PROFITBRICKS_USERNAME="user@example.com"
+        export PROFITBRICKS_PASSWORD="secretpassword"
 
 ## Usage
 
-The Puppet manifest files use a domain specific language, or DSL. This language allows resources and their states to be declared. Puppet will then build the resources and set the states as described in the manifest file. The following snippet describes a simple LAN resource.
+A Puppet manifest uses a domain specific language, or DSL. This language allows resources and their states to be declared. Puppet will then build the resources and set the states as described in the manifest. The following snippet describes a simple LAN resource.
 
     lan { 'public':
       ensure => present,
@@ -61,7 +100,9 @@ The Puppet manifest files use a domain specific language, or DSL. This language 
       datacenter_id => '2dbf0e6b-3430-46fd-befd-6d08acd96557'
     }
 
-A LAN named `public` will have public Internet access enabled and will reside in the defined data center.
+A LAN named `public` will have public Internet access enabled and will reside in the defined virtual data center.
+
+**Note**: It is important that resource names be unique within the manifest. This includes both similar and different resource types. For example, a LAN resource named `public` will conflict with a server resource named `public`.
 
 To provide a data center ID, you can create a data center within the module as follows:
 
@@ -75,7 +116,18 @@ Afterwards, get the data center ID using the puppet resource command:
 
     puppet resource datacenter [myDataCenter]
 
-More convenient than using an ID, a data center name can be used instead. Refer to the next section for an example.
+which should return output similar to this:
+
+    datacenter { 'myDataCenter':
+      ensure      => 'present',
+      description => 'test data center',
+      id          => '4af72f13-221d-499d-88ea-48713173e12f',
+      location    => 'de/fra',
+    }
+
+The returned *id* value of *4af72f13-221d-499d-88ea-48713173e12f* may be used elsewhere in our manifest to identify this virtual data center.
+
+A data center name can be used instead. You may find this more convenient than using a data center ID. Please refer to the next section for an example.
 
 If you have already created your data center, LAN and server resources, you may connect them with a new NIC resource using their names or IDs.
 
@@ -92,7 +144,7 @@ If you have already created your data center, LAN and server resources, you may 
       ips => ['78.137.103.102', '78.137.103.103', '78.137.103.104'],
       firewall_active => true,
       firewall_rules => [
-        { 
+        {
           name => 'SSH',
           protocol => 'TCP',
           port_range_start => 22,
@@ -101,25 +153,48 @@ If you have already created your data center, LAN and server resources, you may 
       ]
     }
 
-**Note**:
+**Note**: Using the ProfitBricks Puppet module to manage your ProfitBricks resources ensures uniqueness of the managed instances. The ProfitBricks Cloud API allows the creation of multiple virtual data centers having the same name.
 
-Using the ProfitBricks Puppet module to manage your ProfitBricks resources ensures uniqueness of the managed instances.
-However, the ProfitBricks API generally allows, for example, to create multiple data centers having the same name.
-If you manage LAN and server resources using data center names, the module will throw an error when more than one data center
-with the same name is detected. Similarly, removing data centers by non-unique names is not allowed.
+If you attempt to manage LAN and server resources using data center names, the module will throw an error when more than one virtual data center with the same name is detected. The same is true if you attempt to remove virtual data centers by non-unique names.
+
+### Verification
+
+Once you have composed a manifest, it is good to have Puppet validate the syntax. The Puppet accessory `parser` can check for syntax errors. To validate a manifest named `init.pp` run:
+
+    puppet parser validate init.pp
+
+If the manifest validates successfully, no output is returned. If there is an issue, you should get some output indicating what is invalid:
+
+    Error: Could not parse for environment production: Syntax error at '}' at init.pp:8:2
+
+That error message indicates we should take a look at a curly brace located on line 8 column 2 of `init.pp`.
+
+To have puppet go ahead and apply the manifest run:
+
+    puppet apply init.pp
+
+## Examples
 
 ## Full Server Example
 
-The following example will describe a full server with public Internet access and allow inbound SSH connections.
+The following example will describe deploying a new server with public Internet access and allow inbound SSH connections.
+
+**Note:** the value for `$datacenter_id` needs to be set to a valid virtual data center UUID that your account credentials are allowed to access. There are a couple of ways to get the UUID of a virtual data center. You can make a GET request against the Cloud API using a command-line tool such as `curl`, use an application such Postman, or one of various browser plugins for working with REST APIs.
+
+The [ProfitBricks CLI](https://devops.profitbricks.com/tools/cli/) may be helpful as the command: `profitbricks datacenter list` will return a list of available virtual data centers.
+
+It is also possible to get the UUID from inside the ProfitBricks Data Center Designer (DCD). If you log in and hover over one of your virtual data centers listed under "My Data Centers", a tooltip appears that contains the UUID.
+
+Once we have a valid virtual data center UUID, lets proceed with the full server example.
 
     $datacenter_id = '2dbf0e6b-3430-46fd-befd-6d08acd96557'
-    
-    lan { 'public':
+
+    lan { 'publicLAN':
       ensure => present,
       public => true,
       datacenter_id => $datacenter_id
     }
-    
+
     server { 'frontend':
       ensure => running,
       datacenter_id => $datacenter_id,
@@ -131,7 +206,7 @@ The following example will describe a full server with public Internet access an
           name => 'system',
           size => 5,
           bus => 'VIRTIO',
-          volume_type => 'SSD'
+          volume_type => 'SSD',
           image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
           image_password => 'mysecretpassword',
           availability_zone => 'AUTO'
@@ -141,7 +216,7 @@ The following example will describe a full server with public Internet access an
         {
           name => 'nic0',
           dhcp => true,
-          lan => 'public',
+          lan => 'publicLAN',
           nat => false,
           firewall_rules => [
             {
@@ -155,7 +230,7 @@ The following example will describe a full server with public Internet access an
       ]
     }
 
-Alternatively, instead of providing a data center ID, you can create a data center along with LAN and server resources in a single manifest by using the data center name as input parameter.
+Instead of providing a data center ID, you can create a data center along with LAN and server resources in a single manifest by using the data center name as the input parameter.
 
     $datacenter_name = 'MyDataCenter'
 
@@ -165,7 +240,7 @@ Alternatively, instead of providing a data center ID, you can create a data cent
       description => 'my data center desc.'
     } ->
 
-    lan { 'public' :
+    lan { 'publicLAN' :
       ensure => present,
       public => true,
       datacenter_name => $datacenter_name
@@ -189,12 +264,12 @@ Alternatively, instead of providing a data center ID, you can create a data cent
       ],
       nics => [
         {
-          name => 'public',
+          name => 'publicNIC',
           dhcp => true,
-          lan => 'public',
+          lan => 'publicLAN',
           nat => false,
           firewall_rules => [
-            { 
+            {
               name => 'SSH',
               protocol => 'TCP',
               port_range_start => 22,
@@ -210,7 +285,7 @@ Alternatively, instead of providing a data center ID, you can create a data cent
 The following example sets the above resource states to `absent`. This will cause the server named `frontend` along with the associated `public` LAN to be removed.
 
     $datacenter_id = '2dbf0e6b-3430-46fd-befd-6d08acd96557'
-    
+
     server { 'frontend':
       ensure => absent,
       datacenter_id => $datacenter_id
@@ -234,147 +309,183 @@ By default, the volumes attached to the server resources will remain available w
 
 ## Reference
 
+This reference section describes the various resources and the associated properties that may be used when composing a Puppet manifest.
+
 ### Data Center Resource
 
-Required
+Data Center resources can have the following properties set.
 
-* **name**: The name of the data center.
-* **ensure**: The desired state of the data center must be `present` or `absent`.
-* **location**: The location of the data center.
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the virtual data center. |
+| ensure | **yes** | string | The desired state of the virtual data center. It must be `present` or `absent`. |
+| location | **yes** | string | The ProfitBricks location of the virtual data center: `us/las`, `de/fkb`, or `de/fra` |
+| description | no | string | The virtual data center description.
 
-Optional
-
-* **description**: The data center description.
-
-You can update `description` property after the data center is created.
+It is possible to update the `description` property after the virtual data center is created.
 
 ### LAN Resource
 
-Required
+LAN resources can have the following properties set.
 
-* **name**: The name of the LAN.
-* **ensure**: The desired state of the LAN must be `present` or `absent`.
-* **datacenter_id**: The UUID of an existing data center where the LAN will reside. Optional, if `datacenter_name` is specified.
-* **datacenter_name**: The name of the data center where the LAN will reside. Optional, if `datacenter_id` is specified.
-
-Optional
-
-* **public**: Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`.
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the LAN. |
+| ensure | **yes** | string | The desired state of the LAN. It must be `present` or `absent`. |
+| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the LAN will reside. Optional, if `datacenter_name` is specified. |
+| datacenter_name | **yes** | string | The name of the virtual data center where the LAN will reside. Optional, if `datacenter_id` is specified. |
+| public | no | boolean | Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`. |
 
 The LAN resource allows `public` property to be updated if necessary.
 
 ### Server Resource
 
-Server resources provide the following properties.
+A Server resource has the following properties.
 
-**Required**
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the server. |
+| ensure | **yes** | string | The desired state of the server. It may be `present`, `absent`, `running`, or `stopped`. |
+| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the server will reside. Optional, if `datacenter_name` is specified. |
+| datacenter_name | **yes** | string | The name of the virtual data center where the server will reside. Optional, if `datacenter_id` is specified. |
+| cores | **yes** | integer | The number of CPU cores assigned to the server. |
+| ram | **yes** | integer | The amount of RAM assigned to the server MB (must be a multiple of 256). |
+| cpu_family | no | string | The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`. |
+| availability_zone | no | string | Availability zone of the server, defaults to `AUTO`. May also be set to `ZONE_1` or `ZONE_2`. |
+| licence_type | no | string | If undefined the OS type will be inherited from the boot image or boot volume. |
+| boot_volume | no | string | The boot volume name, if more than one volume it attached to the server. |
+| purge_volumes | no | boolean | Set to `true` to purge all attached volumes on server delete, defaults to `false`. |
+| volumes | no | array | An array of volumes that will be built and attached to the server. |
+| nics | no | array | An array of NICs that will be connected to the server. |
 
-* **name**: The name of the server.
-* **ensure**: The desired server state which can be `present`, `absent`, `running`, or `stopped`.
-* **datacenter_id**: The UUID of an existing data center where the server will reside. Optional, if `datacenter_name` is specified.
-* **datacenter_name**: The name of the data center where the server will reside. Optional, if `datacenter_id` is specified.
-* **cores**: The number of CPU cores assigned to the server.
-* **ram**:  The amount of RAM assigned to the server MB (must be a multiple of 256).
-
-**Optional**
-
-* **cpu_family**: The CPU family which can be `AMD_OPTERON` or `INTEL_XEON`, defaults to `AMD_OPTERON`.
-* **availability_zone**: Availability zone of the server, defaults to `AUTO`.
-* **licence_type**: If undefined the OS type will be inherited from the boot image or boot volume.
-* **boot_volume**: The boot volume name, if more than one volume it attached to the server.
-* **purge_volumes**: Set to `true` to purge all attached volumes on server delete, defaults to `false`.
-* **volumes**: An array of volumes that will be built and attached to the server.
-* **nics**: An array of NICs that will be connected to the server.
-
-`availability_zone`, `boot_volume`, `cores`, `cpu_family` and `ram` are mutable properties.
-The values of these properties can be updated after the server has been created.
+**Note**: `availability_zone`, `boot_volume`, `cores`, `cpu_family` and `ram` are mutable properties. The values of these properties can be updated after the server has been created.
 
 ### Volume Resource
 
 Volume resources can be managed independently within a data center or as a nested array defined within the server resource.
 
-**Required**
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the volume. |
+| size | **yes** | integer | Size of the volume in GB. |
+| volume_type | **yes** | string | The volume type can be `HDD` or `SSD`. |
+| image_id | no | string | UUID of the image to assign to the volume. |
+| licence_type | no | string | The licence type of the volume. May be set to: `LINUX`, `WINDOWS`, `WINDOWS2016`, `UNKNOWN`, or `OTHER`. |
+| image_password | no | string | One-time password is set on the Image for the appropriate account. |
+| bus | no | string | The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`. |
+| ssh_keys | no | string | A list of public SSH keys to add to supported image. |
+| availability_zone | no | string | Direct a storage volume to be created in one of three zones per location. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`. |
 
-* **name**: Name of the volume.
-* **size**: Size of the volume in GB.
-* **volume_type**: The volume type can be `HDD` or `SSD`.
+**Notes:**
 
-When managed independently, the data center ID or name is required too.
+* The volume `size` can be increased after the volume is created.
+* When managing a volume independently, either the `datacenter_id` or `datacenter_name` is required.
+* Either `image_id` or `licence_type` **must** be defined.
+* When using a ProfitBricks provided public `image_id` either `image_password` or `ssh_keys` **must** be set. You **may** set both if you wish.
 
-* **datacenter_id**: The UUID of an existing data center where the volume is or will be created.
-* **datacenter_name**: The name of the data center where the volume is or will be created.
+If the volume is **NOT** nested under a server resource, then one of the following parameters is required.
 
-**Optional**
-
-* **image_id**: UUID of the image to assign to the volume.
-* **licence_type**: The licence type of the volume including `LINUX`, `WINDOWS`, `UNKNOWN`, and `OTHER`.
-* **image_password**: One-time password is set on the Image for the appropriate account.
-* **bus**: The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`.
-* **ssh_keys**: A list of public SSH keys to add to supported image.
-* **availability_zone**: Direct a storage volume to be created in one of three zones per data center. This allows for the deployment of enhanced high-availability configurations. Valid values for `availability_zone` are: `AUTO`, `ZONE_1`, `ZONE_2`, or `ZONE_3`.
-
-The volume `size` can be increased after the volume is created.
-
-**Note**: Either `image_id` or `licence_type` must be defined.
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the volume is or will be created. Optional, if `datacenter_name` is specified. |
+| datacenter_name | **yes** | string | The name of the virtual data center where the volume is or will be created. Optional, if `datacenter_id` is specified. |
 
 ### NIC Resource
 
-NICs can be created and managed separately as other resources such as LANs, or nested under the server resource.
+NICs can be created and managed separately just like other resources such as LANs. They may also be nested under a server resource.
 
-* **name**: Name of the NIC.
-* **ips**: An array of IP addresses to assign the NIC.
-* **dhcp**: Set DHCP on the NIC with `true` or `false`, defaults to `true`.
-* **lan**: Name of the LAN to connect the NIC.
-* **firewall_rules**: An array of firewall rules to assign the NIC.
-* **nat**: A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements:
- - The NIC this is being activated on must belong to a private LAN.
- - The NIC must not belong to a load balancer.
- - NAT cannot be activated in a private LAN that contains an IPv4 address ending with ".1".
- - NAT should not be enabled in a Virtual Data Center with an active ProfitBricks firewall.
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the NIC. |
+| ips | **yes** | array |  An array of IP addresses to assign the NIC. |
+| dhcp | no | boolean | Enable DHCP on the NIC with `true` or disable with `false`, defaults to `true`. |
+| lan | **yes** | string | Name of the LAN to connect the NIC. |
+| firewall_rules | no | array | An array of firewall rules to assign the NIC. |
+| nat | no | boolean | A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements listed in Notes below this table. |
 
-If NICs are not nested, some of the following parameters are required as well.
+**Notes on NAT**:
 
-* **datacenter_id**: The UUID of an existing data center where the NIC will reside. Optional, if `datacenter_name` is specified.
-* **datacenter_name**: The name of the data center where the NIC will reside. Optional, if `datacenter_id` is specified.
-* **server_id**: The UUID of an existing server where the NIC will reside. Optional, if `server_name` is specified.
-* **server_name**: The name of the server where the NIC will reside. Optional, if `server_id` is specified.
-* **firewall_active**: Indicates the firewall is active. Default value is false.
+* The NIC this is being activated on **must** belong to a private LAN.
+* The NIC **must not** belong to a load balancer.
+* NAT **cannot** be activated in a private LAN that contains an IPv4 address ending with ".1".
+* NAT **should not** be enabled in a virtual data center with an active ProfitBricks firewall.
 
-`ips`, `dhcp`, `lan` and `nat` are mutable properties.
+**Note**: `ips`, `dhcp`, `lan` and `nat` are mutable properties.
+
+If the NIC is **NOT** nested under a server resource, some of the following parameters are required as well.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the NIC is or will be created. Optional, if `datacenter_name` is specified. |
+| datacenter_name | **yes** | string | The name of the virtual data center where the NIC is or will be created. Optional, if `datacenter_id` is specified. |
+| server_id  | **yes** | string | The UUID of an existing server where the NIC will reside. Optional, if `server_name` is specified. |
+| server_name | **yes** | string | The name of the server where the NIC will reside. Optional, if `server_id` is specified. |
+| firewall_active | no | boolean | `true` indicates the firewall is active. Default value is `false`. |
 
 ### Firewall Rule Resource
 
-Firewall rules are usually nested within `nics` under the server resource.
+Firewall rules are usually nested within `nics` under the server resource. This section applies to the ProfitBricks firewall for a virtual data center that you can also configure through the DCD or via the Cloud API. It does **NOT** refer to a firewall that is part of the OS or running as service on the virtual machine.
 
-* **name**: Name of the firewall rule.
-* **protocol**: Allow traffic protocols including `TCP`, `UDP`, `ICMP`, and `ANY`.
-* **source_mac**: Allow traffic from the source MAC address.
-* **source_ip**: Allow traffic originating from the source IP address.
-* **target_ip**: Allow traffic destined to the target IP address.
-* **port_range_start**: Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen.
-* **port_range_end**: Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
-* **icmp_type**: Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.
-* **icmp_code**: Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the firewall rule. |
+| protocol | **yes** | string | Allow traffic protocols including `TCP`, `UDP`, `ICMP`, and `ANY`. |
+| source_mac | no | string | Allow traffic from the source MAC address. |
+| source_ip | no | string | Allow traffic originating from the source IP address. |
+| target_ip | no | string | Allow traffic destined to the target IP address. |
+| port_range_start | no | string | Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. |
+| port_range_end | no | string | Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. |
+| icmp_type | no | string | Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen. |
+| icmp_code | no | string | Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. |
 
-If firewall rules are managed as independent resources, the data center, server and NIC informations are required.
+**Note**: `source_mac`, `source_ip`, `target_ip`, `port_range_start`, `port_range_end`, `icmp_type` and `icmp_code` are mutable properties.
 
-* **datacenter_id**: The UUID of an existing data center where the server and NIC will reside. Optional, if `datacenter_name` is specified.
-* **datacenter_name**: The name of the data center where the server and NIC will reside. Optional, if `datacenter_id` is specified.
-* **server_id**: The UUID of an existing server where the server and NIC will reside. Optional, if `server_name` is specified.
-* **server_name**: The name of the server where the server and NIC will reside. Optional, if `server_id` is specified.
-* **nic**: The name of the NIC the firewall rule will be added to.
+If firewall rules are managed as an independent resource, the associated virtual data center, server, and NIC must be specified.
 
-`source_mac`, `source_ip`, `target_ip`, `port_range_start`, `port_range_end`, `icmp_type` and `icmp_code` are mutable properties.
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| datacenter_id | **yes** | string | The UUID of an existing virtual data center where the firewall rule is or will be created. Optional, if `datacenter_name` is specified. |
+| datacenter_name | **yes** | string | The name of the virtual data center where the firewall rule is or will be created. Optional, if `datacenter_id` is specified. |
+| server_id  | **yes** | string | The UUID of an existing server where the firewall rule will reside. Optional, if `server_name` is specified. |
+| server_name | **yes** | string | The name of the server where the firewall rule will reside. Optional, if `server_id` is specified. |
+| nic | **yes** | string | The name of the NIC the firewall rule will be added to. |
 
-## Contributing
+## Support
 
-1. Fork it (`https://github.com/[my-github-username]/profitbricks-puppet/fork`).
-2. Create your feature branch (`git checkout -b my-new-feature`).
-3. Commit your changes (`git commit -am 'Add some feature'`).
-4. Push to the branch (`git push origin my-new-feature`).
-5. Create a new Pull Request.
+* Consult the [ProfitBricks Cloud API](https://devops.profitbricks.com/api/cloud/) documentation.
+* Ask a question or discuss this module by visiting the [ProfitBricks DevOps Central](https://devops.profitbricks.com/community) community.
+* Report an [issue in the GitHub project repository](https://github.com/profitbricks/profitbricks-puppet/issues).
 
-## Build and Install Module
+## Testing
+
+Make sure you have the necessary dependencies installed in your development enviroment with `bundle`. Then use `rake` to run all the available tests.
+
+You can accomplish this by running the following commands from inside the repository root.
+
+    bundle install
+    rake spec
+
+A successful test run should return output similar to:
+
+    ............................................................
+
+    Finished in 28.12 seconds (files took 2.59 seconds to load)
+    60 examples, 0 failures
+
+You can bypass `rake` and run a single test using `rspec` and supplying a path to the specific test. To do this for the *datacenter* test:
+
+    rspec spec/unit/provider/datacenter/v1_spec.rb
+
+    ..
+
+    Finished in 0.06585 seconds (files took 2.28 seconds to load)
+    2 examples, 0 failures
+
+## Build and Install the Module
+
+These instructions would only be necessary if you want to build the module yourself rather than use a pre-built one. You **DO NOT** need to do this if you followed the [installation instructions](#installation) above.
+
+Clone the repository from [GitHub : profitbricks-puppet](https://github.com/profitbricks/profitbricks-puppet).
 
 Run the following from the repository directory.
 
@@ -382,10 +493,12 @@ Run the following from the repository directory.
     puppet module build
     puppet module install -f pkg/profitbricks-profitbricks-[version].tar.gz
 
-Notes: [version] should be replaced with the module version built. For example, 1.2.0.
+Notes: [version] should be replaced with the module version built. For example, 1.5.0.
 
-## Documentation and Support
+## Contributing
 
-* [ProfitBricks REST API](https://devops.profitbricks.com/api/rest/) documentation.
-* Ask a question or discuss at [ProfitBricks DevOps Central](https://devops.profitbricks.com/community).
-* Report an [issue here](https://github.com/profitbricks/profitbricks-puppet/issues).
+1. Fork it (`https://github.com/profitbricks/profitbricks-puppet/fork`).
+2. Create your feature branch (`git checkout -b my-new-feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin my-new-feature`).
+5. Create a new Pull Request.
