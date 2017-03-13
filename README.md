@@ -29,7 +29,7 @@ Version: profitbricks-puppet v1.5.0
 
 The ProfitBricks Puppet module allows a multi-server cloud environment using ProfitBricks resources to be deployed automatically from a Puppet manifest file.
 
-This module utilizes the ProfitBricks [Cloud API v3.0](https://devops.profitbricks.com/api/cloud/v3/) via the [ProfitBricks Ruby SDK](https://devops.profitbricks.com/libraries/ruby/) to manage resources within a virtual data center. A Puppet manifest file can be used to describe the desired infrastructure configuration including networks, servers, CPU cores, memory, and their relationships as well as states. That infrastructure can then be easily and automatically deployed using Puppet.
+This module utilizes the ProfitBricks [Cloud API](https://devops.profitbricks.com/api/cloud/) via the [ProfitBricks Ruby SDK](https://devops.profitbricks.com/libraries/ruby/) to manage resources within a virtual data center. A Puppet manifest file can be used to describe the desired infrastructure configuration including networks, servers, CPU cores, memory, and their relationships as well as states. That infrastructure can then be easily and automatically deployed using Puppet.
 
 ## Getting Started
 
@@ -481,7 +481,7 @@ You can bypass `rake` and run a single test using `rspec` and supplying a path t
     Finished in 0.06585 seconds (files took 2.28 seconds to load)
     2 examples, 0 failures
 
-## Build and Install Module
+## Build and Install the Module
 
 These instructions would only be necessary if you want to build the module yourself rather than use a pre-built one. You **DO NOT** need to do this if you followed the [installation instructions](#installation) above.
 
