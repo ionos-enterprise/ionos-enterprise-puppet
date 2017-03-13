@@ -460,12 +460,10 @@ If firewall rules are managed as an independent resource, the associated virtual
 
 Make sure you have the necessary dependencies installed in your development enviroment with `bundle`. Then use `rake` to run all the available tests.
 
-You can run accomplish this by running the commands:
+You can accomplish this by running the following commands from inside the repository root.
 
     bundle install
     rake spec
-
-from inside the repository root.
 
 A successful test run should return output similar to:
 
