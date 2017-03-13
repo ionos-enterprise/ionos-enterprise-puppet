@@ -206,7 +206,7 @@ Once we have a valid virtual data center UUID, lets proceed with the full server
           name => 'system',
           size => 5,
           bus => 'VIRTIO',
-          volume_type => 'SSD'
+          volume_type => 'SSD',
           image_id => 'e87692f2-3587-11e5-9b0d-52540066fee9',
           image_password => 'mysecretpassword',
           availability_zone => 'AUTO'
