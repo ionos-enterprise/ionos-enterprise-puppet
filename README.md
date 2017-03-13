@@ -398,10 +398,10 @@ NICs can be created and managed separately just like other resources such as LAN
 | --- | :-: | --- | --- |
 | name | **yes** | string | The name of the NIC. |
 | ips | **yes** | array |  An array of IP addresses to assign the NIC. |
-| dhcp | **yes** | boolean | Enable DHCP on the NIC with `true` or disable with `false`, defaults to `true`. |
+| dhcp | no | boolean | Enable DHCP on the NIC with `true` or disable with `false`, defaults to `true`. |
 | lan | **yes** | string | Name of the LAN to connect the NIC. |
-| firewall_rules | **yes** | array | An array of firewall rules to assign the NIC. |
-| nat | **yes** | boolean | A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements listed in Notes below this table. |
+| firewall_rules | no | array | An array of firewall rules to assign the NIC. |
+| nat | no | boolean | A boolean which indicates if the NIC will perform Network Address Translation. There are a few requirements listed in Notes below this table. |
 
 **Notes on NAT**:
 
@@ -420,7 +420,7 @@ If the NIC is **NOT** nested under a server resource, some of the following para
 | datacenter_name | **yes** | string | The name of the virtual data center where the NIC is or will be created. Optional, if `datacenter_id` is specified. |
 | server_id  | **yes** | string | The UUID of an existing server where the NIC will reside. Optional, if `server_name` is specified. |
 | server_name | **yes** | string | The name of the server where the NIC will reside. Optional, if `server_id` is specified. |
-| firewall_active | **yes** | boolean | `true` indicates the firewall is active. Default value is `false`. |
+| firewall_active | no | boolean | `true` indicates the firewall is active. Default value is `false`. |
 
 ### Firewall Rule Resource
 
