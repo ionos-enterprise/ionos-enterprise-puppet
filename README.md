@@ -458,7 +458,14 @@ If firewall rules are managed as an independent resource, the associated virtual
 
 ## Testing
 
-You can run all the available tests with the command `rake spec` from inside the repository root.
+You can run all the available tests with the command `rake spec` from inside the repository root. The tests utilize *vcr* and *rspec-puppet* so you may need to install them using `gem` if they are not already present in your development environment.
+
+A successful test run should return output similar to:
+
+    ............................................................
+
+    Finished in 28.12 seconds (files took 2.59 seconds to load)
+    60 examples, 0 failures
 
 ## Build and Install Module
 
