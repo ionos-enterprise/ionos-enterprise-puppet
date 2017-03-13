@@ -495,7 +495,7 @@ Run the following from the repository directory.
     puppet module build
     puppet module install -f pkg/profitbricks-profitbricks-[version].tar.gz
 
-Notes: [version] should be replaced with the module version built. For example, 1.2.0.
+Notes: [version] should be replaced with the module version built. For example, 1.5.0.
 
 ## Contributing
 
