@@ -452,7 +452,7 @@ If firewall rules are managed as an independent resource, the associated virtual
 
 ## Support
 
-* Consult the [ProfitBricks Cloud API v3](https://devops.profitbricks.com/api/cloud/v3) documentation.
+* Consult the [ProfitBricks Cloud API](https://devops.profitbricks.com/api/cloud/) documentation.
 * Ask a question or discuss this module by visiting the [ProfitBricks DevOps Central](https://devops.profitbricks.com/community) community.
 * Report an [issue in the GitHub project repository](https://github.com/profitbricks/profitbricks-puppet/issues).
 
