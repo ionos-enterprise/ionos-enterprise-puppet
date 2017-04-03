@@ -11,7 +11,7 @@ Puppet::Type.type(:server).provide(:v1) do
   end
 
   def self.client
-    PuppetX::Profitbricks::Helper::profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config(3)
   end
 
   def self.instances
