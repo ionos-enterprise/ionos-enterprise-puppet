@@ -11,7 +11,7 @@ Puppet::Type.type(:firewall_rule).provide(:v1) do
   end
 
   def self.client
-    PuppetX::Profitbricks::Helper::profitbricks_config
+    PuppetX::Profitbricks::Helper::profitbricks_config(5)
   end
 
   def self.instances
