@@ -1,6 +1,6 @@
 ## Puppet Module
 
-Version: profitbricks-puppet v1.5.0
+Version: profitbricks-puppet v1.5.1
 
 ## Table of Contents
 
