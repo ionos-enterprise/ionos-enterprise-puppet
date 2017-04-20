@@ -1,0 +1,641 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v3/datacenters?depth=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Apr 2017 15:25:19 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Pragma:
+      - No-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "datacenters",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters",
+          "items" : [ {
+            "id" : "6c2134f7-3789-40ab-b465-939214119b22",
+            "type" : "datacenter",
+            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22",
+            "metadata" : {
+              "createdDate" : "2017-04-20T15:16:27Z",
+              "createdBy" : "username",
+              "etag" : "303279dc26ccb60a467ac17976b0d901",
+              "lastModifiedDate" : "2017-04-20T15:23:35Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "dummydc",
+              "description" : null,
+              "location" : "us/las",
+              "version" : 11,
+              "features" : [ "SSD", "MULTIPLE_CPU" ]
+            },
+            "entities" : {
+              "servers" : {
+                "id" : "6c2134f7-3789-40ab-b465-939214119b22/servers",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers"
+              },
+              "volumes" : {
+                "id" : "6c2134f7-3789-40ab-b465-939214119b22/volumes",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes"
+              },
+              "loadbalancers" : {
+                "id" : "6c2134f7-3789-40ab-b465-939214119b22/loadbalancers",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/loadbalancers"
+              },
+              "lans" : {
+                "id" : "6c2134f7-3789-40ab-b465-939214119b22/lans",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/lans"
+              }
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Thu, 20 Apr 2017 15:25:12 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers?depth=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Apr 2017 15:25:19 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Pragma:
+      - No-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "6c2134f7-3789-40ab-b465-939214119b22/servers",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers",
+          "items" : [ {
+            "id" : "be2c970f-5b53-4f9d-af65-8001c08a3bb7",
+            "type" : "server",
+            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7",
+            "metadata" : {
+              "createdDate" : "2017-04-20T15:23:35Z",
+              "createdBy" : "username",
+              "etag" : "303279dc26ccb60a467ac17976b0d901",
+              "lastModifiedDate" : "2017-04-20T15:23:35Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "testserver2",
+              "cores" : 1,
+              "ram" : 1024,
+              "availabilityZone" : "AUTO",
+              "vmState" : "RUNNING",
+              "bootCdrom" : null,
+              "bootVolume" : {
+                "id" : "5259731c-8c4a-4aa9-9854-d5cd102dec13",
+                "type" : "volume",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/5259731c-8c4a-4aa9-9854-d5cd102dec13",
+                "metadata" : {
+                  "createdDate" : "2017-04-20T15:23:35Z",
+                  "createdBy" : "username",
+                  "etag" : "303279dc26ccb60a467ac17976b0d901",
+                  "lastModifiedDate" : "2017-04-20T15:23:35Z",
+                  "lastModifiedBy" : "username",
+                  "state" : "AVAILABLE"
+                },
+                "properties" : {
+                  "name" : "vol1",
+                  "type" : "SSD",
+                  "size" : 100,
+                  "image" : "5f207036-169c-11e7-97ce-525400f64d8d",
+                  "imagePassword" : null,
+                  "bus" : "VIRTIO",
+                  "licenceType" : "LINUX",
+                  "cpuHotPlug" : true,
+                  "cpuHotUnplug" : false,
+                  "ramHotPlug" : true,
+                  "ramHotUnplug" : false,
+                  "nicHotPlug" : true,
+                  "nicHotUnplug" : true,
+                  "discVirtioHotPlug" : true,
+                  "discVirtioHotUnplug" : true,
+                  "discScsiHotPlug" : false,
+                  "discScsiHotUnplug" : false,
+                  "deviceNumber" : 1
+                }
+              },
+              "cpuFamily" : "INTEL_XEON"
+            },
+            "entities" : {
+              "cdroms" : {
+                "id" : "be2c970f-5b53-4f9d-af65-8001c08a3bb7/cdroms",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/cdroms",
+                "items" : [ ]
+              },
+              "volumes" : {
+                "id" : "be2c970f-5b53-4f9d-af65-8001c08a3bb7/volumes",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/volumes",
+                "items" : [ {
+                  "id" : "b0e2d3cb-69bf-4a10-a431-c34a8d377850",
+                  "type" : "volume",
+                  "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/b0e2d3cb-69bf-4a10-a431-c34a8d377850",
+                  "metadata" : {
+                    "createdDate" : "2017-04-20T15:23:35Z",
+                    "createdBy" : "username",
+                    "etag" : "303279dc26ccb60a467ac17976b0d901",
+                    "lastModifiedDate" : "2017-04-20T15:23:35Z",
+                    "lastModifiedBy" : "username",
+                    "state" : "AVAILABLE"
+                  },
+                  "properties" : {
+                    "name" : "vol2",
+                    "type" : "SSD",
+                    "size" : 100,
+                    "availabilityZone" : "AUTO",
+                    "image" : "816bce4a-169a-11e7-97ce-525400f64d8d",
+                    "imagePassword" : null,
+                    "sshKeys" : null,
+                    "bus" : "VIRTIO",
+                    "licenceType" : "LINUX",
+                    "cpuHotPlug" : true,
+                    "cpuHotUnplug" : false,
+                    "ramHotPlug" : true,
+                    "ramHotUnplug" : false,
+                    "nicHotPlug" : true,
+                    "nicHotUnplug" : true,
+                    "discVirtioHotPlug" : true,
+                    "discVirtioHotUnplug" : true,
+                    "discScsiHotPlug" : false,
+                    "discScsiHotUnplug" : false,
+                    "deviceNumber" : 2
+                  }
+                }, {
+                  "id" : "5259731c-8c4a-4aa9-9854-d5cd102dec13",
+                  "type" : "volume",
+                  "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/5259731c-8c4a-4aa9-9854-d5cd102dec13",
+                  "metadata" : {
+                    "createdDate" : "2017-04-20T15:23:35Z",
+                    "createdBy" : "username",
+                    "etag" : "303279dc26ccb60a467ac17976b0d901",
+                    "lastModifiedDate" : "2017-04-20T15:23:35Z",
+                    "lastModifiedBy" : "username",
+                    "state" : "AVAILABLE"
+                  },
+                  "properties" : {
+                    "name" : "vol1",
+                    "type" : "SSD",
+                    "size" : 100,
+                    "availabilityZone" : "AUTO",
+                    "image" : "5f207036-169c-11e7-97ce-525400f64d8d",
+                    "imagePassword" : null,
+                    "sshKeys" : null,
+                    "bus" : "VIRTIO",
+                    "licenceType" : "LINUX",
+                    "cpuHotPlug" : true,
+                    "cpuHotUnplug" : false,
+                    "ramHotPlug" : true,
+                    "ramHotUnplug" : false,
+                    "nicHotPlug" : true,
+                    "nicHotUnplug" : true,
+                    "discVirtioHotPlug" : true,
+                    "discVirtioHotUnplug" : true,
+                    "discScsiHotPlug" : false,
+                    "discScsiHotUnplug" : false,
+                    "deviceNumber" : 1
+                  }
+                } ]
+              },
+              "nics" : {
+                "id" : "be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics",
+                "items" : [ {
+                  "id" : "535d63ba-812e-4f20-b9f9-0e5a7f0e46ce",
+                  "type" : "nic",
+                  "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics/535d63ba-812e-4f20-b9f9-0e5a7f0e46ce",
+                  "metadata" : {
+                    "createdDate" : "2017-04-20T15:23:35Z",
+                    "createdBy" : "username",
+                    "etag" : "303279dc26ccb60a467ac17976b0d901",
+                    "lastModifiedDate" : "2017-04-20T15:23:35Z",
+                    "lastModifiedBy" : "username",
+                    "state" : "AVAILABLE"
+                  },
+                  "properties" : {
+                    "name" : "nic1",
+                    "mac" : "02:01:55:58:c7:16",
+                    "ips" : [ "10.12.124.11" ],
+                    "dhcp" : true,
+                    "lan" : 1,
+                    "firewallActive" : false,
+                    "nat" : false
+                  },
+                  "entities" : {
+                    "firewallrules" : {
+                      "id" : "535d63ba-812e-4f20-b9f9-0e5a7f0e46ce/firewallrules",
+                      "type" : "collection",
+                      "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics/535d63ba-812e-4f20-b9f9-0e5a7f0e46ce/firewallrules"
+                    }
+                  }
+                } ]
+              }
+            }
+          }, {
+            "id" : "23fe65bf-8bbc-443a-87e2-1419a1976a0a",
+            "type" : "server",
+            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a",
+            "metadata" : {
+              "createdDate" : "2017-04-20T15:23:22Z",
+              "createdBy" : "username",
+              "etag" : "cd9d4e82d9aa2d32662e6ed4894e3cf9",
+              "lastModifiedDate" : "2017-04-20T15:23:22Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "testserver",
+              "cores" : 1,
+              "ram" : 1024,
+              "availabilityZone" : "ZONE_1",
+              "vmState" : "RUNNING",
+              "bootCdrom" : null,
+              "bootVolume" : null,
+              "cpuFamily" : "AMD_OPTERON"
+            },
+            "entities" : {
+              "cdroms" : {
+                "id" : "23fe65bf-8bbc-443a-87e2-1419a1976a0a/cdroms",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/cdroms",
+                "items" : [ ]
+              },
+              "volumes" : {
+                "id" : "23fe65bf-8bbc-443a-87e2-1419a1976a0a/volumes",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/volumes",
+                "items" : [ ]
+              },
+              "nics" : {
+                "id" : "23fe65bf-8bbc-443a-87e2-1419a1976a0a/nics",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/nics",
+                "items" : [ ]
+              }
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Thu, 20 Apr 2017 15:25:12 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/volumes?depth=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Apr 2017 15:25:19 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Pragma:
+      - No-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "be2c970f-5b53-4f9d-af65-8001c08a3bb7/volumes",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/volumes",
+          "items" : [ {
+            "id" : "b0e2d3cb-69bf-4a10-a431-c34a8d377850",
+            "type" : "volume",
+            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/b0e2d3cb-69bf-4a10-a431-c34a8d377850",
+            "metadata" : {
+              "createdDate" : "2017-04-20T15:23:35Z",
+              "createdBy" : "username",
+              "etag" : "303279dc26ccb60a467ac17976b0d901",
+              "lastModifiedDate" : "2017-04-20T15:23:35Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "vol2",
+              "type" : "SSD",
+              "size" : 100,
+              "availabilityZone" : "AUTO",
+              "image" : "816bce4a-169a-11e7-97ce-525400f64d8d",
+              "imagePassword" : null,
+              "sshKeys" : null,
+              "bus" : "VIRTIO",
+              "licenceType" : "LINUX",
+              "cpuHotPlug" : true,
+              "cpuHotUnplug" : false,
+              "ramHotPlug" : true,
+              "ramHotUnplug" : false,
+              "nicHotPlug" : true,
+              "nicHotUnplug" : true,
+              "discVirtioHotPlug" : true,
+              "discVirtioHotUnplug" : true,
+              "discScsiHotPlug" : false,
+              "discScsiHotUnplug" : false,
+              "deviceNumber" : 2
+            }
+          }, {
+            "id" : "5259731c-8c4a-4aa9-9854-d5cd102dec13",
+            "type" : "volume",
+            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/5259731c-8c4a-4aa9-9854-d5cd102dec13",
+            "metadata" : {
+              "createdDate" : "2017-04-20T15:23:35Z",
+              "createdBy" : "username",
+              "etag" : "303279dc26ccb60a467ac17976b0d901",
+              "lastModifiedDate" : "2017-04-20T15:23:35Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "vol1",
+              "type" : "SSD",
+              "size" : 100,
+              "availabilityZone" : "AUTO",
+              "image" : "5f207036-169c-11e7-97ce-525400f64d8d",
+              "imagePassword" : null,
+              "sshKeys" : null,
+              "bus" : "VIRTIO",
+              "licenceType" : "LINUX",
+              "cpuHotPlug" : true,
+              "cpuHotUnplug" : false,
+              "ramHotPlug" : true,
+              "ramHotUnplug" : false,
+              "nicHotPlug" : true,
+              "nicHotUnplug" : true,
+              "discVirtioHotPlug" : true,
+              "discVirtioHotUnplug" : true,
+              "discScsiHotPlug" : false,
+              "discScsiHotUnplug" : false,
+              "deviceNumber" : 1
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Thu, 20 Apr 2017 15:25:13 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics?depth=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Apr 2017 15:25:20 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Pragma:
+      - No-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics",
+          "items" : [ {
+            "id" : "535d63ba-812e-4f20-b9f9-0e5a7f0e46ce",
+            "type" : "nic",
+            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics/535d63ba-812e-4f20-b9f9-0e5a7f0e46ce",
+            "metadata" : {
+              "createdDate" : "2017-04-20T15:23:35Z",
+              "createdBy" : "username",
+              "etag" : "303279dc26ccb60a467ac17976b0d901",
+              "lastModifiedDate" : "2017-04-20T15:23:35Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "nic1",
+              "mac" : "02:01:55:58:c7:16",
+              "ips" : [ "10.12.124.11" ],
+              "dhcp" : true,
+              "lan" : 1,
+              "firewallActive" : false,
+              "nat" : false
+            },
+            "entities" : {
+              "firewallrules" : {
+                "id" : "535d63ba-812e-4f20-b9f9-0e5a7f0e46ce/firewallrules",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/be2c970f-5b53-4f9d-af65-8001c08a3bb7/nics/535d63ba-812e-4f20-b9f9-0e5a7f0e46ce/firewallrules",
+                "items" : [ ]
+              }
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Thu, 20 Apr 2017 15:25:13 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/volumes?depth=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Apr 2017 15:25:20 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Pragma:
+      - No-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "23fe65bf-8bbc-443a-87e2-1419a1976a0a/volumes",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/volumes",
+          "items" : [ ]
+        }
+    http_version: 
+  recorded_at: Thu, 20 Apr 2017 15:25:13 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/nics?depth=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Apr 2017 15:25:20 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Pragma:
+      - No-cache
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "23fe65bf-8bbc-443a-87e2-1419a1976a0a/nics",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers/23fe65bf-8bbc-443a-87e2-1419a1976a0a/nics",
+          "items" : [ ]
+        }
+    http_version: 
+  recorded_at: Thu, 20 Apr 2017 15:25:14 GMT
+recorded_with: VCR 3.0.3
