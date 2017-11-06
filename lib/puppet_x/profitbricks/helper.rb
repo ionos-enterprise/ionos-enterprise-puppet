@@ -7,7 +7,7 @@ module PuppetX
         ProfitBricks.configure do |config|
           config.username = ENV['PROFITBRICKS_USERNAME']
           config.password = ENV['PROFITBRICKS_PASSWORD']
-          config.timeout = 300
+          config.timeout = 600
 
           config.depth = depth unless depth.nil?
 
@@ -61,6 +61,23 @@ module PuppetX
         server = Server.list(datacenter_id).find { |server| server.properties['name'] == server_name }
         fail "Server named '#{server_name}' cannot be found." unless server
         server
+      end
+
+      def self.group_from_name(group_name)
+        group = Group.list.find { |group| group.properties['name'] == group_name }
+        fail "Group named '#{group_name}' cannot be found." unless group
+        group
+      end
+
+      def self.resolve_group_id(group_id, group_name)
+        return group_id unless group_id.nil? || group_id.empty?
+        return group_from_name(group_name).id
+      end
+
+      def self.user_from_name(user_email)
+        user = User.list.find { |user| user.properties['email'] == user_email }
+        fail "User with email '#{user_email}' cannot be found." unless user
+        user
       end
     end
   end

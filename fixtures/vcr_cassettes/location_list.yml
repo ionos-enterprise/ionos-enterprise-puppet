@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/locations?depth=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 10:59:00 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "locations",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/locations",
+          "items" : [ {
+            "id" : "de/fkb",
+            "type" : "location",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/locations/de/fkb",
+            "properties" : {
+              "name" : "karlsruhe",
+              "features" : [ "SSD", "MULTIPLE_CPU" ],
+              "imageAliases" : [ "centos:6_iso", "opensuse:latest", "opensuse:42.3_iso", "debian:8_iso", "centos:7", "centos:7_iso", "clonezilla:latest_iso", "fedora:25_iso", "grml:latest_iso", "opensuse:13.2_iso", "debian:9", "debian:latest", "opensuse:42.2_iso", "fedora:25", "fedora:latest", "windows:2008r2", "windows:latest", "ubuntu:14.04_iso", "ubuntu:17.04_iso", "zenloadbalancer:latest_iso", "mssql:2012_trial_iso", "windows:virtiodriver_iso", "windows:2008r2_iso", "windows:2012r2_iso", "windows:2013_recovery_iso", "windows:2016_iso", "windows:2012r2", "windows:2016", "gparted:latest_iso", "clearos:latest_iso", "ubuntu:16.04_iso", "debian:9_iso", "centos:6", "fedora:26_iso", "centos:latest", "debian:7", "debian:8", "debian:testing", "ubuntu:14.04", "ubuntu:16.04", "ubuntu:latest", "opensuse:13.2" ]
+            }
+          }, {
+            "id" : "de/fra",
+            "type" : "location",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/locations/de/fra",
+            "properties" : {
+              "name" : "frankfurt",
+              "features" : [ "SSD", "MULTIPLE_CPU" ],
+              "imageAliases" : [ "centos:6_iso", "opensuse:42.3_iso", "centos:6", "centos:7", "centos:latest", "debian:7", "gparted:latest_iso", "clonezilla:latest_iso", "fedora:25_iso", "grml:latest_iso", "opensuse:13.2_iso", "opensuse:42.2_iso", "fedora:25", "fedora:latest", "ubuntu:14.04_iso", "debian:8", "windows:latest", "ubuntu:latest", "clearos:latest_iso", "debian:9", "ubuntu:17.04_iso", "zenloadbalancer:latest_iso", "mssql:2012_trial_iso", "windows:virtiodriver_iso", "windows:2008r2_iso", "windows:2012r2_iso", "windows:2013_recovery_iso", "windows:2016_iso", "debian:latest", "windows:2008r2", "windows:2016", "centos:7_iso", "ubuntu:16.04_iso", "windows:2012r2", "debian:8_iso", "debian:9_iso", "fedora:26_iso", "debian:testing", "ubuntu:14.04", "ubuntu:16.04", "opensuse:13.2", "opensuse:latest" ]
+            }
+          }, {
+            "id" : "us/las",
+            "type" : "location",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/locations/us/las",
+            "properties" : {
+              "name" : "lasvegas",
+              "features" : [ "SSD", "MULTIPLE_CPU" ],
+              "imageAliases" : [ "centos:6_iso", "opensuse:latest", "opensuse:42.3_iso", "windows:2016", "debian:7", "clearos:latest_iso", "fedora:25_iso", "grml:latest_iso", "opensuse:13.2_iso", "windows:2008r2", "opensuse:42.2_iso", "windows:2012r2", "opensuse:13.2", "centos:7", "centos:latest", "ubuntu:14.04_iso", "debian:testing", "windows:latest", "fedora:25", "ubuntu:14.04", "gparted:latest_iso", "debian:9", "debian:latest", "ubuntu:17.04_iso", "zenloadbalancer:latest_iso", "mssql:2012_trial_iso", "windows:virtiodriver_iso", "windows:2008r2_iso", "windows:2012r2_iso", "windows:2013_recovery_iso", "windows:2016_iso", "centos:6", "centos:7_iso", "clonezilla:latest_iso", "ubuntu:16.04_iso", "debian:8_iso", "debian:9_iso", "fedora:26_iso", "debian:8", "fedora:latest", "ubuntu:16.04", "ubuntu:latest" ]
+            }
+          }, {
+            "id" : "us/ewr",
+            "type" : "location",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/locations/us/ewr",
+            "properties" : {
+              "name" : "newark",
+              "features" : [ "SSD", "MULTIPLE_CPU" ],
+              "imageAliases" : [ "centos:6_iso", "opensuse:13.2", "opensuse:latest", "windows:2012r2", "opensuse:42.3_iso", "windows:2016", "debian:9_iso", "fedora:26_iso", "centos:latest", "clonezilla:latest_iso", "ubuntu:16.04_iso", "fedora:25_iso", "grml:latest_iso", "opensuse:13.2_iso", "debian:9", "debian:latest", "fedora:latest", "ubuntu:14.04", "windows:2008r2", "opensuse:42.2_iso", "centos:6", "debian:7", "ubuntu:14.04_iso", "debian:testing", "gparted:latest_iso", "ubuntu:17.04_iso", "zenloadbalancer:latest_iso", "mssql:2012_trial_iso", "windows:virtiodriver_iso", "windows:2008r2_iso", "windows:2012r2_iso", "windows:2013_recovery_iso", "windows:2016_iso", "centos:7_iso", "clearos:latest_iso", "windows:latest", "debian:8_iso", "centos:7", "debian:8", "fedora:25", "ubuntu:16.04", "ubuntu:latest" ]
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 10:58:59 GMT
+recorded_with: VCR 3.0.3

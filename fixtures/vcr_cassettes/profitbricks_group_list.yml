@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/?depth=5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:37:16 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCIgOiAiZ3JvdXBzIiwKICAidHlwZSIgOiAiY29sbGVjdGlvbiIsCiAg
+        ImhyZWYiIDogImh0dHBzOi8vYXBpLnByb2ZpdGJyaWNrcy5jb20vY2xvdWRhcGkv
+        djQvdW0vZ3JvdXBzIiwKICAiaXRlbXMiIDogWyB7CiAgICAiaWQiIDogImI5MDM4
+        MzhkLTYzODQtNGI4MS1iNjgyLTY5NTA2OGU1MGU0OCIsCiAgICAidHlwZSIgOiAi
+        Z3JvdXAiLAogICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnByb2ZpdGJyaWNrcy5j
+        b20vY2xvdWRhcGkvdjQvdW0vZ3JvdXBzL2I5MDM4MzhkLTYzODQtNGI4MS1iNjgy
+        LTY5NTA2OGU1MGU0OCIsCiAgICAicHJvcGVydGllcyIgOiB7CiAgICAgICJuYW1l
+        IiA6ICJQdXBwZXQgTW9kdWxlIFRlc3QiLAogICAgICAiY3JlYXRlRGF0YUNlbnRl
+        ciIgOiB0cnVlLAogICAgICAiY3JlYXRlU25hcHNob3QiIDogdHJ1ZSwKICAgICAg
+        InJlc2VydmVJcCIgOiB0cnVlLAogICAgICAiYWNjZXNzQWN0aXZpdHlMb2ciIDog
+        dHJ1ZQogICAgfSwKICAgICJlbnRpdGllcyIgOiB7CiAgICAgICJ1c2VycyIgOiB7
+        CiAgICAgICAgImlkIiA6ICJiOTAzODM4ZC02Mzg0LTRiODEtYjY4Mi02OTUwNjhl
+        NTBlNDgvdXNlcnMiLAogICAgICAgICJ0eXBlIiA6ICJjb2xsZWN0aW9uIiwKICAg
+        ICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkucHJvZml0YnJpY2tzLmNvbS9jbG91
+        ZGFwaS92NC91bS9ncm91cHMvYjkwMzgzOGQtNjM4NC00YjgxLWI2ODItNjk1MDY4
+        ZTUwZTQ4L3VzZXJzIiwKICAgICAgICAiaXRlbXMiIDogWyBdCiAgICAgIH0sCiAg
+        ICAgICJyZXNvdXJjZXMiIDogewogICAgICAgICJpZCIgOiAiYjkwMzgzOGQtNjM4
+        NC00YjgxLWI2ODItNjk1MDY4ZTUwZTQ4L3Jlc291cmNlcyIsCiAgICAgICAgInR5
+        cGUiIDogImNvbGxlY3Rpb24iLAogICAgICAgICJocmVmIiA6ICJodHRwczovL2Fw
+        aS5wcm9maXRicmlja3MuY29tL2Nsb3VkYXBpL3Y0L3VtL2dyb3Vwcy9iOTAzODM4
+        ZC02Mzg0LTRiODEtYjY4Mi02OTUwNjhlNTBlNDgvcmVzb3VyY2VzIiwKICAgICAg
+        ICAiaXRlbXMiIDogWyBdCiAgICAgIH0KICAgIH0KICB9IF0KfQo=
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:37:16 GMT
+recorded_with: VCR 3.0.3

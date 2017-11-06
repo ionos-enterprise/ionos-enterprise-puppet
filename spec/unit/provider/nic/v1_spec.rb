@@ -6,11 +6,11 @@ describe provider_class do
   context 'NIC operations' do
     before(:all) do
       @resource = Puppet::Type.type(:nic).new(
-        name: 'testnic',
-        lan: 'lan1',
+        name: 'Puppet Module Test',
+        lan: 'Puppet Module Test',
         dhcp: true,
-        datacenter_name: 'dummydc',
-        server_name: 'testserver',
+        datacenter_name: 'Puppet Module Test',
+        server_name: 'Puppet Module Test',
         firewall_active: true
       )
       @provider = provider_class.new(@resource)
@@ -24,28 +24,29 @@ describe provider_class do
       VCR.use_cassette('nic_create') do
         expect(@provider.create).to be_truthy
         expect(@provider.exists?).to be true
+        expect(@provider.name).to eq('Puppet Module Test')
       end
     end
 
     it 'should list NIC instances' do
       VCR.use_cassette('nic_list') do
-        expect(provider_class.instances.length).to eq(1)
+        instances = provider_class.instances
+        expect(instances.length).to be > 0
+        expect(instances[0]).to be_an_instance_of Puppet::Type::Nic::ProviderV1
       end
     end
 
     it 'should update NIC' do
       VCR.use_cassette('nic_update') do
         @provider.dhcp = false
-        @provider.lan = 'lan2'
-        @provider.ips = ['208.94.36.74', '208.94.36.121']
+        @provider.ips = ['208.94.36.99', '208.94.36.101']
         updated_instance = nil
         provider_class.instances.each do |instance|
-          updated_instance = instance if instance.name == 'testnic'
+          updated_instance = instance if instance.name == 'Puppet Module Test'
         end
         expect(updated_instance.dhcp).to eq(false)
-        expect(updated_instance.lan).to eq('lan2')
         expect(updated_instance.ips.length).to eq(2)
-        expect(updated_instance.ips).to include('208.94.36.74', '208.94.36.121')
+        expect(updated_instance.ips).to include('208.94.36.99', '208.94.36.101')
       end
     end
 

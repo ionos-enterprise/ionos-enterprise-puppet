@@ -1,6 +1,6 @@
 ## Puppet Module
 
-Version: profitbricks-puppet v1.5.1
+Version: profitbricks-puppet v1.6.0
 
 ## Table of Contents
 
@@ -20,6 +20,13 @@ Version: profitbricks-puppet v1.5.1
     * [Volume Resource](#volume-resource)
     * [NIC Resource](#nic-resource)
     * [Firewall Rule Resource](#firewall-rule-resource)
+    * [IP Block Resource](#ip-block-resource)
+    * [Snapshot Resource](#snapshot-resource)
+    * [ProfitBricks Group Resource](#profitbricks-group-resource)
+    * [ProfitBricks User Resource](#profitbricks-user-resource)
+    * [Share Resource](#share-resource)
+    * [Image Resource](#image-resource)
+    * [Location Resource](#location-resource)
 * [Support](#support)
 * [Testing](#testing)
 * [Build and Install the Module](#build-and-install-the-module)
@@ -63,7 +70,7 @@ For users who already have a system with Puppet and Ruby installed, the followin
 
     Setting the ProfitBricks API URL is optional.
 
-        export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v3"
+        export PROFITBRICKS_API_URL="https://api.profitbricks.com/cloudapi/v4"
 
 A situation could arise in which you have installed a Puppet release that contains a bundled copy of Ruby, but you already had Ruby installed. In that case, you will want to be sure to specify the `gem` binary that comes with the bundled version of Ruby. This avoids a situation in which you inadvertently install the *profitbricks-ruby-sdk* library but it is not available to the Ruby install that Puppet is actually using.
 
@@ -319,8 +326,8 @@ Data Center resources can have the following properties set.
 | --- | :-: | --- | --- |
 | name | **yes** | string | The name of the virtual data center. |
 | ensure | **yes** | string | The desired state of the virtual data center. It must be `present` or `absent`. |
-| location | **yes** | string | The ProfitBricks location of the virtual data center: `us/las`, `de/fkb`, or `de/fra` |
-| description | no | string | The virtual data center description.
+| location | **yes** | string | The ProfitBricks location of the virtual data center: `us/las`, `us/ewr`, `de/fkb`, or `de/fra` |
+| description | no | string | The virtual data center description. |
 
 It is possible to update the `description` property after the virtual data center is created.
 
@@ -335,8 +342,14 @@ LAN resources can have the following properties set.
 | datacenter_id | **yes** | string | The UUID of an existing virtual data center where the LAN will reside. Optional, if `datacenter_name` is specified. |
 | datacenter_name | **yes** | string | The name of the virtual data center where the LAN will reside. Optional, if `datacenter_id` is specified. |
 | public | no | boolean | Determines whether the LAN will have public Internet access. Can be `true` or `false`, defaults to `false`. |
+| ip_failover | no | array | An array of failover groups. |
 
-The LAN resource allows `public` property to be updated if necessary.
+The LAN resource allows `public` and `ip_failover` properties to be updated if necessary. `ip_failover` requires the following parameters.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| ip | **yes** | string | IP address for the LAN failover. |
+| nic_uuid | **yes** | string | UUID of the NIC for the LAN failover. |
 
 ### Server Resource
 
@@ -367,9 +380,11 @@ Volume resources can be managed independently within a data center or as a neste
 | Name | Required | Type | Description |
 | --- | :-: | --- | --- |
 | name | **yes** | string | The name of the volume. |
+| ensure | **yes** | string | The desired state of the volume resource, `present` or `absent`. |
 | size | **yes** | integer | Size of the volume in GB. |
 | volume_type | **yes** | string | The volume type can be `HDD` or `SSD`. |
 | image_id | no | string | UUID of the image to assign to the volume. |
+| image_alias | no | string | The alias of the image to assign to the volume. |
 | licence_type | no | string | The licence type of the volume. May be set to: `LINUX`, `WINDOWS`, `WINDOWS2016`, `UNKNOWN`, or `OTHER`. |
 | image_password | no | string | One-time password is set on the Image for the appropriate account. |
 | bus | no | string | The bus type of volume, can be `VIRTIO` or `IDE`, defaults to `VIRTIO`. |
@@ -380,8 +395,8 @@ Volume resources can be managed independently within a data center or as a neste
 
 * The volume `size` can be increased after the volume is created.
 * When managing a volume independently, either the `datacenter_id` or `datacenter_name` is required.
-* Either `image_id` or `licence_type` **must** be defined.
-* When using a ProfitBricks provided public `image_id` either `image_password` or `ssh_keys` **must** be set. You **may** set both if you wish.
+* Either `image_id`, `image_alias` or `licence_type` **must** be defined.
+* When using a ProfitBricks provided public `image_id` or `image_alias` either `image_password` or `ssh_keys` **must** be set. You **may** set both if you wish.
 
 If the volume is **NOT** nested under a server resource, then one of the following parameters is required.
 
@@ -397,6 +412,7 @@ NICs can be created and managed separately just like other resources such as LAN
 | Name | Required | Type | Description |
 | --- | :-: | --- | --- |
 | name | **yes** | string | The name of the NIC. |
+| ensure | **yes** | string | The desired state of the NIC resource, `present` or `absent`. |
 | ips | **yes** | array |  An array of IP addresses to assign the NIC. |
 | dhcp | no | boolean | Enable DHCP on the NIC with `true` or disable with `false`, defaults to `true`. |
 | lan | **yes** | string | Name of the LAN to connect the NIC. |
@@ -429,6 +445,7 @@ Firewall rules are usually nested within `nics` under the server resource. This 
 | Name | Required | Type | Description |
 | --- | :-: | --- | --- |
 | name | **yes** | string | The name of the firewall rule. |
+| ensure | **yes** | string | The desired state of the firewall rule resource, `present` or `absent`. |
 | protocol | **yes** | string | Allow traffic protocols including `TCP`, `UDP`, `ICMP`, and `ANY`. |
 | source_mac | no | string | Allow traffic from the source MAC address. |
 | source_ip | no | string | Allow traffic originating from the source IP address. |
@@ -450,6 +467,124 @@ If firewall rules are managed as an independent resource, the associated virtual
 | server_name | **yes** | string | The name of the server where the firewall rule will reside. Optional, if `server_id` is specified. |
 | nic | **yes** | string | The name of the NIC the firewall rule will be added to. |
 
+
+### IP Block Resource
+
+IP Block resources must have the following properties set.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the IP Block. |
+| ensure | **yes** | string | The desired state of the IP Block, `present` or `absent`. |
+| location | **yes** | string | The ProfitBricks location of the IP Block: `us/las`, `us/ewr`, `de/fkb`, or `de/fra` |
+| size | **yes** | integer | The size of the IP Block. |
+
+
+### Snapshot Resource
+
+Snapshot resources may have the following properties set at the creation time.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the snapshot. |
+| ensure | **yes** | string | The desired state of the snapshot resource, `present` or `absent`. |
+| datacenter | **yes** | integer | The ID or name of the virtual data center where the volume resides. |
+| volume | **yes** | string | The ID or name of the volume used to create/restore the snapshot. |
+| description | no | string | The snapshot's description. |
+
+In addition, the following properties can be updated after the snapshot resource is created.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| cpu_hot_plug | no | boolean | Set to true to enable CPU hot plug capability. |
+| cpu_hot_unplug | no | boolean | Set to true to enable CPU hot unplug capability. |
+| ram_hot_plug | no | boolean | Set to true to enable memory hot plug capability. |
+| ram_hot_unplug | no | boolean | Set to true to enable memory hot unplug capability. |
+| nic_hot_plug | no | boolean | Set to true to enable NIC hot plug capability. |
+| nic_hot_unplug | no | boolean | Set to true to enable NIC hot unplug capability. |
+| disc_virtio_hot_plug | no | boolean | Set to true to enable VirtIO drive hot plug capability. |
+| disc_virtio_hot_unplug | no | boolean | Set to true to enable VirtIO drive hot unplug capability. |
+| disc_scsi_hot_plug | no | boolean | Set to true to enable SCSI drive hot plug capability. |
+| disc_scsi_hot_unplug | no | boolean | Set to true to enable SCSI drive hot unplug capability. |
+| licence_type | no | string | The licence type of the snapshot. May be set to: `LINUX`, `WINDOWS`, `WINDOWS2016`, `UNKNOWN`, or `OTHER`. |
+
+To restore a snapshot set `restore => true` in the resource manifest.
+The snapshot will be restored onto the volume specified by the `volume` property in the data center specified by the `datacenter` property.
+
+**Note:** The restore operation will be performed each time the manifest has been applied, as long as the `restore` property is set to `true`.
+
+
+### ProfitBricks Group Resource
+
+ProfitBricks group resource exposes the following properties.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the group. |
+| ensure | **yes** | string | The desired state of the group resource, `present` or `absent`. |
+| create_datacenter | no | boolean | Indicates if the group is allowed to create virtual data centers. |
+| create_snapshot | no | boolean | Indicates if the group is allowed to create snapshots. |
+| reserve_ip | no | boolean | Indicates if the group is allowed to reserve IP addresses. |
+| access_activity_log | no | boolean | Indicates if the group is allowed to access the activity log. |
+| members | no | array | An array of strings representing non-administrator users (email addresses) to associate with the group. |
+
+Excluding the group name, all the listed properties can be updated after the resource is created.
+Specify `members => []` to remove all users from the group.
+
+
+### ProfitBricks User Resource
+
+ProfitBricks group resources can have the following properties set.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| firstname | **yes** | string | The first name of the user. |
+| lastname | **yes** | string | The last name of the user. |
+| ensure | **yes** | string | The desired state of the user resource, `present` or `absent`. |
+| email | **yes** | string | The email address of the user. Serves as the resource name as well. |
+| password | **yes** | string | The password for the user. |
+| administrator | no | boolean | Indicates whether or not the user have administrative rights. |
+| force_sec_auth | no | boolean | Indicates if secure (two-factor) authentication should be forced for the user. |
+| groups | no | array | An array of strings representing ProfitBricks groups where a non-administrator user is to be added. |
+
+Excluding the `email` and `password`, all the listed properties can be updated after the resource is created.
+Specify `groups => []` to remove the user from all groups.
+
+
+### Share Resource
+
+Share resources can have the following properties set.
+
+| Name | Required | Type | Description |
+| --- | :-: | --- | --- |
+| name | **yes** | string | The name of the share. |
+| ensure | **yes** | string | The desired state of the share resource, `present` or `absent`. |
+| group_id | **yes** | string | The UUID of an existing group where the share will be available. Optional, if `group_name` is specified. |
+| group_name | **yes** | string | The name of an existing the group where the share will be available. Optional, if `group_id` is specified. |
+| edit_privilege | no | boolean | Indicates if the group has permission to edit privileges on the resource. |
+| share_privilege | no | boolean | Indicates if the group has permission to share the resource. |
+
+`edit_privilege` and `share_privilege` can be updated after the resource is created.
+
+
+### Image Resource
+
+Image resource provider can be used only to obtain a single resource or list all available ProfitBricks images.
+
+```
+puppet resource image [profitbricks_image_name]
+```
+
+
+### Location Resource
+
+Location resource provider can be used only to obtain a single resource or list all available ProfitBricks locations.
+
+```
+puppet resource location [profitbricks_location_name]
+```
+
+
 ## Support
 
 * Consult the [ProfitBricks Cloud API](https://devops.profitbricks.com/api/cloud/) documentation.
@@ -458,7 +593,7 @@ If firewall rules are managed as an independent resource, the associated virtual
 
 ## Testing
 
-Make sure you have the necessary dependencies installed in your development enviroment with `bundle`. Then use `rake` to run all the available tests.
+Make sure you have the necessary dependencies installed in your development environment with `bundle`. Then use `rake` to run all the available tests.
 
 You can accomplish this by running the following commands from inside the repository root.
 
