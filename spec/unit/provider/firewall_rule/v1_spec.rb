@@ -6,13 +6,14 @@ describe provider_class do
   context 'firewall rule operations' do
     before(:all) do
       @resource = Puppet::Type.type(:firewall_rule).new(
-        name: 'testrule',
-        nic: 'testnic',
-        datacenter_name: 'dummydc',
-        server_name: 'testserver',
+        name: 'SSH',
+        nic: 'Puppet Module Test',
+        datacenter_name: 'Puppet Module Test',
+        server_name: 'Puppet Module Test',
         protocol: 'TCP',
-        port_range_start: 80,
-        port_range_end: 82
+        source_mac: '01:23:45:67:89:00',
+        port_range_start: 22,
+        port_range_end: 22
       )
       @provider = provider_class.new(@resource)
     end
@@ -25,12 +26,15 @@ describe provider_class do
       VCR.use_cassette('firewall_rule_create') do
         expect(@provider.create).to be_truthy
         expect(@provider.exists?).to be true
+        expect(@provider.name).to eq('SSH')
       end
     end
 
     it 'should list firewall rules' do
       VCR.use_cassette('firewall_rule_list') do
-        expect(provider_class.instances.length).to eq(1)
+        instances = provider_class.instances
+        expect(instances.length).to be > 0
+        expect(instances[0]).to be_an_instance_of Puppet::Type::Firewall_rule::ProviderV1
       end
     end
 
@@ -39,7 +43,7 @@ describe provider_class do
         @provider.target_ip = '10.81.12.124'
         updated_instance = nil
         provider_class.instances.each do |instance|
-          updated_instance = instance if instance.name == 'testrule'
+          updated_instance = instance if instance.name == 'SSH'
         end
         expect(updated_instance.target_ip).to eq('10.81.12.124')
       end

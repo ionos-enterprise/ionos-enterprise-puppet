@@ -1,8 +1,7 @@
-2017-02-13 Release 1.4.0
-- Add support for ProfitBricks data center resources
-- Make ProfitBricks API URL configurable using PROFITBRICKS_API_URL environment variable
-- Fix issue the module name conflicting with other puppetforge modules. Renamed to `profitbricks-profitbricks`.
-- Add detecting data centers having the same name
+2017-11-06 Release 1.6.0
+- Support for the API v4 features: groups, users, shares, image aliases and LAN failovers
+- Support for ipblocks, snapshots, locations and images
+- Added new examples & tests
 
 2017-03-07 Release 1.5.0
 - Support for ProfitBricks volume resources, create and update for mutable properties
@@ -10,3 +9,9 @@
 - Support for ProfitBricks firewall rule resources, create and update for mutable properties
 - Support for data center, LAN and server mutable properties
 - Fix for `purge_volumes` server property
+
+2017-02-13 Release 1.4.0
+- Add support for ProfitBricks data center resources
+- Make ProfitBricks API URL configurable using PROFITBRICKS_API_URL environment variable
+- Fix issue the module name conflicting with other puppetforge modules. Renamed to `profitbricks-profitbricks`.
+- Add detecting data centers having the same name

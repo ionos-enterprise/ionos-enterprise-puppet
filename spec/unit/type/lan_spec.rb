@@ -12,9 +12,11 @@ describe type_class do
   let :properties do
     [
       :ensure,
+      :id,
       :datacenter_id,
       :datacenter_name,
-      :public
+      :public,
+      :ip_failover
     ]
   end
 

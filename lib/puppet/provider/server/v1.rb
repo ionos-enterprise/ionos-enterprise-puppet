@@ -301,10 +301,12 @@ Puppet::Type.type(:server).provide(:v1) do
   def assign_image_or_licence(config, volume)
     if volume.key?('image_id')
       config[:image] = volume['image_id']
+    elsif volume.key?('image_alias')
+      config[:imageAlias] = volume['image_alias']
     elsif volume.key?('licence_type')
       config[:licenceType] = volume['licence_type']
     else
-      fail('Volume must have either image_id or licence_type defined.')
+      fail('Volume must have either image_id, image_alias or licence_type defined.')
     end
 
     if volume.key?('image_password')

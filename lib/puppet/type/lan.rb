@@ -29,7 +29,27 @@ Puppet::Type.newtype(:lan) do
     end
   end
 
+  newproperty(:ip_failover, array_matching: :all) do
+    desc 'IP failover group.'
+
+    def insync?(is)
+      if is.is_a? Array
+        return is.sort == should.sort
+      else
+        return is == should
+      end
+    end
+  end
+
   # read-only properties
+
+  newproperty(:id) do
+    desc 'The LAN ID.'
+
+    def insync?(is)
+      true
+    end
+  end
 
   newproperty(:datacenter_id) do
     desc 'The ID of the virtual data center where the LAN will reside.'

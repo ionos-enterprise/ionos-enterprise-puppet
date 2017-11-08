@@ -1,0 +1,635 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/?depth=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:55:50 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "groups",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups",
+          "items" : [ {
+            "id" : "f1ec1ccb-34ed-412d-81ff-29e457c913d4",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/f1ec1ccb-34ed-412d-81ff-29e457c913d4",
+            "properties" : {
+              "name" : "cli",
+              "createDataCenter" : true,
+              "createSnapshot" : true,
+              "reserveIp" : true,
+              "accessActivityLog" : false
+            },
+            "entities" : {
+              "users" : {
+                "id" : "f1ec1ccb-34ed-412d-81ff-29e457c913d4/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/f1ec1ccb-34ed-412d-81ff-29e457c913d4/users",
+                "items" : [ ]
+              },
+              "resources" : {
+                "id" : "f1ec1ccb-34ed-412d-81ff-29e457c913d4/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/f1ec1ccb-34ed-412d-81ff-29e457c913d4/resources",
+                "items" : [ ]
+              }
+            }
+          }, {
+            "id" : "7fcc6d14-2d81-4bfe-a6dc-939652d2b404",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/7fcc6d14-2d81-4bfe-a6dc-939652d2b404",
+            "properties" : {
+              "name" : "dev1",
+              "createDataCenter" : true,
+              "createSnapshot" : true,
+              "reserveIp" : true,
+              "accessActivityLog" : true
+            },
+            "entities" : {
+              "users" : {
+                "id" : "7fcc6d14-2d81-4bfe-a6dc-939652d2b404/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/7fcc6d14-2d81-4bfe-a6dc-939652d2b404/users",
+                "items" : [ {
+                  "id" : "28686858-386f-4b8b-9225-c4d7d8fa7b0c",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/28686858-386f-4b8b-9225-c4d7d8fa7b0c"
+                } ]
+              },
+              "resources" : {
+                "id" : "7fcc6d14-2d81-4bfe-a6dc-939652d2b404/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/7fcc6d14-2d81-4bfe-a6dc-939652d2b404/resources",
+                "items" : [ ]
+              }
+            }
+          }, {
+            "id" : "e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2",
+            "properties" : {
+              "name" : "Developers",
+              "createDataCenter" : true,
+              "createSnapshot" : true,
+              "reserveIp" : true,
+              "accessActivityLog" : true
+            },
+            "entities" : {
+              "users" : {
+                "id" : "e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/users",
+                "items" : [ {
+                  "id" : "00a9e1a7-63d2-4dc9-adf1-5589e7297cd6",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/00a9e1a7-63d2-4dc9-adf1-5589e7297cd6"
+                }, {
+                  "id" : "71d784cd-d27b-42e1-9bd1-6adffe6d4856",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/71d784cd-d27b-42e1-9bd1-6adffe6d4856"
+                }, {
+                  "id" : "529e2236-9040-439a-a7f4-21044fc5f415",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/529e2236-9040-439a-a7f4-21044fc5f415"
+                }, {
+                  "id" : "28686858-386f-4b8b-9225-c4d7d8fa7b0c",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/28686858-386f-4b8b-9225-c4d7d8fa7b0c"
+                }, {
+                  "id" : "d62cc856-f408-49be-8c45-7be2cf9d1974",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/d62cc856-f408-49be-8c45-7be2cf9d1974"
+                }, {
+                  "id" : "64c3b8b8-ae17-431d-b094-6c993bd7f518",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/64c3b8b8-ae17-431d-b094-6c993bd7f518"
+                }, {
+                  "id" : "2468328c-b675-456c-ae9c-d6d70b97052f",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/2468328c-b675-456c-ae9c-d6d70b97052f"
+                }, {
+                  "id" : "ba2bd7c8-1316-4b57-8748-b661cfe34e5c",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/ba2bd7c8-1316-4b57-8748-b661cfe34e5c"
+                }, {
+                  "id" : "6e8162b6-5f6d-469c-ba24-c17d2b42c6db",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/6e8162b6-5f6d-469c-ba24-c17d2b42c6db"
+                }, {
+                  "id" : "ecd537df-c891-4642-9d5a-6de9a52e8454",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/ecd537df-c891-4642-9d5a-6de9a52e8454"
+                }, {
+                  "id" : "473c3ce2-9696-4e5f-9e6f-9aa4e4d6550e",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/473c3ce2-9696-4e5f-9e6f-9aa4e4d6550e"
+                }, {
+                  "id" : "5bc679a5-fe1d-4e7b-ab5a-c7eaa1100943",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/5bc679a5-fe1d-4e7b-ab5a-c7eaa1100943"
+                } ]
+              },
+              "resources" : {
+                "id" : "e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/resources",
+                "items" : [ {
+                  "id" : "0892cc3d-3597-11e5-9b0d-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/0892cc3d-3597-11e5-9b0d-52540066fee9"
+                }, {
+                  "id" : "1f939031-96ff-11e6-9d61-52540005ab80",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/1f939031-96ff-11e6-9d61-52540005ab80"
+                }, {
+                  "id" : "2114251c-980b-11e7-90a7-525400f64d8d",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/2114251c-980b-11e7-90a7-525400f64d8d"
+                }, {
+                  "id" : "44a9d889-1be2-11e7-a872-525400f64d8d",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/44a9d889-1be2-11e7-a872-525400f64d8d"
+                }, {
+                  "id" : "4736f1e3-46bb-11e5-808b-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/4736f1e3-46bb-11e5-808b-52540066fee9"
+                }, {
+                  "id" : "64b39c6b-f123-11e5-b7e8-52540005ab80",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/64b39c6b-f123-11e5-b7e8-52540005ab80"
+                }, {
+                  "id" : "79b09220-431f-11e5-bd00-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/79b09220-431f-11e5-bd00-52540066fee9"
+                }, {
+                  "id" : "89b7b4c6-ccdb-11e5-aa10-52540005ab80",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/89b7b4c6-ccdb-11e5-aa10-52540005ab80"
+                }, {
+                  "id" : "90c282c5-36e7-11e5-895c-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/90c282c5-36e7-11e5-895c-52540066fee9"
+                }, {
+                  "id" : "bea4a136-3fc7-11e5-94d6-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/bea4a136-3fc7-11e5-94d6-52540066fee9"
+                }, {
+                  "id" : "c32f1873-502a-11e5-bfc6-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/c32f1873-502a-11e5-bfc6-52540066fee9"
+                }, {
+                  "id" : "cc418ed4-10a7-11e6-ab6b-52540005ab80",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/cc418ed4-10a7-11e6-ab6b-52540005ab80"
+                }, {
+                  "id" : "e87692f2-3587-11e5-9b0d-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/e87692f2-3587-11e5-9b0d-52540066fee9"
+                }, {
+                  "id" : "e8969370-2666-11e5-94a7-52540066fee9",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/e8969370-2666-11e5-94a7-52540066fee9"
+                } ]
+              }
+            }
+          }, {
+            "id" : "ad1aff06-513d-480f-ad27-6a19070fae5b",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/ad1aff06-513d-480f-ad27-6a19070fae5b",
+            "properties" : {
+              "name" : "jclouds",
+              "createDataCenter" : true,
+              "createSnapshot" : true,
+              "reserveIp" : true,
+              "accessActivityLog" : false
+            },
+            "entities" : {
+              "users" : {
+                "id" : "ad1aff06-513d-480f-ad27-6a19070fae5b/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/ad1aff06-513d-480f-ad27-6a19070fae5b/users",
+                "items" : [ ]
+              },
+              "resources" : {
+                "id" : "ad1aff06-513d-480f-ad27-6a19070fae5b/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/ad1aff06-513d-480f-ad27-6a19070fae5b/resources",
+                "items" : [ ]
+              }
+            }
+          }, {
+            "id" : "ed6ec36d-e35b-402a-9ed7-fadce44d4502",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/ed6ec36d-e35b-402a-9ed7-fadce44d4502",
+            "properties" : {
+              "name" : "juju",
+              "createDataCenter" : true,
+              "createSnapshot" : true,
+              "reserveIp" : true,
+              "accessActivityLog" : true
+            },
+            "entities" : {
+              "users" : {
+                "id" : "ed6ec36d-e35b-402a-9ed7-fadce44d4502/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/ed6ec36d-e35b-402a-9ed7-fadce44d4502/users",
+                "items" : [ ]
+              },
+              "resources" : {
+                "id" : "ed6ec36d-e35b-402a-9ed7-fadce44d4502/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/ed6ec36d-e35b-402a-9ed7-fadce44d4502/resources",
+                "items" : [ ]
+              }
+            }
+          }, {
+            "id" : "b903838d-6384-4b81-b682-695068e50e48",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48",
+            "properties" : {
+              "name" : "Puppet Module Test",
+              "createDataCenter" : false,
+              "createSnapshot" : true,
+              "reserveIp" : true,
+              "accessActivityLog" : true
+            },
+            "entities" : {
+              "users" : {
+                "id" : "b903838d-6384-4b81-b682-695068e50e48/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/users",
+                "items" : [ ]
+              },
+              "resources" : {
+                "id" : "b903838d-6384-4b81-b682-695068e50e48/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/resources",
+                "items" : [ {
+                  "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a",
+                  "type" : "datacenter",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/datacenter/b9c6cb26-6100-4ba3-803a-caf75267068a"
+                } ]
+              }
+            }
+          }, {
+            "id" : "0d21aeee-af41-4231-a46c-ba0950018a49",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/0d21aeee-af41-4231-a46c-ba0950018a49",
+            "properties" : {
+              "name" : "py-test-group",
+              "createDataCenter" : true,
+              "createSnapshot" : false,
+              "reserveIp" : true,
+              "accessActivityLog" : false
+            },
+            "entities" : {
+              "users" : {
+                "id" : "0d21aeee-af41-4231-a46c-ba0950018a49/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/0d21aeee-af41-4231-a46c-ba0950018a49/users",
+                "items" : [ {
+                  "id" : "64c3b8b8-ae17-431d-b094-6c993bd7f518",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/64c3b8b8-ae17-431d-b094-6c993bd7f518"
+                } ]
+              },
+              "resources" : {
+                "id" : "0d21aeee-af41-4231-a46c-ba0950018a49/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/0d21aeee-af41-4231-a46c-ba0950018a49/resources",
+                "items" : [ ]
+              }
+            }
+          }, {
+            "id" : "9e2cbcb6-7fca-4a3f-892c-4e37e0984e36",
+            "type" : "group",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36",
+            "properties" : {
+              "name" : "Tutorial",
+              "createDataCenter" : false,
+              "createSnapshot" : false,
+              "reserveIp" : false,
+              "accessActivityLog" : false
+            },
+            "entities" : {
+              "users" : {
+                "id" : "9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/users",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/users",
+                "items" : [ {
+                  "id" : "d62cc856-f408-49be-8c45-7be2cf9d1974",
+                  "type" : "user",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/users/d62cc856-f408-49be-8c45-7be2cf9d1974"
+                } ]
+              },
+              "resources" : {
+                "id" : "9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/resources",
+                "type" : "collection",
+                "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/resources",
+                "items" : [ {
+                  "id" : "44a9d889-1be2-11e7-a872-525400f64d8d",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/44a9d889-1be2-11e7-a872-525400f64d8d"
+                }, {
+                  "id" : "cc418ed4-10a7-11e6-ab6b-52540005ab80",
+                  "type" : "image",
+                  "href" : "https://api.profitbricks.com/cloudapi/v4/um/resources/image/cc418ed4-10a7-11e6-ab6b-52540005ab80"
+                } ]
+              }
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:55:50 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares?depth=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:55:55 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares",
+          "items" : [ {
+            "id" : "0892cc3d-3597-11e5-9b0d-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/0892cc3d-3597-11e5-9b0d-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "1f939031-96ff-11e6-9d61-52540005ab80",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/1f939031-96ff-11e6-9d61-52540005ab80",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "2114251c-980b-11e7-90a7-525400f64d8d",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/2114251c-980b-11e7-90a7-525400f64d8d",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "44a9d889-1be2-11e7-a872-525400f64d8d",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/44a9d889-1be2-11e7-a872-525400f64d8d",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "4736f1e3-46bb-11e5-808b-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/4736f1e3-46bb-11e5-808b-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "64b39c6b-f123-11e5-b7e8-52540005ab80",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/64b39c6b-f123-11e5-b7e8-52540005ab80",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "79b09220-431f-11e5-bd00-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/79b09220-431f-11e5-bd00-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "89b7b4c6-ccdb-11e5-aa10-52540005ab80",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/89b7b4c6-ccdb-11e5-aa10-52540005ab80",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "90c282c5-36e7-11e5-895c-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/90c282c5-36e7-11e5-895c-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "bea4a136-3fc7-11e5-94d6-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/bea4a136-3fc7-11e5-94d6-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "c32f1873-502a-11e5-bfc6-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/c32f1873-502a-11e5-bfc6-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "cc418ed4-10a7-11e6-ab6b-52540005ab80",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/cc418ed4-10a7-11e6-ab6b-52540005ab80",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "e87692f2-3587-11e5-9b0d-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/e87692f2-3587-11e5-9b0d-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "e8969370-2666-11e5-94a7-52540066fee9",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/e1cb1f6d-eea1-409e-b2c0-6cee2a94b5a2/shares/e8969370-2666-11e5-94a7-52540066fee9",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:55:56 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/shares?depth=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:55:59 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "b903838d-6384-4b81-b682-695068e50e48/shares",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/shares",
+          "items" : [ {
+            "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/shares/b9c6cb26-6100-4ba3-803a-caf75267068a",
+            "properties" : {
+              "editPrivilege" : true,
+              "sharePrivilege" : true
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:55:58 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/shares?depth=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:56:00 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/shares",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/shares",
+          "items" : [ {
+            "id" : "44a9d889-1be2-11e7-a872-525400f64d8d",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/shares/44a9d889-1be2-11e7-a872-525400f64d8d",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          }, {
+            "id" : "cc418ed4-10a7-11e6-ab6b-52540005ab80",
+            "type" : "resource",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/9e2cbcb6-7fca-4a3f-892c-4e37e0984e36/shares/cc418ed4-10a7-11e6-ab6b-52540005ab80",
+            "properties" : {
+              "editPrivilege" : false,
+              "sharePrivilege" : false
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:56:00 GMT
+recorded_with: VCR 3.0.3

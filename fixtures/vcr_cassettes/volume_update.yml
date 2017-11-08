@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/datacenters?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/datacenters?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -18,15 +18,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:38 GMT
+      - Mon, 06 Nov 2017 11:42:35 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -43,61 +37,62 @@ http_interactions:
         {
           "id" : "datacenters",
           "type" : "collection",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters",
           "items" : [ {
-            "id" : "6c2134f7-3789-40ab-b465-939214119b22",
+            "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a",
             "type" : "datacenter",
-            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a",
             "metadata" : {
-              "createdDate" : "2017-04-20T15:16:27Z",
+              "createdDate" : "2017-11-04T20:49:22Z",
               "createdBy" : "username",
-              "etag" : "0e2a27c236ee74f05f456fe4f218041c",
-              "lastModifiedDate" : "2017-04-20T15:20:32Z",
+              "etag" : "8a9d9196002e91f268e4342d3dc8702f",
+              "lastModifiedDate" : "2017-11-06T11:42:22Z",
               "lastModifiedBy" : "username",
               "state" : "AVAILABLE"
             },
             "properties" : {
-              "name" : "dummydc",
+              "name" : "Puppet Module Test",
               "description" : null,
               "location" : "us/las",
-              "version" : 7,
-              "features" : [ "SSD", "MULTIPLE_CPU" ]
+              "version" : 3,
+              "features" : [ "SSD", "MULTIPLE_CPU" ],
+              "secAuthProtection" : false
             },
             "entities" : {
               "servers" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/servers",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/servers",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/servers"
               },
               "volumes" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/volumes",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/volumes",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes"
               },
               "loadbalancers" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/loadbalancers",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/loadbalancers",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/loadbalancers"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/loadbalancers"
               },
               "lans" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/lans",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/lans",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/lans"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/lans"
               }
             }
           } ]
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:31 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:36 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -107,15 +102,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:39 GMT
+      - Mon, 06 Nov 2017 11:42:38 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -130,23 +119,23 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "6c2134f7-3789-40ab-b465-939214119b22/volumes",
+          "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/volumes",
           "type" : "collection",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes",
           "items" : [ {
-            "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+            "id" : "fef5b367-f0ad-40aa-ad29-a9ed0e9cc697",
             "type" : "volume",
-            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/fef5b367-f0ad-40aa-ad29-a9ed0e9cc697",
             "metadata" : {
-              "createdDate" : "2017-04-20T15:20:32Z",
+              "createdDate" : "2017-11-06T11:42:22Z",
               "createdBy" : "username",
-              "etag" : "0e2a27c236ee74f05f456fe4f218041c",
-              "lastModifiedDate" : "2017-04-20T15:20:32Z",
+              "etag" : "8a9d9196002e91f268e4342d3dc8702f",
+              "lastModifiedDate" : "2017-11-06T11:42:22Z",
               "lastModifiedBy" : "username",
               "state" : "AVAILABLE"
             },
             "properties" : {
-              "name" : "testvolume2",
+              "name" : "Puppet Module Test 2",
               "type" : "SSD",
               "size" : 100,
               "availabilityZone" : "AUTO",
@@ -168,35 +157,35 @@ http_interactions:
               "deviceNumber" : null
             }
           }, {
-            "id" : "67619f64-2f88-4c58-aa52-0ddf3def0e5f",
+            "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
             "type" : "volume",
-            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/67619f64-2f88-4c58-aa52-0ddf3def0e5f",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9",
             "metadata" : {
-              "createdDate" : "2017-04-20T15:20:19Z",
+              "createdDate" : "2017-11-06T11:40:36Z",
               "createdBy" : "username",
-              "etag" : "6777abc2bfe27605a00ac55193dffcd2",
-              "lastModifiedDate" : "2017-04-20T15:20:19Z",
+              "etag" : "19257d22f44de20208957b2060125b31",
+              "lastModifiedDate" : "2017-11-06T11:40:36Z",
               "lastModifiedBy" : "username",
               "state" : "AVAILABLE"
             },
             "properties" : {
-              "name" : "testvolume",
+              "name" : "Puppet Module Test",
               "type" : "HDD",
-              "size" : 50,
-              "availabilityZone" : "AUTO",
-              "image" : null,
+              "size" : 2,
+              "availabilityZone" : "ZONE_3",
+              "image" : "1871dd47-a671-11e7-90a7-525400f64d8d",
               "imagePassword" : null,
               "sshKeys" : null,
               "bus" : null,
               "licenceType" : "LINUX",
-              "cpuHotPlug" : false,
+              "cpuHotPlug" : true,
               "cpuHotUnplug" : false,
-              "ramHotPlug" : false,
+              "ramHotPlug" : true,
               "ramHotUnplug" : false,
-              "nicHotPlug" : false,
-              "nicHotUnplug" : false,
-              "discVirtioHotPlug" : false,
-              "discVirtioHotUnplug" : false,
+              "nicHotPlug" : true,
+              "nicHotUnplug" : true,
+              "discVirtioHotPlug" : true,
+              "discVirtioHotUnplug" : true,
               "discScsiHotPlug" : false,
               "discScsiHotUnplug" : false,
               "deviceNumber" : null
@@ -204,16 +193,16 @@ http_interactions:
           } ]
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:32 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:38 GMT
 - request:
     method: patch
-    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1
     body:
       encoding: UTF-8
-      string: '{"size":150}'
+      string: '{"size":5}'
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -223,17 +212,11 @@ http_interactions:
       message: Accepted
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:40 GMT
+      - Mon, 06 Nov 2017 11:42:43 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       Location:
-      - https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status
+      - https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status
       X-Ratelimit-Remaining:
       - '49'
       X-Ratelimit-Burst:
@@ -248,51 +231,51 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+          "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
           "type" : "volume",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:32Z",
+            "createdDate" : "2017-11-06T11:40:36Z",
             "createdBy" : "username",
-            "etag" : "106426477cd84d09cb609be96ac87a4e",
-            "lastModifiedDate" : "2017-04-20T15:20:40Z",
+            "etag" : "f0fca029818fe7c574a48b6b0d3a1821",
+            "lastModifiedDate" : "2017-11-06T11:42:44Z",
             "lastModifiedBy" : "username",
             "state" : "BUSY"
           },
           "properties" : {
-            "name" : "testvolume2",
-            "type" : "SSD",
-            "size" : 150,
-            "availabilityZone" : "AUTO",
-            "image" : null,
+            "name" : "Puppet Module Test",
+            "type" : "HDD",
+            "size" : 5,
+            "availabilityZone" : "ZONE_3",
+            "image" : "1871dd47-a671-11e7-90a7-525400f64d8d",
             "imagePassword" : null,
             "sshKeys" : null,
             "bus" : null,
-            "licenceType" : "WINDOWS2016",
-            "cpuHotPlug" : false,
+            "licenceType" : "LINUX",
+            "cpuHotPlug" : true,
             "cpuHotUnplug" : false,
-            "ramHotPlug" : false,
+            "ramHotPlug" : true,
             "ramHotUnplug" : false,
-            "nicHotPlug" : false,
-            "nicHotUnplug" : false,
-            "discVirtioHotPlug" : false,
-            "discVirtioHotUnplug" : false,
+            "nicHotPlug" : true,
+            "nicHotUnplug" : true,
+            "discVirtioHotPlug" : true,
+            "discVirtioHotUnplug" : true,
             "discScsiHotPlug" : false,
             "discScsiHotUnplug" : false,
             "deviceNumber" : null
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:33 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:44 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -302,15 +285,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:40 GMT
+      - Mon, 06 Nov 2017 11:42:45 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -325,17 +302,30 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "43491564ebcfd38568918efbd6e840fd",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "RUNNING",
+                "message" : "Request is running",
+                "etag" : "43491564ebcfd38568918efbd6e840fd",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "RUNNING"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -344,28 +334,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:34 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:45 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -375,15 +365,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:41 GMT
+      - Mon, 06 Nov 2017 11:42:46 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -398,34 +382,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "RUNNING",
             "message" : "Request is running",
             "etag" : "43491564ebcfd38568918efbd6e840fd",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "RUNNING"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:34 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:46 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -435,15 +419,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:42 GMT
+      - Mon, 06 Nov 2017 11:42:48 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -454,21 +432,36 @@ http_interactions:
       - application/json
       Strict-Transport-Security:
       - max-age=15768000
+      Connection:
+      - close
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "43491564ebcfd38568918efbd6e840fd",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "RUNNING",
+                "message" : "Request is running",
+                "etag" : "43491564ebcfd38568918efbd6e840fd",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "RUNNING"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -477,28 +470,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:35 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:49 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -508,15 +501,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:42 GMT
+      - Mon, 06 Nov 2017 11:42:49 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -531,34 +518,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "RUNNING",
             "message" : "Request is running",
             "etag" : "43491564ebcfd38568918efbd6e840fd",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "RUNNING"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:35 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:50 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -568,15 +555,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:43 GMT
+      - Mon, 06 Nov 2017 11:42:52 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -591,17 +572,30 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "43491564ebcfd38568918efbd6e840fd",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "RUNNING",
+                "message" : "Request is running",
+                "etag" : "43491564ebcfd38568918efbd6e840fd",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "RUNNING"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -610,28 +604,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:37 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:52 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -641,15 +635,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:44 GMT
+      - Mon, 06 Nov 2017 11:42:53 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -664,34 +652,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "RUNNING",
             "message" : "Request is running",
             "etag" : "43491564ebcfd38568918efbd6e840fd",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "RUNNING"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:37 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:53 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -701,15 +689,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:45 GMT
+      - Mon, 06 Nov 2017 11:42:55 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -724,17 +706,30 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "43491564ebcfd38568918efbd6e840fd",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "RUNNING",
+                "message" : "Request is running",
+                "etag" : "43491564ebcfd38568918efbd6e840fd",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "RUNNING"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -743,28 +738,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:38 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:55 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -774,15 +769,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:45 GMT
+      - Mon, 06 Nov 2017 11:42:56 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -797,34 +786,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "RUNNING",
             "message" : "Request is running",
             "etag" : "43491564ebcfd38568918efbd6e840fd",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "RUNNING"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:39 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:57 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -834,15 +823,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:46 GMT
+      - Mon, 06 Nov 2017 11:42:59 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -857,17 +840,30 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "43491564ebcfd38568918efbd6e840fd",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "RUNNING",
+                "message" : "Request is running",
+                "etag" : "43491564ebcfd38568918efbd6e840fd",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "RUNNING"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -876,28 +872,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:40 GMT
+  recorded_at: Mon, 06 Nov 2017 11:42:59 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -907,15 +903,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:46 GMT
+      - Mon, 06 Nov 2017 11:43:00 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -930,34 +920,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "RUNNING",
             "message" : "Request is running",
             "etag" : "43491564ebcfd38568918efbd6e840fd",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "RUNNING"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:40 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:00 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -967,15 +957,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:49 GMT
+      - Mon, 06 Nov 2017 11:43:04 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -990,17 +974,30 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "2ba22e58ca17bb728d522bba36cf8350",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "DONE",
+                "message" : "Request has been successfully executed",
+                "etag" : "2ba22e58ca17bb728d522bba36cf8350",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "DONE"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -1009,28 +1006,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:42 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:04 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -1040,15 +1037,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:49 GMT
+      - Mon, 06 Nov 2017 11:43:06 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -1063,832 +1054,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "metadata" : {
-            "status" : "RUNNING",
-            "message" : "Request is running",
-            "etag" : "43491564ebcfd38568918efbd6e840fd",
-            "targets" : [ {
-              "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
-                "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
-              },
-              "status" : "RUNNING"
-            } ]
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:42 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:50 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
-          "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
-          "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
-            "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
-            "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-              "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
-            }
-          },
-          "properties" : {
-            "method" : "PATCH",
-            "headers" : {
-              "content-type" : "application/json",
-              "connection" : "Keep-Alive",
-              "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
-              "x-forwarded-host" : "api.profitbricks.com",
-              "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
-              "x-forwarded-server" : "my.profitbricks.com"
-            },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:43 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:50 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "metadata" : {
-            "status" : "RUNNING",
-            "message" : "Request is running",
-            "etag" : "43491564ebcfd38568918efbd6e840fd",
-            "targets" : [ {
-              "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
-                "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
-              },
-              "status" : "RUNNING"
-            } ]
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:43 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:51 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
-          "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
-          "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
-            "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
-            "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-              "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
-            }
-          },
-          "properties" : {
-            "method" : "PATCH",
-            "headers" : {
-              "content-type" : "application/json",
-              "connection" : "Keep-Alive",
-              "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
-              "x-forwarded-host" : "api.profitbricks.com",
-              "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
-              "x-forwarded-server" : "my.profitbricks.com"
-            },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:45 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:52 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "metadata" : {
-            "status" : "RUNNING",
-            "message" : "Request is running",
-            "etag" : "43491564ebcfd38568918efbd6e840fd",
-            "targets" : [ {
-              "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
-                "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
-              },
-              "status" : "RUNNING"
-            } ]
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:45 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:53 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
-          "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
-          "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
-            "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
-            "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-              "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
-            }
-          },
-          "properties" : {
-            "method" : "PATCH",
-            "headers" : {
-              "content-type" : "application/json",
-              "connection" : "Keep-Alive",
-              "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
-              "x-forwarded-host" : "api.profitbricks.com",
-              "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
-              "x-forwarded-server" : "my.profitbricks.com"
-            },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:46 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:53 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "metadata" : {
-            "status" : "RUNNING",
-            "message" : "Request is running",
-            "etag" : "43491564ebcfd38568918efbd6e840fd",
-            "targets" : [ {
-              "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
-                "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
-              },
-              "status" : "RUNNING"
-            } ]
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:47 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:54 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
-          "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
-          "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
-            "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
-            "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-              "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
-            }
-          },
-          "properties" : {
-            "method" : "PATCH",
-            "headers" : {
-              "content-type" : "application/json",
-              "connection" : "Keep-Alive",
-              "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
-              "x-forwarded-host" : "api.profitbricks.com",
-              "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
-              "x-forwarded-server" : "my.profitbricks.com"
-            },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:48 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:55 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "metadata" : {
-            "status" : "RUNNING",
-            "message" : "Request is running",
-            "etag" : "43491564ebcfd38568918efbd6e840fd",
-            "targets" : [ {
-              "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
-                "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
-              },
-              "status" : "RUNNING"
-            } ]
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:48 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:56 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
-          "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
-          "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
-            "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
-            "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-              "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
-            }
-          },
-          "properties" : {
-            "method" : "PATCH",
-            "headers" : {
-              "content-type" : "application/json",
-              "connection" : "Keep-Alive",
-              "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
-              "x-forwarded-host" : "api.profitbricks.com",
-              "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
-              "x-forwarded-server" : "my.profitbricks.com"
-            },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:49 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:56 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "metadata" : {
-            "status" : "RUNNING",
-            "message" : "Request is running",
-            "etag" : "43491564ebcfd38568918efbd6e840fd",
-            "targets" : [ {
-              "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
-                "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
-              },
-              "status" : "RUNNING"
-            } ]
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:50 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:57 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
-          "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
-          "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
-            "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
-            "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-              "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
-            }
-          },
-          "properties" : {
-            "method" : "PATCH",
-            "headers" : {
-              "content-type" : "application/json",
-              "connection" : "Keep-Alive",
-              "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
-              "x-forwarded-host" : "api.profitbricks.com",
-              "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
-              "x-forwarded-server" : "my.profitbricks.com"
-            },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
-          }
-        }
-    http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:51 GMT
-- request:
-    method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
-      Content-Type:
-      - application/json
-      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 20 Apr 2017 15:20:57 GMT
-      Server:
-      - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
-      X-Ratelimit-Remaining:
-      - '299'
-      X-Ratelimit-Burst:
-      - '300'
-      X-Ratelimit-Limit:
-      - '600'
-      Content-Type:
-      - application/json
-      Strict-Transport-Security:
-      - max-age=15768000
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
-          "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "DONE",
             "message" : "Request has been successfully executed",
             "etag" : "2ba22e58ca17bb728d522bba36cf8350",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "DONE"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:51 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:07 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -1898,15 +1091,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:58 GMT
+      - Mon, 06 Nov 2017 11:43:09 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -1921,17 +1108,30 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "type" : "request",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d",
           "metadata" : {
-            "createdDate" : "2017-04-20T15:20:39Z",
+            "createdDate" : "2017-11-06T11:42:41Z",
             "createdBy" : "username",
-            "etag" : "37a6259cc0c1dae299a7866489dff0bd",
+            "etag" : "2ba22e58ca17bb728d522bba36cf8350",
             "requestStatus" : {
-              "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+              "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
               "type" : "request-status",
-              "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status"
+              "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
+              "metadata" : {
+                "status" : "DONE",
+                "message" : "Request has been successfully executed",
+                "etag" : "2ba22e58ca17bb728d522bba36cf8350",
+                "targets" : [ {
+                  "target" : {
+                    "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
+                    "type" : "volume",
+                    "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
+                  },
+                  "status" : "DONE"
+                } ]
+              }
             }
           },
           "properties" : {
@@ -1940,28 +1140,28 @@ http_interactions:
               "content-type" : "application/json",
               "connection" : "Keep-Alive",
               "host" : "api.profitbricks.com",
-              "x-forwarded-for" : "192.168.1.1",
-              "content-length" : "12",
+              "x-forwarded-for" : "146.255.143.137",
+              "content-length" : "10",
               "x-forwarded-host" : "api.profitbricks.com",
               "x-reseller" : "pb.domain",
-              "user-agent" : "profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1",
+              "user-agent" : "profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1",
               "x-forwarded-server" : "my.profitbricks.com"
             },
-            "body" : "{\"size\":150}",
-            "url" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14?depth=1?depth=1"
+            "body" : "{\"size\":5}",
+            "url" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9?depth=1?depth=1"
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:52 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:10 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -1971,15 +1171,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:58 GMT
+      - Mon, 06 Nov 2017 11:43:11 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -1994,34 +1188,34 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "id" : "027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "type" : "request-status",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/requests/e134afde-6dbd-4e90-801b-ada00e5399da/status",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/requests/027bdef3-fa9f-404d-ae79-a9a3b232677d/status",
           "metadata" : {
             "status" : "DONE",
             "message" : "Request has been successfully executed",
             "etag" : "2ba22e58ca17bb728d522bba36cf8350",
             "targets" : [ {
               "target" : {
-                "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+                "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
                 "type" : "volume",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9"
               },
               "status" : "DONE"
             } ]
           }
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:52 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:11 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/datacenters?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/datacenters?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -2031,15 +1225,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:58 GMT
+      - Mon, 06 Nov 2017 11:43:14 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -2056,61 +1244,62 @@ http_interactions:
         {
           "id" : "datacenters",
           "type" : "collection",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters",
           "items" : [ {
-            "id" : "6c2134f7-3789-40ab-b465-939214119b22",
+            "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a",
             "type" : "datacenter",
-            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a",
             "metadata" : {
-              "createdDate" : "2017-04-20T15:16:27Z",
+              "createdDate" : "2017-11-04T20:49:22Z",
               "createdBy" : "username",
-              "etag" : "993476e3d5ba35525a38de4dae6cae7c",
-              "lastModifiedDate" : "2017-04-20T15:20:42Z",
+              "etag" : "e8f0276df4cb9e2acaf54bac4e149356",
+              "lastModifiedDate" : "2017-11-06T11:42:44Z",
               "lastModifiedBy" : "username",
               "state" : "AVAILABLE"
             },
             "properties" : {
-              "name" : "dummydc",
+              "name" : "Puppet Module Test",
               "description" : null,
               "location" : "us/las",
-              "version" : 8,
-              "features" : [ "SSD", "MULTIPLE_CPU" ]
+              "version" : 4,
+              "features" : [ "SSD", "MULTIPLE_CPU" ],
+              "secAuthProtection" : false
             },
             "entities" : {
               "servers" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/servers",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/servers",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/servers"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/servers"
               },
               "volumes" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/volumes",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/volumes",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes"
               },
               "loadbalancers" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/loadbalancers",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/loadbalancers",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/loadbalancers"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/loadbalancers"
               },
               "lans" : {
-                "id" : "6c2134f7-3789-40ab-b465-939214119b22/lans",
+                "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/lans",
                 "type" : "collection",
-                "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/lans"
+                "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/lans"
               }
             }
           } ]
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:52 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:14 GMT
 - request:
     method: get
-    uri: https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes?depth=1
+    uri: https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes?depth=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - profitbricks-ruby-sdk/3.0.2 Puppet/4.5.1
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
       Content-Type:
       - application/json
       Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
@@ -2120,15 +1309,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 20 Apr 2017 15:20:59 GMT
+      - Mon, 06 Nov 2017 11:43:17 GMT
       Server:
       - Apache/2.4.10 (Debian)
-      Pragma:
-      - No-cache
-      Cache-Control:
-      - no-cache
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
       X-Ratelimit-Remaining:
       - '299'
       X-Ratelimit-Burst:
@@ -2143,25 +1326,59 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "id" : "6c2134f7-3789-40ab-b465-939214119b22/volumes",
+          "id" : "b9c6cb26-6100-4ba3-803a-caf75267068a/volumes",
           "type" : "collection",
-          "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes",
           "items" : [ {
-            "id" : "e3d19c89-dd78-4855-90c4-a90479492a14",
+            "id" : "671f73ee-3e17-4547-accd-682f0c758cd9",
             "type" : "volume",
-            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/e3d19c89-dd78-4855-90c4-a90479492a14",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/671f73ee-3e17-4547-accd-682f0c758cd9",
             "metadata" : {
-              "createdDate" : "2017-04-20T15:20:32Z",
+              "createdDate" : "2017-11-06T11:40:36Z",
               "createdBy" : "username",
-              "etag" : "993476e3d5ba35525a38de4dae6cae7c",
-              "lastModifiedDate" : "2017-04-20T15:20:42Z",
+              "etag" : "e8f0276df4cb9e2acaf54bac4e149356",
+              "lastModifiedDate" : "2017-11-06T11:42:44Z",
               "lastModifiedBy" : "username",
               "state" : "AVAILABLE"
             },
             "properties" : {
-              "name" : "testvolume2",
+              "name" : "Puppet Module Test",
+              "type" : "HDD",
+              "size" : 5,
+              "availabilityZone" : "ZONE_3",
+              "image" : "1871dd47-a671-11e7-90a7-525400f64d8d",
+              "imagePassword" : null,
+              "sshKeys" : null,
+              "bus" : null,
+              "licenceType" : "LINUX",
+              "cpuHotPlug" : true,
+              "cpuHotUnplug" : false,
+              "ramHotPlug" : true,
+              "ramHotUnplug" : false,
+              "nicHotPlug" : true,
+              "nicHotUnplug" : true,
+              "discVirtioHotPlug" : true,
+              "discVirtioHotUnplug" : true,
+              "discScsiHotPlug" : false,
+              "discScsiHotUnplug" : false,
+              "deviceNumber" : null
+            }
+          }, {
+            "id" : "fef5b367-f0ad-40aa-ad29-a9ed0e9cc697",
+            "type" : "volume",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/datacenters/b9c6cb26-6100-4ba3-803a-caf75267068a/volumes/fef5b367-f0ad-40aa-ad29-a9ed0e9cc697",
+            "metadata" : {
+              "createdDate" : "2017-11-06T11:42:22Z",
+              "createdBy" : "username",
+              "etag" : "8a9d9196002e91f268e4342d3dc8702f",
+              "lastModifiedDate" : "2017-11-06T11:42:22Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "Puppet Module Test 2",
               "type" : "SSD",
-              "size" : 150,
+              "size" : 100,
               "availabilityZone" : "AUTO",
               "image" : null,
               "imagePassword" : null,
@@ -2180,42 +1397,8 @@ http_interactions:
               "discScsiHotUnplug" : false,
               "deviceNumber" : null
             }
-          }, {
-            "id" : "67619f64-2f88-4c58-aa52-0ddf3def0e5f",
-            "type" : "volume",
-            "href" : "https://api.profitbricks.com/cloudapi/v3/datacenters/6c2134f7-3789-40ab-b465-939214119b22/volumes/67619f64-2f88-4c58-aa52-0ddf3def0e5f",
-            "metadata" : {
-              "createdDate" : "2017-04-20T15:20:19Z",
-              "createdBy" : "username",
-              "etag" : "6777abc2bfe27605a00ac55193dffcd2",
-              "lastModifiedDate" : "2017-04-20T15:20:19Z",
-              "lastModifiedBy" : "username",
-              "state" : "AVAILABLE"
-            },
-            "properties" : {
-              "name" : "testvolume",
-              "type" : "HDD",
-              "size" : 50,
-              "availabilityZone" : "AUTO",
-              "image" : null,
-              "imagePassword" : null,
-              "sshKeys" : null,
-              "bus" : null,
-              "licenceType" : "LINUX",
-              "cpuHotPlug" : false,
-              "cpuHotUnplug" : false,
-              "ramHotPlug" : false,
-              "ramHotUnplug" : false,
-              "nicHotPlug" : false,
-              "nicHotUnplug" : false,
-              "discVirtioHotPlug" : false,
-              "discVirtioHotUnplug" : false,
-              "discScsiHotPlug" : false,
-              "discScsiHotUnplug" : false,
-              "deviceNumber" : null
-            }
           } ]
         }
     http_version: 
-  recorded_at: Thu, 20 Apr 2017 15:20:53 GMT
+  recorded_at: Mon, 06 Nov 2017 11:43:18 GMT
 recorded_with: VCR 3.0.3

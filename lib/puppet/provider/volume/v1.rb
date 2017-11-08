@@ -85,6 +85,7 @@ Puppet::Type.type(:volume).provide(:v1) do
       name: name,
       availabilityZone: resource[:availability_zone],
       image: resource[:image_id],
+      imageAlias: resource[:image_alias],
       bus: resource[:bus],
       type: resource[:volume_type],
       size: resource[:size],
