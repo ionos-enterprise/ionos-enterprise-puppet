@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/ipblocks/268fa49a-bed5-405b-aeba-2a414b1675af?depth=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:12:31 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "268fa49a-bed5-405b-aeba-2a414b1675af",
+          "type" : "ipblock",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/ipblocks/268fa49a-bed5-405b-aeba-2a414b1675af",
+          "metadata" : {
+            "createdDate" : "2017-11-06T20:54:29Z",
+            "createdBy" : "username",
+            "etag" : "634555d852b12204fc3266cfa3d425e5",
+            "lastModifiedDate" : "2017-11-06T20:54:29Z",
+            "lastModifiedBy" : "username",
+            "state" : "AVAILABLE"
+          },
+          "properties" : {
+            "ips" : [ "208.94.36.99", "208.94.36.101" ],
+            "location" : "us/las",
+            "size" : 2,
+            "name" : "Puppet Module Test"
+          }
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:12:31 GMT
+- request:
+    method: delete
+    uri: https://api.profitbricks.com/cloudapi/v4/ipblocks/268fa49a-bed5-405b-aeba-2a414b1675af?depth=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:12:34 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Location:
+      - https://api.profitbricks.com/cloudapi/v4/requests/072e1986-49e5-401b-ac3b-7a2ec53c255d/status
+      X-Ratelimit-Remaining:
+      - '49'
+      X-Ratelimit-Burst:
+      - '50'
+      X-Ratelimit-Limit:
+      - '120'
+      Content-Length:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:12:34 GMT
+recorded_with: VCR 3.0.3

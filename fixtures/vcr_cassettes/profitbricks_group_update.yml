@@ -1,0 +1,187 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48?depth=5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:37:19 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "b903838d-6384-4b81-b682-695068e50e48",
+          "type" : "group",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48",
+          "properties" : {
+            "name" : "Puppet Module Test",
+            "createDataCenter" : true,
+            "createSnapshot" : true,
+            "reserveIp" : true,
+            "accessActivityLog" : true
+          },
+          "entities" : {
+            "users" : {
+              "id" : "b903838d-6384-4b81-b682-695068e50e48/users",
+              "type" : "collection",
+              "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/users",
+              "items" : [ ]
+            },
+            "resources" : {
+              "id" : "b903838d-6384-4b81-b682-695068e50e48/resources",
+              "type" : "collection",
+              "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/resources",
+              "items" : [ ]
+            }
+          }
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:37:19 GMT
+- request:
+    method: put
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48?depth=5
+    body:
+      encoding: UTF-8
+      string: '{"properties":{"name":"Puppet Module Test","createDataCenter":false}}'
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:37:21 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      Location:
+      - https://api.profitbricks.com/cloudapi/v4/requests/06ba7cf6-89be-4b22-bec1-f3b55706651a/status
+      X-Ratelimit-Remaining:
+      - '49'
+      X-Ratelimit-Burst:
+      - '50'
+      X-Ratelimit-Limit:
+      - '120'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "b903838d-6384-4b81-b682-695068e50e48",
+          "type" : "group",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48",
+          "properties" : {
+            "name" : "Puppet Module Test",
+            "createDataCenter" : false,
+            "createSnapshot" : true,
+            "reserveIp" : true,
+            "accessActivityLog" : true
+          },
+          "entities" : {
+            "users" : {
+              "id" : "b903838d-6384-4b81-b682-695068e50e48/users",
+              "type" : "collection",
+              "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/users",
+              "items" : [ ]
+            },
+            "resources" : {
+              "id" : "b903838d-6384-4b81-b682-695068e50e48/resources",
+              "type" : "collection",
+              "href" : "https://api.profitbricks.com/cloudapi/v4/um/groups/b903838d-6384-4b81-b682-695068e50e48/resources",
+              "items" : [ ]
+            }
+          }
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:37:22 GMT
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/um/groups/?depth=5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 21:37:38 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCIgOiAiZ3JvdXBzIiwKICAidHlwZSIgOiAiY29sbGVjdGlvbiIsCiAg
+        ImhyZWYiIDogImh0dHBzOi8vYXBpLnByb2ZpdGJyaWNrcy5jb20vY2xvdWRhcGkv
+        djQvdW0vZ3JvdXBzIiwKICAiaXRlbXMiIDogWyB7CiAgICAiaWQiIDogImI5MDM4
+        MzhkLTYzODQtNGI4MS1iNjgyLTY5NTA2OGU1MGU0OCIsCiAgICAidHlwZSIgOiAi
+        Z3JvdXAiLAogICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnByb2ZpdGJyaWNrcy5j
+        b20vY2xvdWRhcGkvdjQvdW0vZ3JvdXBzL2I5MDM4MzhkLTYzODQtNGI4MS1iNjgy
+        LTY5NTA2OGU1MGU0OCIsCiAgICAicHJvcGVydGllcyIgOiB7CiAgICAgICJuYW1l
+        IiA6ICJQdXBwZXQgTW9kdWxlIFRlc3QiLAogICAgICAiY3JlYXRlRGF0YUNlbnRl
+        ciIgOiBmYWxzZSwKICAgICAgImNyZWF0ZVNuYXBzaG90IiA6IHRydWUsCiAgICAg
+        ICJyZXNlcnZlSXAiIDogdHJ1ZSwKICAgICAgImFjY2Vzc0FjdGl2aXR5TG9nIiA6
+        IHRydWUKICAgIH0sCiAgICAiZW50aXRpZXMiIDogewogICAgICAidXNlcnMiIDog
+        ewogICAgICAgICJpZCIgOiAiYjkwMzgzOGQtNjM4NC00YjgxLWI2ODItNjk1MDY4
+        ZTUwZTQ4L3VzZXJzIiwKICAgICAgICAidHlwZSIgOiAiY29sbGVjdGlvbiIsCiAg
+        ICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnByb2ZpdGJyaWNrcy5jb20vY2xv
+        dWRhcGkvdjQvdW0vZ3JvdXBzL2I5MDM4MzhkLTYzODQtNGI4MS1iNjgyLTY5NTA2
+        OGU1MGU0OC91c2VycyIsCiAgICAgICAgIml0ZW1zIiA6IFsgXQogICAgICB9LAog
+        ICAgICAicmVzb3VyY2VzIiA6IHsKICAgICAgICAiaWQiIDogImI5MDM4MzhkLTYz
+        ODQtNGI4MS1iNjgyLTY5NTA2OGU1MGU0OC9yZXNvdXJjZXMiLAogICAgICAgICJ0
+        eXBlIiA6ICJjb2xsZWN0aW9uIiwKICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9h
+        cGkucHJvZml0YnJpY2tzLmNvbS9jbG91ZGFwaS92NC91bS9ncm91cHMvYjkwMzgz
+        OGQtNjM4NC00YjgxLWI2ODItNjk1MDY4ZTUwZTQ4L3Jlc291cmNlcyIsCiAgICAg
+        ICAgIml0ZW1zIiA6IFsgXQogICAgICB9CiAgICB9CiAgfSBdCn0K
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 21:37:39 GMT
+recorded_with: VCR 3.0.3

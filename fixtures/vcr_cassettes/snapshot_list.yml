@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.profitbricks.com/cloudapi/v4/snapshots?depth=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - profitbricks-ruby-sdk/4.0.1 Puppet/4.5.1
+      Content-Type:
+      - application/json
+      Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 06 Nov 2017 13:16:07 GMT
+      Server:
+      - Apache/2.4.10 (Debian)
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Burst:
+      - '300'
+      X-Ratelimit-Limit:
+      - '600'
+      Content-Type:
+      - application/json
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id" : "snapshots",
+          "type" : "collection",
+          "href" : "https://api.profitbricks.com/cloudapi/v4/snapshots",
+          "items" : [ {
+            "id" : "722e044d-8433-444b-af16-67b8b1d86356",
+            "type" : "snapshot",
+            "href" : "https://api.profitbricks.com/cloudapi/v4/snapshots/722e044d-8433-444b-af16-67b8b1d86356",
+            "metadata" : {
+              "createdDate" : "2017-11-06T13:13:56Z",
+              "createdBy" : "username",
+              "etag" : "b36ec0e97ec2217805a13e805a49583a",
+              "lastModifiedDate" : "2017-11-06T13:13:56Z",
+              "lastModifiedBy" : "username",
+              "state" : "AVAILABLE"
+            },
+            "properties" : {
+              "name" : "Puppet Module Test",
+              "description" : "Puppet Module test snapshot",
+              "location" : "us/las",
+              "size" : 5,
+              "secAuthProtection" : false,
+              "cpuHotPlug" : true,
+              "cpuHotUnplug" : false,
+              "ramHotPlug" : true,
+              "ramHotUnplug" : false,
+              "nicHotPlug" : true,
+              "nicHotUnplug" : true,
+              "discVirtioHotPlug" : true,
+              "discVirtioHotUnplug" : true,
+              "discScsiHotPlug" : false,
+              "discScsiHotUnplug" : false,
+              "licenceType" : "LINUX"
+            }
+          } ]
+        }
+    http_version: 
+  recorded_at: Mon, 06 Nov 2017 13:16:07 GMT
+recorded_with: VCR 3.0.3
