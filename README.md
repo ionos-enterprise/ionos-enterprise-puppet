@@ -1,3 +1,8 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+# DEPRECATED
+
+This is no longer supported, please consider using [IONOS Cloud Puppet Module](https://github.com/ionos-cloud/puppet-module) instead.
+
 ## Puppet Module
 
 Version: profitbricks-puppet v1.6.0
